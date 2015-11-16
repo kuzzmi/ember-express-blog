@@ -12,6 +12,7 @@
     "express": "~4.13.1",
     "jade": "~1.11.0",
     "kerberos": "0.0.17",
+    "marked": "^0.3.5",
     "mongoose": "^4.2.7",
     "morgan": "~1.6.1",
     "node-github": "0.0.3",

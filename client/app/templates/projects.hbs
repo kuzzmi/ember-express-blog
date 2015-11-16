@@ -1,1 +1,12 @@
+<div class="posts-list">
+    <ul>
+        {{#each model as |project|}}
+            <li>
+                <p class="project-title">
+                    {{project.fullname}}
+                </p>
+            </li>
+        {{/each}}
+    </ul>
+</div>
 {{outlet}}

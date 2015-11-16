@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
+var marked = require('marked');
 var Schema = mongoose.Schema;
 
 var PostSchema = new Schema({
     title: String,
     body: String,
+    markdown: String,
     description: String,
     slug: String,
     dateCreated: Date
@@ -79,6 +81,7 @@ function translit(text) {
 PostSchema.pre('save', function(next) {
     this.slug = translit(this.title);
     this.slug = slugify(this.slug);
+    this.body = marked(this.markdown);
     next();
 });
 
