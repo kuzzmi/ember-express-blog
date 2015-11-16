@@ -2,6 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 var posts = require('./posts');
+var projects = require('./projects');
+
+/*
+ *  POSTS START
+ */
 
 /* Posts routes */
 router.route('/posts')
@@ -26,5 +31,12 @@ router.route('/posts/:id')
         posts.delete(req, res, req.params.id);
     });
 
+/*
+ *  PROJECTS START
+ */
+router.route('/projects')
+    .get(function(req, res) {
+        projects.getAll(req, res);
+    });
 
 module.exports = router;
