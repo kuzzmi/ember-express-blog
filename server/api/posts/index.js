@@ -38,13 +38,22 @@ module.exports.getOne = function(req, res, slug) {
 };
 
 module.exports.update = function(req, res, id) {
-    Post.findByIdAndUpdate(id, req.body.post, function(err, post) {
+    Post.findById(id, function(err, post) {
         if (err) {
             res.send(err);
         }
-        res.json({
-            post: post
-        });
+        var newPost = req.body.post;
+        post.title = newPost.title;
+        post.markdown = newPost.markdown;
+        post.description = newPost.description;
+        post.save(function(err, post) {
+            if (err) {
+                res.send(err);
+            }
+            res.json({
+                post: post
+            });
+        })
     });
 };
 
