@@ -14,6 +14,8 @@
         {{model.title}} 
     </p>
     <p class="post-body">
-        {{{model.body}}}
+        {{#blog-post-body}}
+            {{{model.body}}}
+        {{/blog-post-body}}
     </p>
 </div>

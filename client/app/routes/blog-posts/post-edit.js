@@ -7,8 +7,8 @@ export default Ember.Route.extend({
 
     actions: {
         savePost(post) {
-            post.save().then(() => {
-                this.transitionTo('blog-posts.post-read', post);
+            post.save().then((newPost) => {
+                this.transitionTo('blog-posts.post-read', newPost);
             });
         }
     }
