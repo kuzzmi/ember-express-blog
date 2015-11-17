@@ -17,15 +17,6 @@ body {
     color: $text-color;
     overflow-x: hidden;
 }
-    
-a {
-    text-decoration: none;
-    color: $text-color;
-
-    &:hover {
-        text-decoration: underline;
-    }
-}
 
 .wrapper {
     display: block;
@@ -38,5 +29,50 @@ a {
     .content {
         padding: 20px 40px;
         padding-top: 0px;
+    }
+}
+    
+a {
+    text-decoration: none;
+    color: $text-color;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+form {
+    input, textarea {
+        font-family: 'Roboto Mono', 'Roboto', sans-serif;
+        display: block;
+        margin-bottom: 20px;
+        width: 100%;
+        border: 0;
+        outline: 0;
+        font-size: 16px;
+    }
+
+    input {
+        border-bottom: 1px solid $grey-light;
+        padding: 5px 0px;
+
+        &[type="submit"] {
+            color: white;
+            font-weight: 700;
+            background-color: rgb(84, 179, 108);
+        }
+    }
+}
+
+.toolbar {
+    display: inline-block;
+    float: right;
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+            font-weight: 500;
+        }
     }
 }

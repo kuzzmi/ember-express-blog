@@ -24,9 +24,9 @@ module.exports.getAll = function(req, res) {
     });
 };
 
-module.exports.getOne = function(req, res, slug) {
+module.exports.getOne = function(req, res, id) {
     Post.findOne({
-        slug: slug
+        _id: id
     }, function(err, post) {
         if (err) {
             res.send(err);
@@ -38,7 +38,9 @@ module.exports.getOne = function(req, res, slug) {
 };
 
 module.exports.update = function(req, res, id) {
-    Post.findById(id, function(err, post) {
+    Post.findOne({
+        _id: id
+    }, function(err, post) {
         if (err) {
             res.send(err);
         }
@@ -58,10 +60,17 @@ module.exports.update = function(req, res, id) {
 };
 
 module.exports.delete = function(req, res, id) {
-    Post.findByIdAndRemove(id, function(err) {
+    Post.findOne({
+        _id: id
+    }, function(err, post) {
         if (err) {
             res.send(err);
         }
-        res.json({});
+        post.remove(function(err) {
+            if (err) {
+                res.send(err);
+            }
+            res.json({});
+        });
     });
 };

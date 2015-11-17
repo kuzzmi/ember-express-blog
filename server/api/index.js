@@ -18,12 +18,10 @@ router.route('/posts')
     });
 
 /* Single post routes */
-router.route('/posts/:slug')
-    .get(function(req, res) {
-        posts.getOne(req, res, req.params.slug);
-    });
-
 router.route('/posts/:id')
+    .get(function(req, res) {
+        posts.getOne(req, res, req.params.id);
+    })
     .put(function(req, res) {
         posts.update(req, res, req.params.id);
     })

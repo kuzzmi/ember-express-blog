@@ -4,10 +4,15 @@
   <div class="navbar">
     <ul>
       <li>{{#link-to "blog-posts"}}Blog{{/link-to}}</li>
-      <li>{{#link-to "about"}}About{{/link-to}}</li>
-      {{!--
       <li>{{#link-to "projects"}}Projects{{/link-to}}</li>
-      --}}
+      <li>{{#link-to "about"}}About{{/link-to}}</li>
+      <li>
+          {{#if session.isAuthenticated}}
+              <a {{action 'invalidateSession'}}>Logout</a>
+          {{else}}
+              {{link-to "Login" "auth.login"}}
+          {{/if}}
+      </li>
     </ul>
     <div class="active-indicator"></div>
   </div>

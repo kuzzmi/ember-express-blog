@@ -6,6 +6,13 @@ export default Ember.Route.extend({
     },
 
     actions: {
+        willTransition(transition) {
+            var model = this.currentModel;
+            if (model.get('isNew')) {
+                model.rollbackAttributes();
+            }
+        },
+
         savePost(post) {
             post.set('dateCreated', new Date());
             post.save().then(() => {
