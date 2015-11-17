@@ -1,4 +1,5 @@
 <div class="login-form">
+    {{errorMessage}}
     <form {{action "authenticate" on="submit"}}>
         {{input id="username" value=post.title placeholder="enter username"}}
         {{input id="password" value=post.title placeholder="enter password" type="password"}}
