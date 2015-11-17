@@ -1,4 +1,9 @@
 {
     "secret": "",
-    "database": "mongodb://localhost/blog"
+    "database": "mongodb://localhost/blog",
+    "googleAuth": {
+        "clientID": "",
+        "clientSecret": "",
+        "callbackURL": "http://localhost:3000/api/auth/callback"
+    }
 }

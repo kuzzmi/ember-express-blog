@@ -7,8 +7,17 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var api = require('./api');
 var passport = require('passport');
+var globalTunnel = require('global-tunnel');
 
 require('./config/passport/google');
+
+if (process.env.http_proxy || process.env.HTTP_PROXY) {
+    globalTunnel.initialize({
+        host: 'eu-chbs-proxy.eu.novartis.net',
+        port: 2010,
+        tunnel: 'both'
+    });
+}
 
 var app = express();
 

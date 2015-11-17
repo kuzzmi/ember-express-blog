@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var marked = require('marked');
 
 var posts = require('./posts');
 var projects = require('./projects');
@@ -18,6 +19,22 @@ router.route('/posts')
     })
     .get(function(req, res) {
         posts.getAll(req, res);
+    });
+
+/*
+ *  MARKDOWN PREVIEW
+ */ 
+router.route('/posts/preview')
+    .post(function(req, res) {
+        var body = req.body.body;
+        if (body) {
+            body = marked(body);
+            res.json({
+                'html': body
+            });
+        } else {
+            throw 'No body specified';
+        }
     });
 
 /* Single post routes */

@@ -3,7 +3,7 @@
         <ul>
             <li>
                 <a href="#" {{action "save" post}}>[F2] Save</a>
-                {{link-to "[F3] View" "blog-posts"}}
+                <a href="#" {{action "preview" post}}>[F3] Preview</a>
                 {{link-to "[F10] Close" "blog-posts"}}
             </li>
         </ul>
@@ -11,16 +11,26 @@
     <p class="current-time">
         {{moment-from-now post.dateCreated interval=1000}}
     </p>
-    <h2 class="title">
-        {{form-title}} 
-    </h2>
-    <form {{action "save" post on="submit"}}>
-        <p class="label">Title</p>
-        {{input value=post.title placeholder="post title" type=text}}
-        <p class="label">Description</p>
-        {{textarea value=post.description placeholder="post description" type=text}}
-        <p class="label">Body</p>
-        <div id="editor-body"></div>
-        <input type="submit" value="Save">
-    </form>
+    <div class="form">
+        <h2 class="title">
+            {{form-title}} 
+        </h2>
+        <form {{action "save" post on="submit"}}>
+            <p class="label">Title</p>
+            {{input value=post.title placeholder="post title" type=text}}
+            <p class="label">Description</p>
+            {{textarea value=post.description placeholder="post description" type=text}}
+            <p class="label">Body</p>
+            <div id="editor-body"></div>
+            <input type="submit" value="Save">
+        </form>
+    </div>
+    <div class="preview">
+        <h2 class="title">
+            Preview
+        </h2>
+        {{#blog-post-body}}
+            {{{preview}}}
+        {{/blog-post-body}}
+    </div>
 </div>
