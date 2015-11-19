@@ -1,4 +1,5 @@
-List of posts
+<h3>Posts list</h3>
+{{#link-to "blog-posts.post-new"}}New post{{/link-to}}
 <ul>
     {{#each model as |item|}}
         <li>{{#link-to "blog-posts.post-read" item.id}}{{item.title}}{{/link-to}}</li>

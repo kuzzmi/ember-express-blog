@@ -7,7 +7,7 @@ function generatePost(id) {
     }
 }
 
-var posts = {
+var data = {
     'posts': [
         generatePost(1),
         generatePost(2),
@@ -22,11 +22,15 @@ module.exports = function(app) {
     var postsRouter = express.Router();
 
     postsRouter.get('/', function(req, res) {
-        res.send(posts);
+        res.send(data);
     });
 
     postsRouter.post('/', function(req, res) {
-        res.status(201).end();
+        var post = req.body.post;
+        post.id = data.posts.length + 1;
+        res.status(201).json({
+            'posts': post
+        });
     });
 
     postsRouter.get('/:id', function(req, res) {
@@ -56,6 +60,8 @@ module.exports = function(app) {
     // After installing, you need to `use` the body-parser for
     // this mock uncommenting the following line:
     //
-    //app.use('/api/posts', require('body-parser'));
+    var bodyParser = require('body-parser');
+    app.use(bodyParser.urlencoded({ extended: false  }));
+    app.use(bodyParser.json());
     app.use('/api/posts', postsRouter);
 };

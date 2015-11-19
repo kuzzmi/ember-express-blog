@@ -1,0 +1,6 @@
+<form {{action "save" post on="submit"}}>
+    {{input value=post.title type=text}}
+    {{input value=post.body type=text}}
+    <input type="submit">
+</form>
+{{yield}}

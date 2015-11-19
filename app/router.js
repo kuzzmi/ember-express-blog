@@ -8,6 +8,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
     this.route('blog-posts', { path: 'posts' }, function() {
       this.route('posts-list', { path: '/' });
+      this.route('post-edit', { path: ':id/edit' });
       this.route('post-new', { path: 'new' });
       this.route('post-read', { path: ':id' });
     });
