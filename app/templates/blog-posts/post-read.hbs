@@ -1,4 +1,18 @@
-<h5> {{model.title}} </h5>
-{{link-to "Edit" "blog-posts.post-edit" model}}
-{{model.body}}
-{{outlet}}
+<div class="post">
+    <div class="toolbar">
+        <ul>
+            <li>
+                {{link-to "Edit" "blog-posts.post-edit" model}}
+            </li>
+        </ul>
+    </div>
+    <p class="post-created">
+        {{moment-format model.dateCreated "DD/MM/YY HH:mm"}}
+    </p>
+    <p class="post-title">
+        {{model.title}} 
+    </p>
+    <p class="post-body">
+        {{{model.body}}}
+    </p>
+</div>

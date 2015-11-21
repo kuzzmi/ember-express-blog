@@ -14,6 +14,16 @@ var data = {
         generatePost(2),
         generatePost(3),
         generatePost(4),
+        {
+            id: 5,
+            title: 'Super test',
+            description: 'Testing old post',
+            dateCreated: new Date('2014/07/21'),
+            body: '\
+            <pre><code>\
+console.log("hehehe");\
+            </code></pre>'
+        }
     ]
 };
 
@@ -35,8 +45,11 @@ module.exports = function(app) {
     });
 
     postsRouter.get('/:id', function(req, res) {
+        var postData = data.posts.filter(function(post) {
+            return post.id === req.params.id;
+        })[0]
         res.send({
-            'posts': generatePost(req.params.id)
+            'posts': postData
         });
     });
 

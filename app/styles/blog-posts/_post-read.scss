@@ -1,0 +1,67 @@
+.post {
+    padding: 20px 40px;
+
+    .toolbar {
+        display: inline-block;
+        float: right;
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            li {
+                font-weight: 500;
+            }
+        }
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
+
+        &.post-title {
+            font-size: 32px;
+            font-weight: 700;
+            padding-bottom: 20px;
+        }
+
+        &.post-body {
+            p {
+                padding: 10px 0;
+
+                img {
+                    display: block;
+                    margin: 0 auto;
+                    vertical-align: middle;
+                    border: 0;
+                }
+
+                code {
+                    font-size: 12px;
+                    padding: 3px 5px;
+                    border-radius: 2px;
+                    background: $grey-lightest;
+                }
+            }
+
+            pre {
+                margin-left: -40px;
+                margin-right: -40px;
+            }
+
+            code {
+                padding: 10px 40px;
+                font-family: 'Roboto Mono', monospace;
+                font-size: 14px;
+            }
+
+            ul {
+                list-style: none;
+
+                li:before {
+                    content: "* ";
+                }
+            }
+        }
+    }
+
+}

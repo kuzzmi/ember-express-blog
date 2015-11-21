@@ -20,7 +20,8 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
         'script-src': "'self'",
-        'style-src': "'self' 'unsafe-inline' use.typekit.net",
+        'style-src': "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com",
+        'font-src': "'self' 'unsafe-inline' fonts.gstatic.com"
     }
   };
 
