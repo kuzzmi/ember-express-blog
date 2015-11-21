@@ -1,0 +1,29 @@
+.posts-list {
+    padding: 0 40px;
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+            padding-bottom: 20px;
+            p {
+                margin: 0;
+                padding: 0;
+
+                &.post-title {
+                    font-size: 18px;
+                    font-weight: 700;
+                }
+
+                &.post-description { }
+                &.post-date { }
+                &.post-tags {
+                    .tag a {
+                        font-size: 14px;
+                        color: $grey;
+                    }
+                }
+            }
+        }
+    }
+}

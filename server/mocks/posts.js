@@ -3,8 +3,9 @@ function generatePost(id) {
         id: id,
         title: 'Post ' + id,
         body: '<b>Post ' + id + ' Body</b>',
+        description: 'This post #' + id + ' is about testing',
         dateCreated: new Date()
-    }
+    };
 }
 
 var data = {

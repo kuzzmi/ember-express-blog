@@ -1,0 +1,19 @@
+html,
+body {
+    font-family: 'Roboto Mono', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    color: $text-color;
+}
+    
+a {
+    text-decoration: none;
+    color: $text-color;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+

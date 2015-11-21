@@ -1,8 +1,36 @@
-<h3>Posts list</h3>
-{{#link-to "blog-posts.post-new"}}New post{{/link-to}}
-<ul>
-    {{#each model as |item|}}
-        <li>{{#link-to "blog-posts.post-read" item.id}}{{item.title}}{{/link-to}}</li>
-    {{/each}}
-</ul>
-{{outlet}}
+{{!-- {{#link-to "blog-posts.post-new"}}New post{{/link-to}} --}}
+<div class="posts-list">
+    <ul>
+        {{#each model as |item|}}
+            <li>
+                <p class="post-created">
+                    {{moment-format item.dateCreated "DD/MM/YY HH:mm"}}
+                </p>
+                <p class="post-title">
+                    {{#link-to "blog-posts.post-read" item.id}}{{item.title}}{{/link-to}}
+                </p>
+                <p class="post-description">
+                    {{item.description}}
+                </p>
+                <p class="post-tags">
+                    <span class="tag">
+                        <a href="#">
+                            javascript
+                        </a>
+                    </span>
+                    <span class="tag">
+                        <a href="#">
+                            web dev
+                        </a>
+                    </span>
+                    <span class="tag">
+                        <a href="#">
+                            nodejs
+                        </a>
+                    </span>
+                </p>
+            </li>
+        {{/each}}
+    </ul>
+</div>
+
