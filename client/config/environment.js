@@ -18,15 +18,21 @@ module.exports = function(environment) {
             // when it is created
         },
 
+        API: {
+            // Here will be stored API specific settings
+        },
+
         contentSecurityPolicy: {
             'script-src': "'self'",
             'style-src': "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com",
-            'font-src': "'self' 'unsafe-inline' fonts.gstatic.com"
+            'font-src': "'self' 'unsafe-inline' fonts.gstatic.com",
+            'connect-src': "'self' http://localhost:3000"
         }
     };
 
     if (environment === 'development') {
-        ENV.APINamespace = 'api';
+        ENV.API.namespace = 'api';
+        ENV.API.host = 'http://localhost:3000';
         // ENV.APP.LOG_RESOLVER = true;
         ENV.APP.LOG_ACTIVE_GENERATION = true;
         ENV.APP.LOG_TRANSITIONS = true;
