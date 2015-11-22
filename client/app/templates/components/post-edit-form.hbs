@@ -1,0 +1,12 @@
+<div class="post-edit-form">
+    <h2 class="title">
+        {{form-title}}
+    </h2>
+    <form {{action "save" post on="submit"}}>
+        {{input value=post.title placeholder="post title" type=text}}
+        {{textarea value=post.body type=text}}
+        {{textarea value=post.description type=text}}
+        <input type="submit">
+    </form>
+</div>
+{{yield}}

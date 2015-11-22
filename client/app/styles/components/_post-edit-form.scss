@@ -1,0 +1,28 @@
+.post-edit-form {
+    padding: 0 40px;
+    .title {
+        margin: 0;
+        font-size: 32px;
+        font-weight: 700;
+        padding-bottom: 20px;
+    }
+
+    form {
+        input, textarea {
+            font-family: 'Roboto Mono', 'Roboto', sans-serif;
+            display: block;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        input {
+            border: 0;
+            outline: 0;
+            font-size: 18px;
+            border-bottom: 1px solid $grey-dark;
+            padding: 5px 0px;
+        }
+        textarea {
+            height: 100px;
+        }
+    }
+}

@@ -44,12 +44,16 @@
             }
 
             pre {
-                margin-left: -40px;
-                margin-right: -40px;
+                margin-left: -9999px;
+                margin-right: -9999px;
+                background: #444;
             }
 
             code {
-                padding: 10px 40px;
+                max-width: 1000px;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 20px 40px;
                 font-family: 'Roboto Mono', monospace;
                 font-size: 14px;
             }

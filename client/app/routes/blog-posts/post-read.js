@@ -13,5 +13,15 @@ export default Ember.Route.extend({
 
     model(params) {
         return this.store.findRecord('post', params.id);
+    },
+
+    actions: {
+        delete(post) {
+            this.store.findRecord('post', post.id).then((_post) => {
+                _post.destroyRecord().then(() => {
+                    this.transitionTo('blog-posts');
+                });
+            });
+        }
     }
 });

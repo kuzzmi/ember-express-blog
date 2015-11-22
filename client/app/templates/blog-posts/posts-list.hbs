@@ -1,5 +1,12 @@
-{{!-- {{#link-to "blog-posts.post-new"}}New post{{/link-to}} --}}
 <div class="posts-list">
+    <div class="toolbar">
+        <ul>
+            <li>
+                {{link-to "+ New post" "blog-posts.post-new"}}
+            </li>
+        </ul>
+    </div>
+
     <ul>
         {{#each model as |item|}}
             <li>

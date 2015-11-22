@@ -47,6 +47,6 @@ module.exports.delete = function(req, res, id) {
         if (err) {
             res.send(err);
         }
-        res.sendStatus(200);
+        res.json({});
     });
 };
