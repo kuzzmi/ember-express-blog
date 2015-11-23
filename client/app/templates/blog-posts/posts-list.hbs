@@ -14,7 +14,7 @@
                     {{moment-format item.dateCreated "DD/MM/YY HH:mm"}}
                 </p>
                 <p class="post-title">
-                    {{#link-to "blog-posts.post-read" item.id}}{{item.title}}{{/link-to}}
+                    {{#link-to "blog-posts.post-read" item.slug}}{{item.title}}{{/link-to}}
                 </p>
                 <p class="post-description">
                     {{item.description}}

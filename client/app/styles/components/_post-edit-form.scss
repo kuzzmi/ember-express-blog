@@ -1,10 +1,27 @@
 .post-edit-form {
-    padding: 0 40px;
+    .toolbar {
+        display: inline-block;
+        float: right;
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            li {
+                font-weight: 500;
+            }
+        }
+    }
+
     .title {
         margin: 0;
-        font-size: 32px;
+        font-size: $font-size-title;
         font-weight: 700;
         padding-bottom: 20px;
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
     }
 
     form {
@@ -23,6 +40,10 @@
         }
         textarea {
             height: 100px;
+        }
+        .CodeMirror {
+            font-family: 'Roboto Mono', monospace;
+            height: 200px;
         }
     }
 }

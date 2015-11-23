@@ -1,6 +1,10 @@
-.post {
-    padding: 20px 40px;
+$space: -9999px;
+@mixin outofspace {
+    margin-left: $space;
+    margin-right: $space
+}
 
+.post {
     .toolbar {
         display: inline-block;
         float: right;
@@ -19,7 +23,7 @@
         padding: 0;
 
         &.post-title {
-            font-size: 32px;
+            font-size: $font-size-title;
             font-weight: 700;
             padding-bottom: 20px;
         }
@@ -44,8 +48,7 @@
             }
 
             pre {
-                margin-left: -9999px;
-                margin-right: -9999px;
+                @include outofspace;
                 background: #444;
             }
 
@@ -56,6 +59,44 @@
                 padding: 20px 40px;
                 font-family: 'Roboto Mono', monospace;
                 font-size: 14px;
+            }
+
+            blockquote {
+                @include outofspace;
+                background: $grey-lightest;
+                padding: 20px 0;
+
+                p {
+                    max-width: 800px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+
+            a {
+                color: $accent;
+            }
+
+            dl {
+                dt {
+                    font-weight: 500;
+                    &:after {
+                        content: ": "
+                    }
+                }
+            }
+
+            caption {
+                font-size: 12px;
+                color: $grey;
+            }
+
+            table {
+                width: 100%;
+            }
+
+            ol {
+                padding-left: 75px;
             }
 
             ul {

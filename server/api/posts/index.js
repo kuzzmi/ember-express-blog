@@ -24,21 +24,27 @@ module.exports.getAll = function(req, res) {
     });
 };
 
-module.exports.getOne = function(req, res, id) {
-    Post.findById(id, function(err, post) {
+module.exports.getOne = function(req, res, slug) {
+    Post.findOne({
+        slug: slug
+    }, function(err, post) {
         if (err) {
             res.send(err);
         }
-        res.json({post: post});
+        res.json({
+            post: post
+        });
     });
 };
 
 module.exports.update = function(req, res, id) {
-    Post.findByIdAndUpdate(id, {$set: req.body.post}, function(err, post) {
+    Post.findByIdAndUpdate(id, req.body.post, function(err, post) {
         if (err) {
             res.send(err);
         }
-        res.json({post: post});
+        res.json({
+            post: post
+        });
     });
 };
 

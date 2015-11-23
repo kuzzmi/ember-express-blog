@@ -1,12 +1,23 @@
 <div class="post-edit-form">
+    <div class="toolbar">
+        <ul>
+            <li>
+                {{link-to "preview" "blog-posts"}}
+            </li>
+        </ul>
+    </div>
+    <p class="current-time">
+        {{moment-from-now post.dateCreated interval=1000}}
+    </p>
     <h2 class="title">
-        {{form-title}}
+        {{form-title}} 
     </h2>
     <form {{action "save" post on="submit"}}>
         {{input value=post.title placeholder="post title" type=text}}
-        {{textarea value=post.body type=text}}
+        <p>Body</p>
+        <div id="editor-body"></div>
+        <p>Description</p>
         {{textarea value=post.description type=text}}
         <input type="submit">
     </form>
 </div>
-{{yield}}

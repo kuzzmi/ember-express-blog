@@ -8,11 +8,11 @@ export default Ember.Route.extend({
             Ember.$('pre code').each((i, block) => {
                 hljs.highlightBlock(block);
             });
-        }, 10);
+        }, 1);
     },
 
     model(params) {
-        return this.store.findRecord('post', params.id);
+        return this.store.findRecord('post', params.slug);
     },
 
     actions: {

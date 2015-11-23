@@ -21,6 +21,11 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
   app.import('bower_components/highlightjs/styles/dark.css');
   app.import('bower_components/highlightjs/highlight.pack.js');
+  app.import('bower_components/codemirror/lib/codemirror.js');
+  app.import('bower_components/codemirror/keymap/vim.js');
+  app.import('bower_components/codemirror/mode/markdown/markdown.js');
+  app.import('bower_components/codemirror/lib/codemirror.css');
+  app.import('bower_components/codemirror/theme/hopscotch.css');
 
   return app.toTree();
 };

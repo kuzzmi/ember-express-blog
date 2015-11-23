@@ -1,9 +1,12 @@
 <nav>
-  <div class="blog-title">{{title}}<span class="animated-dot">.</span></div>
-  <ul>
-    <li>{{#link-to "blog-posts"}}Posts{{/link-to}}</li>
-    <li>{{#link-to "projects"}}Projects{{/link-to}}</li>
-    <li>{{#link-to "about"}}About{{/link-to}}</li>
-  </ul>
+  <div class="blog-title">{{title}}<span class="animated-dot">.</span>
+  </div>
+  <div class="navbar">
+    <ul>
+      <li>{{#link-to "blog-posts"}}Posts{{/link-to}}</li>
+      <li>{{#link-to "projects"}}Projects{{/link-to}}</li>
+      <li>{{#link-to "about"}}About{{/link-to}}</li>
+    </ul>
+    <div class="active-indicator"></div>
+  </div>
 </nav>
-{{yield}}

@@ -1,6 +1,4 @@
 .posts-list {
-    padding: 20px 40px;
-
     .toolbar {
         display: inline-block;
         float: right;
@@ -25,7 +23,7 @@
                 padding: 0;
 
                 &.post-title {
-                    font-size: 18px;
+                    font-size: $font-size-title;
                     font-weight: 700;
                 }
 
