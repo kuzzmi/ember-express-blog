@@ -25,6 +25,13 @@
     }
 
     form {
+        p.label {
+            font-weight: 500;
+            margin-bottom: 10px;
+            &:after {
+                content: ":"
+            }
+        }
         input, textarea {
             font-family: 'Roboto Mono', 'Roboto', sans-serif;
             display: block;
@@ -34,16 +41,29 @@
         input {
             border: 0;
             outline: 0;
-            font-size: 18px;
-            border-bottom: 1px solid $grey-dark;
+            font-size: 16px;
             padding: 5px 0px;
+
+            &[type="submit"] {
+                border-bottom: 1px solid $grey-dark;
+                color: white;
+                font-weight: 700;
+                background-color: rgb(84, 179, 108);
+            }
         }
         textarea {
-            height: 100px;
+            outline: 0;
+            height: 50px;
+            border: 0;
+            font-size: 16px;
         }
         .CodeMirror {
             font-family: 'Roboto Mono', monospace;
-            height: 200px;
+            height: 500px;
+
+            .CodeMirror-cursor {
+                background-color: $text-color;
+            }
         }
     }
 }

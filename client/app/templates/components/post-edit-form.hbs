@@ -2,7 +2,9 @@
     <div class="toolbar">
         <ul>
             <li>
-                {{link-to "preview" "blog-posts"}}
+                <a href="#" {{action "save" post}}>[F2] Save</a>
+                {{link-to "[F3] View" "blog-posts"}}
+                {{link-to "[F10] Close" "blog-posts"}}
             </li>
         </ul>
     </div>
@@ -13,11 +15,12 @@
         {{form-title}} 
     </h2>
     <form {{action "save" post on="submit"}}>
+        <p class="label">Title</p>
         {{input value=post.title placeholder="post title" type=text}}
-        <p>Body</p>
+        <p class="label">Description</p>
+        {{textarea value=post.description placeholder="post description" type=text}}
+        <p class="label">Body</p>
         <div id="editor-body"></div>
-        <p>Description</p>
-        {{textarea value=post.description type=text}}
-        <input type="submit">
+        <input type="submit" value="Save">
     </form>
 </div>

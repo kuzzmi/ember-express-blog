@@ -1,10 +1,11 @@
-/* globals hljs */
-
 import Ember from 'ember';
 
 export default Ember.Route.extend({
     model(post) {
-        return this.store.findRecord('post', post.slug);
+        // Should be covered in a blog, actually
+        return this.store.findAll('post', { slug: post.slug }).then((posts) => {
+            return posts.get('firstObject');
+        });
     },
 
     actions: {

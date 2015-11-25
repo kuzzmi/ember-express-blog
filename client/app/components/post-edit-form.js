@@ -15,6 +15,8 @@ export default Ember.Component.extend({
             var body = editor.getValue();
             self.set('post.markdown', body);
         });
+        
+        this.$('input:first').focus();
     },
     actions: {
         save(post) {
