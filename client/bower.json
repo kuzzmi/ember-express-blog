@@ -16,7 +16,8 @@
     "moment-timezone": ">= 0.1.0",
     "highlightjs": "~8.9.1",
     "codemirror": "~5.8.0",
-    "ember-cli-codemirror-shim": "~0.0.1"
+    "ember-cli-codemirror-shim": "~0.0.1",
+    "blueimp-md5": "~1.1.1"
   },
   "resolutions": {
     "codemirror": "~5.8.0"
