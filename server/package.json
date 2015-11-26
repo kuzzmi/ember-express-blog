@@ -16,6 +16,8 @@
     "mongoose": "^4.2.7",
     "morgan": "~1.6.1",
     "node-github": "0.0.3",
+    "passport": "^0.3.2",
+    "passport-google-oauth": "^0.2.0",
     "serve-favicon": "~2.3.0"
   }
 }

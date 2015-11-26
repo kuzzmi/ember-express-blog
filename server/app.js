@@ -1,3 +1,4 @@
+var config = require('./config/config');
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
@@ -5,15 +6,19 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var api = require('./api');
+var passport = require('passport');
+
+require('./config/passport/google');
 
 var app = express();
 
 // setting up mongodb connection
-mongoose.connect('mongodb://localhost/blog');
+mongoose.connect(config.database);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.set('secret', config.secret);
 
 var allowCrossDomain = function(req, res, next) {
     console.log('Headers added');
@@ -22,7 +27,7 @@ var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization, Content-Length, X-Requested-With');
 
     // intercept OPTIONS method
-    if ('OPTIONS' == req.method) {
+    if ('OPTIONS' === req.method) {
         res.sendStatus(200);
     } else {
         next();

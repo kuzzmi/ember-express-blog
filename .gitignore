@@ -15,3 +15,5 @@ coverage/*
 libpeerconnection.log
 npm-debug.log
 testem.log
+
+/server/config/config.json

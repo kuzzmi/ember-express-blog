@@ -17,7 +17,8 @@
     "highlightjs": "~8.9.1",
     "codemirror": "~5.8.0",
     "ember-cli-codemirror-shim": "~0.0.1",
-    "blueimp-md5": "~1.1.1"
+    "blueimp-md5": "~1.1.1",
+    "ember-simple-auth": "0.8.0"
   },
   "resolutions": {
     "codemirror": "~5.8.0"

@@ -1,5 +1,13 @@
 <div class="login-form">
-    {{errorMessage}}
+    <p class="title">
+        Login
+    </p>
+    {{#if errorMessage}}
+    <p class="error-message">
+        <p class="message-title">Error!</p>
+        {{errorMessage}}
+    </p>
+    {{/if}}
     <form {{action "authenticate" on="submit"}}>
         {{input id="username" value=post.title placeholder="enter username"}}
         {{input id="password" value=post.title placeholder="enter password" type="password"}}

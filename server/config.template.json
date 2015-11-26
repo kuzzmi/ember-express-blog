@@ -1,0 +1,4 @@
+{
+    "secret": "",
+    "database": "mongodb://localhost/blog"
+}
