@@ -1,76 +1,42 @@
-var mongoose = require('mongoose');
-var Post = require('../../models/post');
+var express = require('express');
+var router = express.Router();
+var posts = require('./route');
 
-module.exports.add = function(req, res) {
-    var post = new Post(req.body.post);
-    post.save(function(err) {
-        if (err) {
-            res.send(err);
-        }
-        res.json({
-            post: post
-        });
+/* Posts routes */
+router.route('/')
+    .post(function(req, res) {
+        posts.add(req, res);
+    })
+    .get(function(req, res) {
+        posts.getAll(req, res);
     });
-};
 
-module.exports.getAll = function(req, res) {
-    Post.find(function(err, posts) {
-        if (err) {
-            res.send(err);
-        }
-        res.json({
-            posts: posts
-        });
-    });
-};
-
-module.exports.getOne = function(req, res, id) {
-    Post.findOne({
-        _id: id
-    }, function(err, post) {
-        if (err) {
-            res.send(err);
-        }
-        res.json({
-            post: post
-        });
-    });
-};
-
-module.exports.update = function(req, res, id) {
-    Post.findOne({
-        _id: id
-    }, function(err, post) {
-        if (err) {
-            res.send(err);
-        }
-        var newPost = req.body.post;
-        post.title = newPost.title;
-        post.markdown = newPost.markdown;
-        post.description = newPost.description;
-        post.save(function(err, post) {
-            if (err) {
-                res.send(err);
-            }
+/*
+ *  MARKDOWN PREVIEW
+ */ 
+router.route('/preview')
+    .post(function(req, res) {
+        var body = req.body.body;
+        if (body) {
+            body = marked(body);
             res.json({
-                post: post
+                'html': body
             });
-        })
-    });
-};
-
-module.exports.delete = function(req, res, id) {
-    Post.findOne({
-        _id: id
-    }, function(err, post) {
-        if (err) {
-            res.send(err);
+        } else {
+            throw 'No body specified';
         }
-        post.remove(function(err) {
-            if (err) {
-                res.send(err);
-            }
-            res.json({});
-        });
     });
-};
+
+/* Single post routes */
+router.route('/:id')
+    .get(function(req, res) {
+        posts.getOne(req, res, req.params.id);
+    })
+    .put(function(req, res) {
+        posts.update(req, res, req.params.id);
+    })
+    .delete(function(req, res) {
+        posts.delete(req, res, req.params.id);
+    });
+
+module.exports = router;

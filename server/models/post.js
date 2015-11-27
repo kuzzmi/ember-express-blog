@@ -8,7 +8,8 @@ var PostSchema = new Schema({
     markdown: String,
     description: String,
     slug: String,
-    dateCreated: Date
+    dateCreated: Date,
+    tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }]
 });
 
 /*
@@ -79,6 +80,9 @@ function translit(text) {
 }
 
 PostSchema.pre('save', function(next) {
+    if (!this.title || !this.markdown) {
+        throw 'No valid post object is specified'
+    }
     this.slug = translit(this.title);
     this.slug = slugify(this.slug);
     this.body = marked(this.markdown);

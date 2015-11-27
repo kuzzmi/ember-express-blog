@@ -6,5 +6,6 @@ export default DS.Model.extend({
     markdown: DS.attr('string'),
     slug: DS.attr('string'),
     description: DS.attr('string'),
-    dateCreated: DS.attr('date')
+    dateCreated: DS.attr('date'),
+    tags: DS.hasMany('tag')
 });

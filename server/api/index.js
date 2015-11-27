@@ -4,50 +4,14 @@ var passport = require('passport');
 var marked = require('marked');
 
 var posts = require('./posts');
+var tags = require('./tags');
 var projects = require('./projects');
 
 var User = require('../models/user');
 
-/*
- *  POSTS START
- */
+router.use('/posts', posts);
+router.use('/tags', tags);
 
-/* Posts routes */
-router.route('/posts')
-    .post(function(req, res) {
-        posts.add(req, res);
-    })
-    .get(function(req, res) {
-        posts.getAll(req, res);
-    });
-
-/*
- *  MARKDOWN PREVIEW
- */ 
-router.route('/posts/preview')
-    .post(function(req, res) {
-        var body = req.body.body;
-        if (body) {
-            body = marked(body);
-            res.json({
-                'html': body
-            });
-        } else {
-            throw 'No body specified';
-        }
-    });
-
-/* Single post routes */
-router.route('/posts/:id')
-    .get(function(req, res) {
-        posts.getOne(req, res, req.params.id);
-    })
-    .put(function(req, res) {
-        posts.update(req, res, req.params.id);
-    })
-    .delete(function(req, res) {
-        posts.delete(req, res, req.params.id);
-    });
 
 /*
  *  PROJECTS START

@@ -20,21 +20,13 @@
                     {{item.description}}
                 </p>
                 <p class="post-tags">
+                {{#each item.tags as |tag|}}
                     <span class="tag">
                         <a href="#">
-                            javascript
+                            {{tag.name}}
                         </a>
                     </span>
-                    <span class="tag">
-                        <a href="#">
-                            web dev
-                        </a>
-                    </span>
-                    <span class="tag">
-                        <a href="#">
-                            nodejs
-                        </a>
-                    </span>
+                {{/each}}
                 </p>
             </li>
         {{/each}}
