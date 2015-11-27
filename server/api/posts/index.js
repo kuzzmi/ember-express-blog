@@ -1,3 +1,4 @@
+var marked = require('marked');
 var express = require('express');
 var router = express.Router();
 var posts = require('./route');

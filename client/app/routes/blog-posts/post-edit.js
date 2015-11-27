@@ -11,12 +11,6 @@ export default Ember.Route.extend({
             if (model.get('hasDirtyAttributes')) {
                 model.rollbackAttributes();
             }
-        },
-
-        savePost(post) {
-            post.save().then((newPost) => {
-                this.transitionTo('blog-posts.post-read', newPost);
-            });
         }
     }
 });

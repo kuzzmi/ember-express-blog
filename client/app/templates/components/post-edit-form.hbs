@@ -3,21 +3,27 @@
         <ul>
             <li>
                 <a href="#" {{action "save" post}}>[F2] Save</a>
-                <a href="#" {{action "preview" post}}>[F3] Preview</a>
-                {{link-to "[F10] Close" "blog-posts"}}
+                {{#if isPreview}}
+                    <a href="#" {{action "edit"}}>[F3] Edit</a>
+                {{else}}
+                    <a href="#" {{action "preview" post}}>[F3] Preview</a>
+                {{/if}}
+                {{link-to "[F10] Close" "blog-posts.post-read" post}}
             </li>
         </ul>
     </div>
     <p class="current-time">
         {{moment-from-now post.dateCreated interval=1000}}
     </p>
-    <div class="form">
+    <div class="form {{if isPreview 'hidden'}}">
         <h2 class="title">
             {{form-title}} 
         </h2>
         <form {{action "save" post on="submit"}}>
             <p class="label">Title</p>
             {{input value=post.title placeholder="post title" type=text}}
+            <p class="label">Tags</p>
+            {{input value=tags placeholder="post tags" type=text}}
             <p class="label">Description</p>
             {{textarea value=post.description placeholder="post description" type=text}}
             <p class="label">Body</p>
@@ -25,7 +31,7 @@
             <input type="submit" value="Save">
         </form>
     </div>
-    <div class="preview">
+    <div class="preview {{if isPreview '' 'hidden'}}">
         <h2 class="title">
             Preview
         </h2>

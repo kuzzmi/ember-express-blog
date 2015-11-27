@@ -11,6 +11,14 @@
         padding: 0;
     }
 
+    .form, .preview {
+        display: block;
+
+        &.hidden {
+            display: none;
+        }
+    }
+
     form {
         p.label {
             font-weight: 500;

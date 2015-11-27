@@ -1,10 +1,13 @@
 /* globals CodeMirror */
+/* globals hljs */
 
 import Ember from 'ember';
 import config from '../config/environment';
 
 export default Ember.Component.extend({
-    preview: 'sadasd',
+    preview: '',
+    tags: '',
+    isPreview: false,
 
     /* events */
     didInsertElement() {
@@ -26,7 +29,17 @@ export default Ember.Component.extend({
     /* actions */
     actions: {
         save(post) {
-            this.sendAction('save', post);
+            let tags = this.get('tags').split(',').map((tag) => {
+                return tag.trim();
+            });
+            console.log(tags);
+            this.sendAction('save', { post: post, tags: tags });
+        },
+
+        edit() {
+            Ember.$('.form').toggleClass('hidden');
+            Ember.$('.preview').toggleClass('hidden');
+            this.set('isPreview', false);
         },
 
         preview(post) {
@@ -40,6 +53,14 @@ export default Ember.Component.extend({
                 }
             }).success((data) => {
                 self.set('preview', data.html);
+                self.set('isPreview', true);
+                Ember.$('.form').toggleClass('hidden');
+                Ember.$('.preview').toggleClass('hidden');
+                setTimeout(function() {
+                    Ember.$('pre code').each((i, block) => {
+                        hljs.highlightBlock(block);
+                    }); 
+                }, 0);
             });
         }
     }

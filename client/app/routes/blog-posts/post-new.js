@@ -11,13 +11,6 @@ export default Ember.Route.extend({
             if (model.get('isNew')) {
                 model.rollbackAttributes();
             }
-        },
-
-        savePost(post) {
-            post.set('dateCreated', new Date());
-            post.save().then(() => {
-                this.transitionTo('blog-posts.post-read', post);
-            });
         }
     }
 });

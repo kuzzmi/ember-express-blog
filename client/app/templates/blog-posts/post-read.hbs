@@ -13,9 +13,12 @@
     <p class="post-title">
         {{model.title}} 
     </p>
-    <p class="post-body">
-        {{#blog-post-body}}
-            {{{model.body}}}
-        {{/blog-post-body}}
-    </p>
+    {{#each model.tags as |tag|}}
+        <span class="tag">
+            <a href="#">{{tag.name}}</a>
+        </span>
+    {{/each}}
+    {{#blog-post-body}}
+        {{{model.body}}}
+    {{/blog-post-body}}
 </div>

@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var extend = require('extend');
 var Post = require('../../models/post');
 
 module.exports.add = function(req, res) {
@@ -24,9 +25,9 @@ module.exports.getAll = function(req, res) {
     });
 };
 
-module.exports.getOne = function(req, res, id) {
+module.exports.getOne = function(req, res, slug) {
     Post.findOne({
-        _id: id
+        slug: slug
     })
     .populate('tags')
     .exec(function(err, post) {
@@ -46,10 +47,16 @@ module.exports.update = function(req, res, id) {
         if (err) {
             res.send(err);
         }
-        var newPost = req.body.post;
-        post.title = newPost.title;
-        post.markdown = newPost.markdown;
-        post.description = newPost.description;
+
+        var oldTags = post.tags;
+        extend(true, post, req.body.post);
+        post.tags.map(function(_id) {
+            var index = oldTags.indexOf(_id);
+            if (index === -1) {
+                post.tags.push(oldTags[_id]);
+            }
+        });
+
         post.save(function(err, post) {
             if (err) {
                 res.send(err);
@@ -57,7 +64,7 @@ module.exports.update = function(req, res, id) {
             res.json({
                 post: post
             });
-        })
+        });
     });
 };
 

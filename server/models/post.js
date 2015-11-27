@@ -81,7 +81,7 @@ function translit(text) {
 
 PostSchema.pre('save', function(next) {
     if (!this.title || !this.markdown) {
-        throw 'No valid post object is specified'
+        throw 'No valid post object is specified';
     }
     this.slug = translit(this.title);
     this.slug = slugify(this.slug);

@@ -2,6 +2,6 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
     name: DS.attr('string'),
-    post: DS.belongsTo('post')
+    posts: DS.hasMany('post', { async: true })
 });
 
