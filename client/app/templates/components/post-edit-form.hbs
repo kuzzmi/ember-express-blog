@@ -23,7 +23,7 @@
             <p class="label">Title</p>
             {{input value=post.title placeholder="post title" type=text}}
             <p class="label">Tags</p>
-            {{input value=tags placeholder="post tags" type=text}}
+            {{autocomplete-input values=post.tags key="name" model="tag"}}
             <p class="label">Description</p>
             {{textarea value=post.description placeholder="post description" type=text}}
             <p class="label">Body</p>
