@@ -6,7 +6,7 @@ import config from '../config/environment';
 
 export default Ember.Component.extend({
     preview: '',
-    tags: '',
+    tags: [],
     isPreview: false,
 
     /* events */
@@ -26,13 +26,18 @@ export default Ember.Component.extend({
         this.$('input:first').focus();
     },
 
+    init() {
+        this._super(...arguments);
+
+        this.get('post.tags').map((tag) => {
+            this.get('tags').addObject(tag.get('name'));
+        });
+    },
+
     /* actions */
     actions: {
         save(post) {
-            let tags = this.get('tags').split(',').map((tag) => {
-                return tag.trim();
-            });
-            console.log(tags);
+            let tags = this.get('tags');
             this.sendAction('save', { post: post, tags: tags });
         },
 
@@ -40,6 +45,14 @@ export default Ember.Component.extend({
             Ember.$('.form').toggleClass('hidden');
             Ember.$('.preview').toggleClass('hidden');
             this.set('isPreview', false);
+        },
+
+        addTag(tag) {
+            this.get('tags').addObject(tag);
+        },
+
+        findTags(value) {
+            this.sendAction('find-tags', value);
         },
 
         preview(post) {

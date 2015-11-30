@@ -6,43 +6,47 @@ export default Ember.Route.extend({
             let store = this.store;
             let { post, tags } = data;
 
+            let addTag = ( tag, postTags ) => {
+                return tag.get('posts')
+                    .then((posts) => {
+                        return posts.addObject(post).save();
+                    })
+                    .then(() => {
+                        return postTags.pushObject(tag).save();
+                    });
+            };
+
             post.save().then(() => {
-                post.get('tags').then((postTags) => {
-                    tags.map((_tag) => {
-                        store.query('tag', { name: _tag })
+                return post.get('tags');
+            }).then((postTags) => {
+                return tags.map((_tag) => {
+                    if (!postTags.findBy('name', _tag)) {
+                        return store
+                        .query('tag', { name: _tag })
                         .then((tag) => {
                             if (tag.content.length) {
                                 tag = tag.get('firstObject');
-                                
-                                tag.get('posts').then((posts) => {
-                                    posts.addObject(post);
-                                    posts.save();
-                                    postTags.pushObject(tag);
-                                    postTags.save().then(() => {
-                                        post.save().then(() => {
-                                            this.transitionTo('blog-posts.post-read', post);
-                                        });
-                                    });
-                                });
+
+                                return addTag(tag, postTags);
                             } else {
                                 let newTag = this.store.createRecord('tag', { 
                                     name: _tag 
                                 });
-                                newTag.get('posts').then((posts) => {
-                                    posts.addObject(post);
-                                    posts.save();
-                                    postTags.pushObject(newTag);
-                                    postTags.save().then(() => {
-                                        post.save().then(() => {
-                                            this.transitionTo('blog-posts.post-read', post);
-                                        });
-                                    });
+                                return newTag.save().then(() => {
+                                    return addTag(newTag, postTags);
                                 });
                             }
                         });
-                    });
+                    } else {
+                        return new Promise(()=>{});
+                    }
                 });
+            }).then(() => {
+                return post.save();
+            }).then(() => {
+                this.transitionTo('blog-posts.post-read', post);
             });
+
 
         }
     }

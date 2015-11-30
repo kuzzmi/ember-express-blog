@@ -19,16 +19,17 @@
         <h2 class="title">
             {{form-title}} 
         </h2>
-        <form {{action "save" post on="submit"}}>
+        <form>
             <p class="label">Title</p>
             {{input value=post.title placeholder="post title" type=text}}
             <p class="label">Tags</p>
-            {{autocomplete-input values=post.tags key="name" model="tag"}}
+            {{autocomplete-input values=tags add-item="addTag" key="name" generate-items="findTags" items=found-tags}}
             <p class="label">Description</p>
             {{textarea value=post.description placeholder="post description" type=text}}
             <p class="label">Body</p>
             <div id="editor-body"></div>
-            <input type="submit" value="Save">
+            <!-- <input type="submit" value="Save"> -->
+            {{!-- {{action "save" post on="submit"}} --}}
         </form>
     </div>
     <div class="preview {{if isPreview '' 'hidden'}}">

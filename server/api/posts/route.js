@@ -48,14 +48,15 @@ module.exports.update = function(req, res, id) {
             res.send(err);
         }
 
-        var oldTags = post.tags;
+        // var oldTags = post.tags;
         extend(true, post, req.body.post);
-        post.tags.map(function(_id) {
-            var index = oldTags.indexOf(_id);
-            if (index === -1) {
-                post.tags.push(oldTags[_id]);
-            }
-        });
+        console.log(post);
+        // post.tags.map(function(_id) {
+        //     var index = oldTags.indexOf(_id);
+        //     if (index === -1) {
+        //         post.tags.push(oldTags[_id]);
+        //     }
+        // });
 
         post.save(function(err, post) {
             if (err) {

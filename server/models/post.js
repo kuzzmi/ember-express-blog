@@ -86,7 +86,6 @@ PostSchema.pre('save', function(next) {
     this.slug = translit(this.title);
     this.slug = slugify(this.slug);
     this.body = marked(this.markdown);
-    console.log(marked(this.markdown));
     next();
 });
 

@@ -1,1 +1,11 @@
-{{input value=outputValues type=text}}
+{{#each outputValues as |value|}}
+<span class="selected-value">{{value}}</span>
+{{/each}}
+{{input value=newValue type=text key-up="keyUp"}}
+<ul>
+{{#each results as |result|}}
+    <li>
+        <span class="found-item">{{result}}</span>
+    </li>
+{{/each}}
+</ul>
