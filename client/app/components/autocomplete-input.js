@@ -22,16 +22,24 @@ export default Ember.Component.extend({
         });
     }),
 
+    addItem(value) {
+        this.sendAction('add-item', value);
+        this.set('newValue', null);
+        this.set('items', []);
+    },
+
     actions: {
+        select(value) {
+            this.addItem(value);
+        },
+
         keyUp(value, event) {
             let key = event.keyCode;
             switch (key) {
                 case 188:
                     value = value.slice(0, -1);
                 case 13:
-                    this.sendAction('add-item', value);
-                    this.set('newValue', null);
-                    this.set('items', []);
+                    this.addItem(value);
                     return;
                 
                 default:
