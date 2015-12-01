@@ -8,14 +8,18 @@
                 {{else}}
                     <a href="#" {{action "preview" post}}>[F3] Preview</a>
                 {{/if}}
-                {{link-to "[F10] Close" "blog-posts.post-read" post}}
+                {{#if post.id}}
+                    {{link-to "[F10] Close" "blog-posts.post-read" post}}
+                {{else}}
+                    {{link-to "[F10] Close" "blog-posts.posts-list"}}
+                {{/if}}
             </li>
         </ul>
     </div>
     <p class="current-time">
         {{moment-from-now post.dateCreated interval=1000}}
     </p>
-    <div class="form {{if isPreview 'hidden'}}">
+    <div class="form {{if isPreview 'hidden' ''}}">
         <h2 class="title">
             {{form-title}} 
         </h2>
@@ -28,8 +32,6 @@
             {{textarea value=post.description placeholder="post description" type=text}}
             <p class="label">Body</p>
             <div id="editor-body"></div>
-            <!-- <input type="submit" value="Save"> -->
-            {{!-- {{action "save" post on="submit"}} --}}
         </form>
     </div>
     <div class="preview {{if isPreview '' 'hidden'}}">
@@ -41,3 +43,6 @@
         {{/blog-post-body}}
     </div>
 </div>
+
+{{!-- <input type="submit" value="Save">
+{{action "save" post on="submit"}} --}}

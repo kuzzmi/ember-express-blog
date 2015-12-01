@@ -1,4 +1,8 @@
-<div class="post-new">
-    {{post-edit-form post=model form-title="New Post" save="savePost"}}
-</div>
+{{post-edit-form 
+    title="New post"
+    post=model 
+    save="savePost"
+    find-tags="findTags"
+    found-tags=generatedTags
+    }}
 {{outlet}}
