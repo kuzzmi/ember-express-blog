@@ -27,7 +27,7 @@
             <p class="label">Title</p>
             {{input value=post.title placeholder="post title" type=text}}
             <p class="label">Tags</p>
-            {{autocomplete-input values=tags add-item="addTag" key="name" generate-items="findTags" items=found-tags}}
+            {{autocomplete-input values=tags add-item="addTag" remove-item="removeTag" key="name" generate-items="findTags" items=found-tags}}
             <p class="label">Description</p>
             {{textarea value=post.description placeholder="post description" type=text}}
             <p class="label">Body</p>

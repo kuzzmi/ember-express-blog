@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
 
     actions: {
         findTags(value) {
-            this.store.query('tag', { name: value }).then((tags) => {
+            this.store.query('tag', { name: {'$regex': value} }).then((tags) => {
                 this.set('generatedTags', tags);
             });
         }
