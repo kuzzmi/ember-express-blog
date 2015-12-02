@@ -14,7 +14,7 @@ export default Ember.Component.extend({
         }
 
         Ember.$('nav ul li a').on('click', () => {
-            setActiveIndicator(0);
+            setActiveIndicator(1);
         });
 
         setActiveIndicator(50);
