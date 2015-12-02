@@ -38,6 +38,9 @@ export default Ember.Component.extend({
     actions: {
         save(post) {
             let tags = this.get('tags');
+            if (!post.get('dateCreated')) {
+                post.set('dateCreated', new Date());
+            }
             this.sendAction('save', { post: post, tags: tags });
         },
 
