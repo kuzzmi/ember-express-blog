@@ -1,19 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    outputValues: [],
     newValue: '',
 
     didInsertElement() {
         this._super(...arguments);
-    },
-
-    init() {
-        this._super(...arguments);
-
-        let values = this.get('values');
-
-        this.set('outputValues', values);
     },
 
     results: Ember.computed('items.[]', function() {
@@ -22,16 +13,32 @@ export default Ember.Component.extend({
         });
     }),
 
+    addItem(value) {
+        this.sendAction('add-item', value);
+        this.set('newValue', null);
+        this.set('items', []);
+    },
+
+    removeItem(value) {
+        this.sendAction('remove-item', value);
+    },
+
     actions: {
+        select(value) {
+            this.addItem(value);
+        },
+
+        remove(value) {
+            this.removeItem(value);
+        },
+
         keyUp(value, event) {
             let key = event.keyCode;
             switch (key) {
                 case 188:
                     value = value.slice(0, -1);
                 case 13:
-                    this.sendAction('add-item', value);
-                    this.set('newValue', null);
-                    this.set('items', []);
+                    this.addItem(value);
                     return;
                 
                 default:

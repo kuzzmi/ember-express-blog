@@ -44,6 +44,11 @@ export default Ember.Component.extend({
             this.sendAction('save', { post: post, tags: tags });
         },
 
+        removeTag(value) {
+            console.log(value);
+            this.get('tags').removeObject(value);
+        },
+
         edit() {
             Ember.$('.form').toggleClass('hidden');
             Ember.$('.preview').toggleClass('hidden');

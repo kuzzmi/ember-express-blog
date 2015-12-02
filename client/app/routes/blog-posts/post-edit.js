@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+    controllerName: 'blog-posts',
+
     model(params) {
         return this.store.findRecord('post', params.slug);
     },
