@@ -16,9 +16,9 @@ export default Ember.Route.extend({
                     });
             };
 
-            post.save().then(() => {
-                return post.get('tags');
-            }).then((postTags) => {
+
+            post.get('tags').then((postTags) => {
+                console.log(postTags.content);
                 return tags.map((_tag) => {
                     if (!postTags.findBy('name', _tag)) {
                         return store
