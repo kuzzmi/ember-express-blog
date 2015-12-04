@@ -10,6 +10,8 @@ var passport = require('passport');
 var globalTunnel = require('global-tunnel');
 
 require('./config/passport/google');
+require('./config/passport/jwt');
+require('./config/passport/local');
 
 if (process.env.http_proxy || process.env.HTTP_PROXY) {
     globalTunnel.initialize({
@@ -28,6 +30,13 @@ mongoose.connect(config.database);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.set('secret', config.secret);
+app.use(require('cookie-parser')());
+app.use(require('express-session')({ secret: config.secret, resave: false, saveUninitialized: false  }));
+
+// Initialize Passport and restore authentication state, if any, from the
+// session.
+app.use(passport.initialize());
+app.use(passport.session());
 
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');

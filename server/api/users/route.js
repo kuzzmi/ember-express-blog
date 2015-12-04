@@ -1,6 +1,6 @@
-var User = require('../models/user');
+var User = require('../../models/user');
 var passport = require('passport');
-var config = require('../../config/environment');
+var config = require('../../config/config');
 var jwt = require('jsonwebtoken');
 
 var validationError = function(res, err) {
@@ -24,11 +24,18 @@ exports.index = function(req, res) {
 exports.create = function (req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
-  newUser.role = 'user';
-  newUser.save(function(err, user) {
-    if (err) return validationError(res, err);
-    var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
-    res.json({ token: token });
+  User.find({}, '-salt -hashedPassword', function (err, users) {
+      if (err) return res.status(500).send(err);
+      if (users && users.length) {
+          newUser.role = 'user';
+      } else {
+          newUser.role = 'admin';
+      }
+      newUser.save(function(err, user) {
+        if (err) return validationError(res, err);
+        var token = jwt.sign({_id: user._id }, config.secret, { expiresIn: 60*60*5 });
+        res.json({ token: token });
+      });
   });
 };
 
