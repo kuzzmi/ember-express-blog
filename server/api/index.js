@@ -11,7 +11,7 @@ var User = require('../models/user');
 
 router.use('/posts', posts);
 router.use('/tags', tags);
-
+router.use('/users', tags);
 
 /*
  *  PROJECTS START

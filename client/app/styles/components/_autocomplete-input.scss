@@ -1,12 +1,12 @@
 .autocomplete {
     .selected-value, .found-item {
         font-weight: 500;
-        color: white;
-        background-color: $accent;
+        background-color: $grey-lightest;
         padding: 2px 5px;
         cursor: pointer;
     }
     input {
+        margin-top: 10px;
         margin-bottom: 10px;
     }
     .autocomplete-results {

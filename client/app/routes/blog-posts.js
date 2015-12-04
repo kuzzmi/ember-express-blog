@@ -16,11 +16,13 @@ export default Ember.Route.extend({
                     });
             };
 
-
-            post.get('tags').then((postTags) => {
-                console.log(postTags.content);
+            post.save().then(() => {
+                return post.get('tags');
+            }).then((postTags) => {
                 return tags.map((_tag) => {
+                    // need to swap 
                     if (!postTags.findBy('name', _tag)) {
+                        console.log(_tag);
                         return store
                         .query('tag', { name: _tag })
                         .then((tag) => {

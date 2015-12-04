@@ -8,8 +8,14 @@ export default Ember.Component.extend({
     },
 
     results: Ember.computed('items.[]', function() {
-        return this.get('items').map((item) => {
-            return item.get(this.get('key'));
+        return this.get('items').filter((item) => {
+            let result = item.get(this.get('key'));
+            if (this.get('values').indexOf(result) === -1) {
+                return result;
+            }
+        }).map((item) => {
+            let result = item.get(this.get('key'));
+            return result;
         });
     }),
 
@@ -42,7 +48,11 @@ export default Ember.Component.extend({
                     return;
                 
                 default:
-                    this.sendAction('generate-items', value);
+                    if (value) {
+                        this.sendAction('generate-items', value);
+                    } else {
+                        this.set('items', []);
+                    }
                     return;
                     
             }
