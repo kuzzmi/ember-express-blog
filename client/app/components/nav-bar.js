@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+    session: Ember.inject.service('session'),
+
     didInsertElement() {
         this._super(...arguments);
 
@@ -18,5 +20,11 @@ export default Ember.Component.extend({
         });
 
         setActiveIndicator(50);
-    }
+   },
+
+   actions: {
+       invalidateSession() {
+           this.get('session').invalidate();
+       }
+   }
 });

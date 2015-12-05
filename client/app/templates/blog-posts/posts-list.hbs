@@ -1,9 +1,11 @@
 <div class="posts-list">
     <div class="toolbar">
-        <ul>
+        <ul> 
+            {{#if session.isAuthenticated}}
             <li>
                 {{link-to "[F4] New post" "blog-posts.post-new"}}
             </li>
+            {{/if}}
         </ul>
     </div>
 
