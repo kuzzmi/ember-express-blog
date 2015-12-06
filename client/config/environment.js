@@ -26,12 +26,13 @@ module.exports = function(environment) {
             'script-src': "'self'",
             'style-src': "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com",
             'font-src': "'self' 'unsafe-inline' fonts.gstatic.com",
+            'img-src': "'self' 'unsafe-inline' www.gravatar.com",
             'connect-src': "'self' http://localhost:3000"
         },
 
         'ember-simple-auth': {
             // Here we can configure ember-simple-auth
-            authenticationRoute: 'auth/login',
+            authenticationRoute: 'auth.login',
             routeAfterAuthentication: 'blog-posts',
             routeIfAlreadyAuthenticated: 'blog-posts'
         }

@@ -2,15 +2,13 @@ var marked = require('marked');
 var express = require('express');
 var router = express.Router();
 var posts = require('./route');
+var auth = require('../../auth/service');
 
-/* Posts routes */
-router.route('/')
-    .post(function(req, res) {
-        posts.add(req, res);
-    })
-    .get(function(req, res) {
-        posts.getAll(req, res);
-    });
+router.post('/', auth.hasRole('admin'), posts.add);
+router.get('/', posts.getAll);
+router.put('/:id', auth.hasRole('admin'), posts.update);
+router.get('/:id', posts.getOne)
+router.delete('/:id', posts.delete);
 
 /*
  *  MARKDOWN PREVIEW
@@ -26,18 +24,6 @@ router.route('/preview')
         } else {
             throw 'No body specified';
         }
-    });
-
-/* Single post routes */
-router.route('/:id')
-    .get(function(req, res) {
-        posts.getOne(req, res, req.params.id);
-    })
-    .put(function(req, res) {
-        posts.update(req, res, req.params.id);
-    })
-    .delete(function(req, res) {
-        posts.delete(req, res, req.params.id);
     });
 
 module.exports = router;

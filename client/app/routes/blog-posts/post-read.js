@@ -1,9 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+    controllerName: 'blog-posts',
+
     model(post) {
         // Should be covered in a blog, actually
-        return this.store.findAll('post', { slug: post.slug }).then((posts) => {
+        return this.store.query('post', { slug: post.slug }).then((posts) => {
             return posts.get('firstObject');
         });
     },

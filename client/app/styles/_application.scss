@@ -35,6 +35,7 @@ body {
 a {
     text-decoration: none;
     color: $text-color;
+    cursor: pointer;
 
     &:hover {
         text-decoration: underline;

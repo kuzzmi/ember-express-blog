@@ -1,13 +1,13 @@
 <div class="posts-list">
+    {{#if user.isAdmin}}
     <div class="toolbar">
         <ul> 
-            {{#if session.isAuthenticated}}
             <li>
                 {{link-to "[F4] New post" "blog-posts.post-new"}}
             </li>
-            {{/if}}
         </ul>
     </div>
+    {{/if}}
 
     <ul>
         {{#each model as |item|}}
@@ -21,15 +21,7 @@
                 <p class="post-description">
                     {{item.description}}
                 </p>
-                <p class="post-tags">
-                {{#each item.tags as |tag|}}
-                    <span class="tag">
-                        <a href="#">
-                            {{tag.name}}
-                        </a>
-                    </span>
-                {{/each}}
-                </p>
+                {{tags-list tags=item.tags}}
             </li>
         {{/each}}
     </ul>

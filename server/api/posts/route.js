@@ -15,7 +15,9 @@ module.exports.add = function(req, res) {
 };
 
 module.exports.getAll = function(req, res) {
-    Post.find(function(err, posts) {
+    Post.find(req.query)
+    .populate('tags')
+    .exec(function(err, posts) {
         if (err) {
             res.send(err);
         }
@@ -25,7 +27,9 @@ module.exports.getAll = function(req, res) {
     });
 };
 
-module.exports.getOne = function(req, res, slug) {
+module.exports.getOne = function(req, res) {
+    var slug = req.params.id;
+
     Post.findOne({
         slug: slug
     })
@@ -40,7 +44,9 @@ module.exports.getOne = function(req, res, slug) {
     });
 };
 
-module.exports.update = function(req, res, id) {
+module.exports.update = function(req, res) {
+    var id = req.params.id;
+
     Post.findOne({
         _id: id
     }, function(err, post) {
@@ -50,7 +56,6 @@ module.exports.update = function(req, res, id) {
 
         // var oldTags = post.tags;
         extend(true, post, req.body.post);
-        console.log(post);
         // post.tags.map(function(_id) {
         //     var index = oldTags.indexOf(_id);
         //     if (index === -1) {
@@ -69,7 +74,9 @@ module.exports.update = function(req, res, id) {
     });
 };
 
-module.exports.delete = function(req, res, id) {
+module.exports.delete = function(req, res) {
+    var id = req.params.id;
+
     Post.findOne({
         _id: id
     }, function(err, post) {

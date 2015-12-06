@@ -2,5 +2,5 @@ import OAuth2PasswordGrant from 'ember-simple-auth/authenticators/oauth2-passwor
 import config from '../config/environment';
 
 export default OAuth2PasswordGrant.extend({
-    serverTokenEndpoint: [config.API.host, config.API.namespace, 'auth/login'].join('/')
+    serverTokenEndpoint: [config.API.host, config.API.namespace, 'auth/local'].join('/')
 });

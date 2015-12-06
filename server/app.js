@@ -5,21 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var api = require('./api');
 var passport = require('passport');
 var globalTunnel = require('global-tunnel');
 
-require('./config/passport/google');
-require('./config/passport/jwt');
-require('./config/passport/local');
-
-if (process.env.http_proxy || process.env.HTTP_PROXY) {
-    globalTunnel.initialize({
-        host: 'eu-chbs-proxy.eu.novartis.net',
-        port: 2010,
-        tunnel: 'both'
-    });
-}
+// require('./config/passport/google');
+// require('./config/passport/jwt');
+// require('./config/passport/bearer');
+// require('./auth/local');
 
 var app = express();
 
@@ -41,7 +33,13 @@ app.use(passport.session());
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization, Content-Length, X-Requested-With');
+    res.header('Access-Control-Allow-Headers', [ 
+        'Content-Type', 
+        'Accept', 
+        'Authorization', 
+        'Content-Length', 
+        'X-Requested-With'
+    ].join(', '));
 
     // intercept OPTIONS method
     if ('OPTIONS' === req.method) {
@@ -60,7 +58,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/api', api);
+
+// Routes
+app.use('/api', require('./api'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
