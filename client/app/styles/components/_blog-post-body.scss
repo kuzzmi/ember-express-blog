@@ -16,6 +16,10 @@ $space: -9999px;
         }
 
         code {
+            @include max-screen(768px) {
+                font-size: 90%;
+            }
+
             font-size: 12px;
             padding: 3px 5px;
             border-radius: 2px;
@@ -39,6 +43,7 @@ $space: -9999px;
 
         @include max-screen(768px) {
             max-width: 100%;
+            font-size: 90%;
         }
 
         margin-left: auto;

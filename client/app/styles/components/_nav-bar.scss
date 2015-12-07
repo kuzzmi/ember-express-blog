@@ -14,7 +14,7 @@
 }
 
 nav {
-    opacity: 0.1;
+    // opacity: 0.1;
     padding: 80px 40px;
     position: relative;
     box-sizing: content-box;
@@ -79,7 +79,7 @@ nav {
             }
         }
 
-        // color: white;
+        color: white;
 
     }
 
@@ -90,7 +90,14 @@ nav {
         height: 100%;
 
         @include max-screen(768px) {
-            display: none;
+            position: fixed;
+            left: -20px;
+            right: 40px;
+            top: 0;
+            bottom: 0;
+            background-color: $grey-lightest;
+            z-index: 100;
+            // display: none;
         }
 
         .active-indicator {
@@ -101,6 +108,9 @@ nav {
             display: inline-block;
             z-index: -1;
             transition: left .25s cubic-bezier(.35,0,.25,1), right .125s cubic-bezier(.35,0,.25,1);
+            @include max-screen(768px) {
+                display: none;
+            }
         }
 
         ul {
