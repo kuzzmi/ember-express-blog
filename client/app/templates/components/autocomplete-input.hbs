@@ -1,12 +1,12 @@
 <div class="autocomplete">
-    {{#each values as |value|}}
-    <span class="selected-value" {{action "remove" value}}>{{value}}</span>
+    {{#each items as |item|}}
+    <span class="selected-value" {{action "remove" item}}>{{output-value item key}}</span>
     {{/each}}
-    {{input value=newValue type=text key-up="keyUp"}}
+    {{input value=newItem type=text key-up="keyUp"}}
     <ul class="autocomplete-results">
-    {{#each results as |result|}}
+    {{#each foundItems as |item|}}
         <li>
-            <span class="found-item" {{action "select" result}}>{{result}}</span>
+            <span class="found-item" {{action "add" item}}>{{output-value item key}}</span>
         </li>
     {{/each}}
     </ul>

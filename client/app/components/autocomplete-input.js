@@ -1,57 +1,67 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    newValue: '',
+    store: Ember.inject.service(),
 
-    didInsertElement() {
-        this._super(...arguments);
-    },
-
-    results: Ember.computed('items.[]', function() {
-        return this.get('items').filter((item) => {
-            let result = item.get(this.get('key'));
-            if (this.get('values').indexOf(result) === -1) {
-                return result;
-            }
-        }).map((item) => {
-            let result = item.get(this.get('key'));
-            return result;
-        });
-    }),
+    foundItems: null,
+    newItem: null,
 
     addItem(value) {
-        this.sendAction('add-item', value);
-        this.set('newValue', null);
-        this.set('items', []);
+        if (typeof value === 'string') {
+            value = this.get('store').createRecord('tag', {
+                name: value
+            });
+        }
+        this.get('items').addObject(value);
+        this.set('foundItems', []);
+        this.set('newItem', null);
     },
 
     removeItem(value) {
-        this.sendAction('remove-item', value);
+        this.get('items').removeObject(value);
+    },
+
+    findItem(value) {
+        let { store, model, key } = this.getProperties('store', 'model', 'key');
+
+        let query = {};
+        query[key] = { '$regex': value };
+
+        store.query(model, query).then((items) => {
+            this.set('foundItems', items);
+        });
     },
 
     actions: {
-        select(value) {
-            this.addItem(value);
-        },
-
         remove(value) {
             this.removeItem(value);
+        },
+
+        add(value) {
+            this.addItem(value);
         },
 
         keyUp(value, event) {
             let key = event.keyCode;
             switch (key) {
+                // This is comma 
                 case 188:
                     value = value.slice(0, -1);
+                    this.addItem(value);
+                    return;
+                
+                // Enter key
                 case 13:
                     this.addItem(value);
                     return;
                 
                 default:
                     if (value) {
-                        this.sendAction('generate-items', value);
+                        this.findItem(value);
                     } else {
-                        this.set('items', []);
+                        // No need of querying and displaying old values 
+                        // if value is empty
+                        this.set('foundItems', []);
                     }
                     return;
                     

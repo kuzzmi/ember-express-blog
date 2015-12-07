@@ -1,15 +1,19 @@
 var mongoose = require('mongoose');
 var extend = require('extend');
 var Post = require('../../models/post');
+var Tag = require('../../models/tag');
 
 module.exports.add = function(req, res) {
     var post = new Post(req.body.post);
-    post.save(function(err) {
+
+    post.save(function(err, post) {
         if (err) {
             res.send(err);
         }
-        res.json({
-            post: post
+        Post.populate(post, 'tags', function() {
+            res.json({
+                post: post
+            });
         });
     });
 };
@@ -47,28 +51,25 @@ module.exports.getOne = function(req, res) {
 module.exports.update = function(req, res) {
     var id = req.params.id;
 
-    Post.findOne({
-        _id: id
-    }, function(err, post) {
+    Post.findById(id, function(err, post) {
         if (err) {
             res.send(err);
         }
 
-        // var oldTags = post.tags;
-        extend(true, post, req.body.post);
-        // post.tags.map(function(_id) {
-        //     var index = oldTags.indexOf(_id);
-        //     if (index === -1) {
-        //         post.tags.push(oldTags[_id]);
-        //     }
-        // });
+        var newPost = req.body.post;
+        post.markdown = newPost.markdown;
+        post.tags = newPost.tags;
+        post.title = newPost.title;
+        post.description = newPost.description;
 
         post.save(function(err, post) {
             if (err) {
                 res.send(err);
             }
-            res.json({
-                post: post
+            Post.populate(post, 'tags', function() {
+                res.json({
+                    post: post
+                });
             });
         });
     });
