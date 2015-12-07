@@ -1,5 +1,13 @@
 <nav>
-  <div class="blog-title">{{title}}<span class="animated-dot">.</span>
+  <div class="blog-title">
+      <button class="nav-toggle" type="button">
+          <span></span>
+          <span></span>
+          <span></span>
+      </button>
+      {{#link-to "blog-posts"}}
+          {{title}}<span class="animated-dot">.</span>
+      {{/link-to}}
   </div>
   <div class="navbar">
     <ul>

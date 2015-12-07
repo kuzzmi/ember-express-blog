@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import config from '../config/environment';
 
 export default Ember.Service.extend({
     session: Ember.inject.service('session'),
@@ -8,6 +9,7 @@ export default Ember.Service.extend({
         this._super(...arguments);
 
         this.set('user', {});
+        console.debug('User service init...');
         this.getData();
     },
 
@@ -18,18 +20,16 @@ export default Ember.Service.extend({
 
     getData: function() {
         let session = this.get('session');
-        
+        let url = [config.API.host, config.API.namespace, 'users/me'].join('/');
+
         session.authorize('authorizer:oauth2', (headerName, headerValue) => {
             const headers = {};
             headers[headerName] = headerValue;
-            Ember.$.ajax('http://localhost:3000/api/users/me', { headers })
-                .success((data) => {
+            Ember.$.ajax(url, { headers })
+                .success(data => {
                     this.set('user', data);
                 });
         });
-    }.observes('session.isAuthenticated'),
-
-    test() {
-        console.log('test');
-    }
+        
+    }.observes('session.isAuthenticated').on('init')
 });

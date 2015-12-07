@@ -1,0 +1,21 @@
+.toolbar {
+    display: inline-block;
+    float: right;
+
+    @include max-screen(768px) {
+        display: block;
+        float: none;
+        margin-bottom: 10px;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+            font-weight: 500;
+            display: inline-block;
+        }
+    }
+}
+

@@ -14,27 +14,73 @@
 }
 
 nav {
-    // opacity: 0.1;
+    opacity: 0.1;
     padding: 80px 40px;
     position: relative;
     box-sizing: content-box;
     height: $font-size-navbar + 10px;
 
+    @include max-screen(768px) {
+        padding: 20px 0px;
+    }
+
     .blog-title {
-        color: $accent;
-        font-size: $font-size-navbar;
-        font-weight: 500;
-        font-family: 'Roboto Mono';
         height: 100%;
-        top: -8px;
         position: relative;
         display: inline-block;
 
-        .animated-dot {
-            animation-name: recolor;
-            animation-duration: 20s;
-            animation-iteration-count: infinite;
+        @include max-screen(768px) {
+            width: 100%;
+            padding: 0 20px;
         }
+
+        .nav-toggle {
+            display: none;
+            border: none;
+            background: transparent;
+            float: right;
+            height: 34px;
+            outline: 0;
+
+            span {
+                display: block; 
+                height: 1px;
+                margin: 4px 0;
+                width: 15px;
+                border-bottom: 1px solid $grey;
+            }
+
+            @include max-screen(768px) {
+                display: inline-block;
+            }
+        }
+
+        a {
+            float: left;
+            top: -8px;
+            color: $accent;
+            font-size: $font-size-navbar;
+            font-weight: 500;
+            font-family: 'Roboto Mono';
+
+            @include max-screen(768px) {
+                position: relative;
+                top: -2px;
+            }
+
+            .animated-dot {
+                animation-name: recolor;
+                animation-duration: 20s;
+                animation-iteration-count: infinite;
+
+                @include max-screen(768px) {
+                    display: none;
+                }
+            }
+        }
+
+        // color: white;
+
     }
 
     .navbar {
@@ -42,6 +88,10 @@ nav {
         margin-left: 20px;
         display: inline-block;
         height: 100%;
+
+        @include max-screen(768px) {
+            display: none;
+        }
 
         .active-indicator {
             background: black;

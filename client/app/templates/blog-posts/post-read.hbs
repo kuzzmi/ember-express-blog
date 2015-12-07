@@ -1,12 +1,12 @@
 <div class="post">
-    <div class="toolbar">
-        <ul>
-            <li>
-                {{link-to "[F4] Edit" "blog-posts.post-edit" model}}
-                <a {{action "delete" model}}>[F8] Delete</a>
-            </li>
-        </ul>
-    </div>
+    {{#admin-toolbar}}
+        <li>
+            {{link-to "[F4] Edit" "blog-posts.post-edit" model}}
+        </li>
+        <li>
+            <a {{action "delete" model}}>[F8] Delete</a>
+        </li>
+    {{/admin-toolbar}}
     <p class="post-created">
         {{moment-format model.dateCreated "DD/MM/YY HH:mm"}}
     </p>

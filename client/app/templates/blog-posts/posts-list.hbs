@@ -1,13 +1,9 @@
 <div class="posts-list">
-    {{#if user.isAdmin}}
-    <div class="toolbar">
-        <ul> 
-            <li>
-                {{link-to "[F4] New post" "blog-posts.post-new"}}
-            </li>
-        </ul>
-    </div>
-    {{/if}}
+    {{#admin-toolbar}}
+        <li>
+            {{link-to "[F4] New post" "blog-posts.post-new"}}
+        </li>
+    {{/admin-toolbar}}
 
     <ul>
         {{#each model as |item|}}

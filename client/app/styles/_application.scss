@@ -16,6 +16,15 @@ body {
     min-height: 100%;
     color: $text-color;
     overflow-x: hidden;
+
+    @include max-screen(768px) {
+        font-size: 100%;
+    }
+
+    @include hdpi(3) {
+        font-size: 115%;
+    }
+    // (<768px)(≥768px)(≥992px)(≥1200px)  
 }
 
 .wrapper {
@@ -29,6 +38,11 @@ body {
     .content {
         padding: 20px 40px;
         padding-top: 0px;
+
+        @include max-screen(768px) {
+            padding: 20px;
+            padding-top: 0px;
+        }
     }
 }
     
@@ -65,15 +79,3 @@ form {
     }
 }
 
-.toolbar {
-    display: inline-block;
-    float: right;
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        li {
-            font-weight: 500;
-        }
-    }
-}
