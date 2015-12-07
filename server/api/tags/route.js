@@ -28,7 +28,9 @@ module.exports.getAll = function(req, res) {
     
 };
 
-module.exports.update = function(req, res, id) {
+module.exports.update = function(req, res) {
+    var id = req.params.id;
+
     Tag.findOne({
         _id: id
     }, function(err, tag) {
@@ -49,7 +51,9 @@ module.exports.update = function(req, res, id) {
     });
 };
 
-module.exports.getOne = function(req, res, id) {
+module.exports.getOne = function(req, res) {
+    var id = req.params.id;
+
     Tag.findOne({
         _id: id
     }, function(err, tag) {

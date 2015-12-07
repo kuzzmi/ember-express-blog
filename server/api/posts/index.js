@@ -7,8 +7,8 @@ var auth = require('../../auth/service');
 router.post('/', auth.hasRole('admin'), posts.add);
 router.get('/', posts.getAll);
 router.put('/:id', auth.hasRole('admin'), posts.update);
-router.get('/:id', posts.getOne)
-router.delete('/:id', posts.delete);
+router.get('/:id', posts.getOne);
+router.delete('/:id', auth.hasRole('admin'), posts.delete);
 
 /*
  *  MARKDOWN PREVIEW
