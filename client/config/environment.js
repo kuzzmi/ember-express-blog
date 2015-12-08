@@ -24,10 +24,10 @@ module.exports = function(environment) {
 
         contentSecurityPolicy: {
             'script-src': "'self'",
-            'style-src': "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com",
-            'font-src': "'self' 'unsafe-inline' fonts.gstatic.com",
-            'img-src': "'self' 'unsafe-inline' www.gravatar.com",
-            'connect-src': "'self' http://localhost:3000"
+            'style-src': "'self' 'unsafe-inline' 192.168.0.4 use.typekit.net fonts.googleapis.com",
+            'font-src': "'self' 'unsafe-inline' 192.168.0.4 fonts.gstatic.com",
+            'img-src': "'self' 'unsafe-inline' 192.168.0.4 www.gravatar.com",
+            'connect-src': "'self' http://localhost:3000 http://192.168.0.4:3000"
         },
 
         'ember-simple-auth': {
@@ -40,7 +40,7 @@ module.exports = function(environment) {
 
     if (environment === 'development') {
         ENV.API.namespace = 'api';
-        ENV.API.host = 'http://localhost:3000';
+        ENV.API.host = 'http://192.168.0.4:3000';
         // ENV.APP.LOG_RESOLVER = true;
         ENV.APP.LOG_ACTIVE_GENERATION = true;
         ENV.APP.LOG_TRANSITIONS = true;

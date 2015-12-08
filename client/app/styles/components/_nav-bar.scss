@@ -41,13 +41,22 @@ nav {
             float: right;
             height: 34px;
             outline: 0;
+            transform: rotate(0deg);
+            transition: transform .25s cubic-bezier(.35,0,.25,1);
 
             span {
                 display: block; 
                 height: 1px;
-                margin: 4px 0;
+                margin: 3px 0;
                 width: 15px;
-                border-bottom: 1px solid $grey;
+                border-bottom: 2px solid $grey;
+            }
+
+            &.active {
+                transform: rotate(90deg);
+                span {
+                    border-bottom: 2px solid $accent;
+                }
             }
 
             @include max-screen(768px) {
@@ -90,14 +99,19 @@ nav {
         height: 100%;
 
         @include max-screen(768px) {
+            transform: translate(-100%, 0); 
+            transition: transform .25s cubic-bezier(.35,0,.25,1);
+            display: block;
             position: fixed;
             left: -20px;
-            right: 40px;
+            right: 70px;
             top: 0;
             bottom: 0;
-            background-color: $grey-lightest;
+            background-color: rgb(230, 230, 230);
+            &.show {
+                transform: translate(0, 0); 
+            }
             z-index: 100;
-            // display: none;
         }
 
         .active-indicator {
@@ -130,11 +144,18 @@ nav {
                 font-size: $font-size-navbar;
                 padding: 0 10px;
 
+                @include max-screen(768px) {
+                    display: block;
+                    padding-top: 20px;
+                    padding-left: 20px;
+                }
+
                 a {
-                    transition: color .25s cubic-bezier(.35,0,.25,1);
+                    transition: color .25s cubic-bezier(.35,0,.25,1), background-color .125s cubic-bezier(.35,0,.25,1);
                     padding: 0 10px;
                     &.active {
                         color: white;
+                        background-color: black;
                     }
                 }
 

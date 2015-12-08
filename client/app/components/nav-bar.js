@@ -17,12 +17,18 @@ export default Ember.Component.extend({
 
         Ember.$('nav ul li a').on('click', () => {
             setActiveIndicator(1);
+            this.actions.toggleNavbar();
         });
 
         setActiveIndicator(50);
    },
 
    actions: {
+       toggleNavbar() {
+           Ember.$('.navbar').toggleClass('show');
+           Ember.$('.nav-toggle').toggleClass('active');
+       },
+
        invalidateSession() {
            this.get('session').invalidate();
        }

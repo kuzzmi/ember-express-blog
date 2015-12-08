@@ -4,7 +4,7 @@
         padding: 0;
         list-style: none;
         & > li {
-            padding-bottom: 40px;
+            padding-bottom: 80px;
             p {
                 margin: 0;
                 padding: 0;
@@ -13,6 +13,10 @@
                     font-size: $font-size-title;
                     font-weight: 700;
                     margin-bottom: 10px;
+
+                    @include max-screen(768px) {
+                        font-size: $font-size-title * 0.8;
+                    }
                 }
 
                 &.post-description { 

@@ -18,6 +18,7 @@ $space: -9999px;
         code {
             @include max-screen(768px) {
                 font-size: 90%;
+                padding: 0px 4px;
             }
 
             font-size: 12px;

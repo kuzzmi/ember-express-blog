@@ -21,9 +21,9 @@ body {
         font-size: 100%;
     }
 
-    @include hdpi(3) {
-        font-size: 115%;
-    }
+    // @include hdpi(3) {
+    //     font-size: 115%;
+    // }
     // (<768px)(≥768px)(≥992px)(≥1200px)  
 }
 
