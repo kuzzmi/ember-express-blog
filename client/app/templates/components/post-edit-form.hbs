@@ -22,22 +22,22 @@
         {{moment-from-now post.dateCreated interval=1000}}
     </p>
     <div class="form {{if isPreview 'hidden' ''}}">
-        <h2 class="title">
+        <h2 class="title form-title">
             {{form-title}} 
         </h2>
         <form>
             <p class="label">Title</p>
-            {{input value=post.title placeholder="post title" type=text}}
+            {{input id="title" value=post.title placeholder="post title" type=text}}
             <p class="label">Tags</p>
             {{autocomplete-input items=post.tags key="name" model="tag"}}
             <p class="label">Description</p>
-            {{textarea value=post.description placeholder="post description" type=text}}
+            {{textarea id="description" value=post.description placeholder="post description" type=text}}
             <p class="label">Body</p>
             <div id="editor-body"></div>
         </form>
     </div>
     <div class="preview {{if isPreview '' 'hidden'}}">
-        <h2 class="title">
+        <h2 class="title preview-title">
             Preview
         </h2>
         {{#blog-post-body}}

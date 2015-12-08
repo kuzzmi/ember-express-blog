@@ -14,7 +14,7 @@
 }
 
 nav {
-    // opacity: 0.1;
+    opacity: 0.1;
     padding: 80px 40px;
     position: relative;
     box-sizing: content-box;
@@ -155,7 +155,9 @@ nav {
                     padding: 0 10px;
                     &.active {
                         color: white;
-                        background-color: black;
+                        @include max-screen(768px) {
+                            background-color: black;
+                        }
                     }
                 }
 

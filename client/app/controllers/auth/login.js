@@ -8,9 +8,19 @@ export default Ember.Controller.extend({
             let { username, password } = this.getProperties('username', 'password');
 
             this.get('session').authenticate('authenticator:oauth2', username, password)
-            .catch((reason) => {
-                this.set('errorMessage', reason.error.message || reason.error || reason);
-            });
+                .catch((reason) => {
+                    let message;
+
+                    if (reason.error) {
+                        message = reason.error.message;
+                    } else if (reason.message) {
+                        message = reason.message;
+                    } else {
+                        message = reason;
+                    }
+
+                    this.set('errorMessage', message);
+                });
         }
     }
 });

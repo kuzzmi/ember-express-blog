@@ -9,9 +9,11 @@ export default Ember.Component.extend({
         function setActiveIndicator(interval) {
             setTimeout(function () {
                 var indicator = Ember.$('nav .active-indicator')[0];
-                var activeLink = Ember.$('nav a.active')[0];
-                indicator.style.left = activeLink.offsetLeft + 'px';
-                indicator.style.width = activeLink.offsetWidth + 'px';
+                var activeLink = Ember.$('nav li a.active')[0];
+                if (indicator && activeLink) {
+                    indicator.style.left  = activeLink.offsetLeft + 'px';
+                    indicator.style.width = activeLink.offsetWidth + 'px';
+                }
             }, interval);
         }
 
@@ -20,7 +22,7 @@ export default Ember.Component.extend({
             this.actions.toggleNavbar();
         });
 
-        setActiveIndicator(50);
+        setActiveIndicator(100);
    },
 
    actions: {

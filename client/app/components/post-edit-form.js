@@ -6,7 +6,6 @@ import config from '../config/environment';
 
 export default Ember.Component.extend({
     preview: '',
-    tags: [],
     isPreview: false,
 
     /* events */
@@ -28,10 +27,6 @@ export default Ember.Component.extend({
 
     init() {
         this._super(...arguments);
-
-        this.get('post.tags').map((tag) => {
-            this.get('tags').addObject(tag.get('name'));
-        });
     },
 
     /* actions */
@@ -43,23 +38,10 @@ export default Ember.Component.extend({
             this.sendAction('save', post);
         },
 
-        removeTag(value) {
-            console.log(value);
-            this.get('tags').removeObject(value);
-        },
-
         edit() {
             Ember.$('.form').toggleClass('hidden');
             Ember.$('.preview').toggleClass('hidden');
             this.set('isPreview', false);
-        },
-
-        addTag(tag) {
-            this.get('tags').addObject(tag);
-        },
-
-        findTags(value) {
-            this.sendAction('find-tags', value);
         },
 
         preview(post) {

@@ -1,25 +1,62 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('post-edit-form', 'Integration | Component | post edit form', {
-  integration: true
+    integration: true
 });
 
-test('it renders', function(assert) {
-  
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
+test('it should show time passed since the dateCreated', function(assert) {
+    let post = Ember.Object.create({
+        title: 'Title',
+        markdown: 'Markdown',
+        description: 'Description'
+    });
 
-  this.render(hbs`{{post-edit-form}}`);
+    this.set('post', post);
+    this.set('form-title', 'Test');
+    this.render(hbs`{{post-edit-form post=post}}`);
 
-  assert.equal(this.$().text().trim(), '');
+    assert.equal(this.$('.current-time').text().trim(), 'a few seconds ago');
+});
 
-  // Template block usage:" + EOL +
-  this.render(hbs`
-    {{#post-edit-form}}
-      template block text
-    {{/post-edit-form}}
-  `);
+test('it should show form title', function(assert) {
+    this.set('form-title', 'Test');
+    this.render(hbs`{{post-edit-form form-title=form-title}}`);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(this.$('.form-title').text().trim(), 'Test');
+});
+
+test('it should show time passed since the dateCreated', function(assert) {
+    let post = Ember.Object.extend({
+        title: 'Title'
+    });
+
+    this.set('post', post);
+    this.render(hbs`{{post-edit-form post=post form-title=form-title}}`);
+
+    assert.equal(this.$('#title').val().trim(), 'Title');
+});
+
+
+test('it should show time passed since the dateCreated', function(assert) {
+    let post = Ember.Object.extend({
+        description: 'Description'
+    });
+
+    this.set('post', post);
+    this.render(hbs`{{post-edit-form post=post form-title=form-title}}`);
+
+    assert.equal(this.$('#description').val().trim(), 'Description');
+});
+
+test('it should show time passed since the dateCreated', function(assert) {
+    let post = Ember.Object.extend({
+        markdown: 'Markdown'
+    });
+
+    this.set('post', post);
+    this.render(hbs`{{post-edit-form post=post form-title=form-title}}`);
+
+    assert.equal(this.$('#editor-body textarea').val().trim(), 'Markdown');
 });

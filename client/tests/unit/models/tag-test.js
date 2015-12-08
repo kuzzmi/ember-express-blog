@@ -1,8 +1,8 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('post', 'Unit | Model | post', {
+moduleForModel('tag', 'Unit | Model | tag', {
     // Specify the other units that are required for this test.
-    needs: [ 'model:tag' ]
+    needs: []
 });
 
 test('it exists', function(assert) {
@@ -10,3 +10,4 @@ test('it exists', function(assert) {
     // let store = this.store();
     assert.ok(!!model);
 });
+

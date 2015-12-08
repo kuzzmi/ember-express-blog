@@ -2,24 +2,18 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('blog-post-body', 'Integration | Component | blog post body', {
-  integration: true
+    integration: true
 });
 
 test('it renders', function(assert) {
-  
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
+    this.set('html', '<p>test</p>');
 
-  this.render(hbs`{{blog-post-body}}`);
+    this.render(hbs`
+        {{#blog-post-body}}
+            {{{html}}}
+        {{/blog-post-body}}
+    `);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:" + EOL +
-  this.render(hbs`
-    {{#blog-post-body}}
-      template block text
-    {{/blog-post-body}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(this.$().text().trim(), 'test');
+    assert.equal(this.$().find('.post-body').html().trim(), '<p>test</p>');
 });
