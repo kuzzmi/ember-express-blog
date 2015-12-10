@@ -15,7 +15,6 @@
     "express-jwt": "^3.3.0",
     "express-session": "^1.12.1",
     "extend": "^3.0.0",
-    "global-tunnel": "^1.2.0",
     "jade": "~1.11.0",
     "jsonwebtoken": "^5.4.1",
     "kerberos": "0.0.17",

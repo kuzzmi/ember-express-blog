@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
     var ENV = {
-        modulePrefix: 'ember-test',
+        modulePrefix: 'kuzzmi-blog',
         environment: environment,
         baseURL: '/',
         locationType: 'auto',
@@ -61,7 +61,13 @@ module.exports = function(environment) {
     }
 
     if (environment === 'production') {
-
+        ENV.API.host = 'https://beta.kuzzmi.com';
+        ENV.contentSecurityPolicy = {
+            'script-src': "'self'",
+            'style-src': "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com",
+            'font-src': "'self' 'unsafe-inline' fonts.gstatic.com",
+            'img-src': "'self' 'unsafe-inline' www.gravatar.com"
+        };
     }
 
     return ENV;

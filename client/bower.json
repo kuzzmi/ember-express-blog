@@ -1,5 +1,5 @@
 {
-  "name": "ember-test",
+  "name": "kuzzmi-blog",
   "dependencies": {
     "ember": "^2.0.0",
     "ember-cli-shims": "0.0.6",

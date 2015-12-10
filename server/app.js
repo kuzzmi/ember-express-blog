@@ -6,12 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
-var globalTunnel = require('global-tunnel');
-
-// require('./config/passport/google');
-// require('./config/passport/jwt');
-// require('./config/passport/bearer');
-// require('./auth/local');
 
 var app = express();
 
@@ -31,7 +25,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', 'https://beta.kuzzmi.com');
+    if (app.get('env') === 'development') {
+        res.header('Access-Control-Allow-Origin', '*');
+    }
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', [ 
         'Content-Type', 

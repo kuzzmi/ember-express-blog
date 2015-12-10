@@ -9,11 +9,13 @@ var debug = require('debug')('server:server');
 var http = require('http');
 
 /**
- * Get port from environment and store in Express.
+ * Get port and host from environment and store in Express.
  */
 
 var port = normalizePort(process.env.PORT || '3000');
+var host = process.env.HOST;
 app.set('port', port);
+app.set('host', host);
 
 /**
  * Create HTTP server.
@@ -22,10 +24,13 @@ app.set('port', port);
 var server = http.createServer(app);
 
 /**
- * Listen on provided port, on all network interfaces.
+ * Listen on provided port, if provided.
  */
-
-server.listen(port);
+if (host) {
+    server.listen(port);
+} else {
+    server.listen(port, host);
+}
 server.on('error', onError);
 server.on('listening', onListening);
 
