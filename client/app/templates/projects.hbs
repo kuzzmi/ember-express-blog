@@ -1,4 +1,9 @@
 <div class="posts-list">
+    {{#admin-toolbar}}
+        <li>
+            <a {{action "sync"}}>[F4] Sync</a>
+        </li>
+    {{/admin-toolbar}}
     <ul>
         {{#each model as |project|}}
             <li>

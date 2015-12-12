@@ -19,8 +19,8 @@ module.exports = function(environment) {
         },
 
         API: {
-            // Here will be stored API specific settings
             namespace: 'api'
+            // Here will be stored API specific settings
         },
 
         contentSecurityPolicy: {

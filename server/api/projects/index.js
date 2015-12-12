@@ -1,40 +1,25 @@
-// var mongoose = require('mongoose');
-// var githubAPI = require('node-github');
-//
-// // var Post = require('../../models/post');
-//
-// module.exports.getAll = function(req, res) {
-//     var github = new githubAPI({
-//         version: '3.0.0'
-//     });
-//
-//     github.repos.getAll({}, function(err, data) {
-//         res.json(data);
-//     });
-// };
+var githubAPI = require('node-github');
 var express = require('express');
 var router = express.Router();
 var projects = require('./route');
+var auth = require('../../auth/service');
 
-/* projects routes */
-router.route('/')
-    .post(function(req, res) {
-        projects.add(req, res);
-    })
-    .get(function(req, res) {
-        projects.getAll(req, res);
+router.get('/sync', auth.hasRole('admin'), function(req, res) {
+    var github = new githubAPI({
+        version: '3.0.0'
     });
 
-/* Single tag routes */
-router.route('/:id')
-    .get(function(req, res) {
-        projects.getOne(req, res, req.params.id);
-    })
-    .put(function(req, res) {
-        projects.update(req, res, req.params.id);
-    })
-    .delete(function(req, res) {
-        projects.delete(req, res, req.params.id);
+    github.repos.getFromUser({ 
+        user: 'kuzzmi'
+    }, function(err, data) {
+        res.json(data);
     });
+});
+
+router.post('/', auth.hasRole('admin'), projects.add);
+router.get('/', projects.getAll);
+router.put('/:id', auth.hasRole('admin'), projects.update);
+router.get('/:id', projects.getOne);
+// router.delete('/:id', auth.hasRole('admin'), projects.delete);
 
 module.exports = router;

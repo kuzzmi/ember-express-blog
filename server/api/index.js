@@ -10,6 +10,7 @@ var auth = require('../auth');
 router.use('/posts', posts);
 router.use('/tags', tags);
 router.use('/users', users);
+router.use('/projects', projects);
 router.use('/auth', auth);
 
 module.exports = router;

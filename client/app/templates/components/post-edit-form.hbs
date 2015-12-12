@@ -1,13 +1,13 @@
 <div class="post-edit-form">
     {{#admin-toolbar}}
         <li>
-            <a href="#" {{action "save" post}}>[F2] Save</a>
+            <a {{action "save" post}}>[F2] Save</a>
         </li>
         <li>
             {{#if isPreview}}
-                <a href="#" {{action "edit"}}>[F3] Edit</a>
+                <a {{action "edit"}}>[F3] Edit</a>
             {{else}}
-                <a href="#" {{action "preview" post}}>[F3] Preview</a>
+                <a {{action "preview" post}}>[F3] Preview</a>
             {{/if}}
         </li>
         <li>
