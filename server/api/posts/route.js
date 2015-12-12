@@ -19,16 +19,22 @@ module.exports.add = function(req, res) {
 };
 
 module.exports.getAll = function(req, res) {
+    if (!req.user) {
+        req.query.isPublished = true;
+    } else if (req.query.isPublished) {
+        delete req.query.isPublished;
+    }
+
     Post.find(req.query)
-    .populate('tags')
-    .exec(function(err, posts) {
-        if (err) {
-            res.send(err);
-        }
-        res.json({
-            posts: posts
+        .populate('tags')
+        .exec(function(err, posts) {
+            if (err) {
+                res.send(err);
+            }
+            res.json({
+                posts: posts
+            });
         });
-    });
 };
 
 module.exports.getOne = function(req, res) {
@@ -61,6 +67,7 @@ module.exports.update = function(req, res) {
         post.tags = newPost.tags;
         post.title = newPost.title;
         post.description = newPost.description;
+        post.isPublished = newPost.isPublished;
 
         post.save(function(err, post) {
             if (err) {

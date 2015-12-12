@@ -27,11 +27,13 @@
         </h2>
         <form>
             <p class="label">Title</p>
-            {{input id="title" value=post.title placeholder="post title" type=text}}
+            {{input id="title" value=post.title placeholder="post title" type="text"}}
+            <p class="label">Published</p>
+            {{input id="published" type="checkbox" name="isPublished" checked=post.isPublished}}
             <p class="label">Tags</p>
             {{autocomplete-input items=post.tags key="name" model="tag"}}
             <p class="label">Description</p>
-            {{textarea id="description" value=post.description placeholder="post description" type=text}}
+            {{textarea id="description" value=post.description placeholder="post description" type="text"}}
             <p class="label">Body</p>
             <div id="editor-body"></div>
         </form>

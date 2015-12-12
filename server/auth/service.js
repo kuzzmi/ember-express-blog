@@ -10,12 +10,12 @@ var User = require('../models/user');
 var validateJwt = expressJwt({
     secret: config.secret
 });
+var validateJwtNotStrict = expressJwt({
+    secret: config.secret,
+    credentialsRequired: false
+});
 
-/**
- * Attaches the user object to the request if authenticated
- * Otherwise returns 403
- */
-function isAuthenticated() {
+function validate(notStrict) {
     return compose()
         // Validate jwt
         .use(function(req, res, next) {
@@ -23,8 +23,21 @@ function isAuthenticated() {
             if (req.query && req.query.hasOwnProperty('access_token')) {
                 req.headers.authorization = 'Bearer ' + req.query.access_token;
             }
-            validateJwt(req, res, next);
-        })
+            if (notStrict) {
+                validateJwtNotStrict(req, res, next);
+            } else {
+                validateJwt(req, res, next);
+            }
+        });
+}
+
+/**
+ * Attaches the user object to the request if authenticated
+ * Otherwise returns 403
+ */
+function isAuthenticated() {
+    return compose()
+        .use(validate())
         // Attach user to request
         .use(function(req, res, next) {
             User.findById(req.user._id, function(err, user) {
@@ -34,6 +47,46 @@ function isAuthenticated() {
                 req.user = user;
                 next();
             });
+        });
+}
+
+function attachUser() {
+    return compose()
+        .use(validate(true))
+        // Attach user to request
+        .use(function(req, res, next) {
+            if (!req.user) {
+                return next();
+            }
+            User.findById(req.user._id, function(err, user) {
+                if (err) return next(err);
+                if (user) 
+                    req.user = user;
+                next();
+            });
+        });
+}
+
+/**
+ * Checks if the user role meets the minimum requirements of the route
+ * if not will return
+ */
+function hasRoleNotStrict(roleRequired) {
+    if (!roleRequired) throw new Error('Required role needs to be set');
+
+    return compose()
+        .use(attachUser())
+        .use(function meetsRequirements(req, res, next) {
+            if (req.user) {
+                if (config.userRoles.indexOf(req.user.role) >= config.userRoles.indexOf(roleRequired)) {
+                    next();
+                } else {
+                    delete req.user;
+                    next();
+                }
+            } else {
+                next();
+            }
         });
 }
 
@@ -80,5 +133,7 @@ function setTokenCookie(req, res) {
 
 exports.isAuthenticated = isAuthenticated;
 exports.hasRole = hasRole;
+exports.hasRoleNotStrict = hasRoleNotStrict;
 exports.signToken = signToken;
 exports.setTokenCookie = setTokenCookie;
+exports.attachUser = attachUser;

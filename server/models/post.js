@@ -10,6 +10,7 @@ var PostSchema = new Schema({
     description: String,
     slug: String,
     dateCreated: Date,
+    isPublished: Boolean,
     tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }],
     project: { type: Schema.Types.ObjectId, ref: 'Project' }
 });

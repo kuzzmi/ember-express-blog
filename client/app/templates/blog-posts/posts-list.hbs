@@ -9,6 +9,7 @@
         {{#each model as |item|}}
             <li>
                 <p class="post-created">
+                    {{if item.isPublished "" "[ DRAFT ]"}}
                     {{moment-format item.dateCreated "DD/MM/YY HH:mm"}}
                 </p>
                 <p class="post-title">

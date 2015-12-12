@@ -7,5 +7,6 @@ export default DS.Model.extend({
     slug: DS.attr('string'),
     description: DS.attr('string'),
     dateCreated: DS.attr('date'),
+    isPublished: DS.attr('boolean'),
     tags: DS.hasMany('tag', { async: true })
 });
