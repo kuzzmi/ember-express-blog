@@ -38,11 +38,16 @@ module.exports.getAll = function(req, res) {
 };
 
 module.exports.getOne = function(req, res) {
-    var slug = req.params.id;
+    var query = {
+        slug: req.params.slug,
+        isPublished: true
+    };
 
-    Post.findOne({
-        slug: slug
-    })
+    if (req.user) {
+        delete query.isPublished;
+    }
+
+    Post.findOne(query)
     .populate('tags')
     .exec(function(err, post) {
         if (err) {

@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import config from '../config/environment';
 
 export default Ember.Service.extend({
     session: Ember.inject.service('session'),
@@ -10,7 +9,6 @@ export default Ember.Service.extend({
         this._super(...arguments);
 
         this.set('user', {});
-        console.debug('User service init...');
         this.getData();
     },
 

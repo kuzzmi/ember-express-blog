@@ -57,6 +57,7 @@ a {
 }
 
 form {
+    input:not([type]),
     input[type="text"], 
     input[type="password"], 
     input[type="submit"], 
@@ -70,6 +71,7 @@ form {
         font-size: 16px;
     }
     
+    input:not([type]),
     input[type="text"], 
     input[type="password"], 
     input[type="submit"] {
@@ -81,6 +83,14 @@ form {
             font-weight: 700;
             background-color: $green;
         }
+    }
+
+    input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        margin-bottom: 20px;
+        background: none;
+        border: 1px solid $grey-light;
     }
 }
 

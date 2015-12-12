@@ -7,7 +7,7 @@ export default Ember.Route.extend({
         let { slug } = post;
         // Should be covered in a blog, actually
         return this.store.query('post', { slug }).then((posts) => {
-            if (posts.contents) {
+            if (posts.content.length) {
                 return posts.get('firstObject');
             } else {
                 this.transitionTo('404');

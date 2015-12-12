@@ -8,6 +8,7 @@
         </li>
     {{/admin-toolbar}}
     <p class="post-created">
+        {{if model.isPublished "" "[ DRAFT ]"}}
         {{moment-format model.dateCreated "DD/MM/YY HH:mm"}}
     </p>
     <p class="post-title">
