@@ -4,9 +4,7 @@ export default Ember.Route.extend({
     api: Ember.inject.service('api'),
 
     model() {
-        return [{
-            fullname: 'monk'
-        }];
+        return this.store.findAll('project');
     },
 
     actions: {
@@ -14,6 +12,11 @@ export default Ember.Route.extend({
             this.get('api').call(true, 'projects/sync', data => {
                 console.log(data);
             });
+        },
+
+        publish(project) {
+            project.set('isPublished', true);
+            project.save();
         }
     }
 });

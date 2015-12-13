@@ -1,3 +1,4 @@
+var githubAPI = require('node-github');
 var mongoose = require('mongoose');
 var extend = require('extend');
 var Project = require('../../models/project');
@@ -27,22 +28,15 @@ module.exports.getAll = function(req, res) {
     
 };
 
-module.exports.update = function(req, res, id) {
+module.exports.update = function(req, res) {
     Project.findOne({
-        _id: id
+        _id: req.params.id
     }, function(err, project) {
         if (err) {
             res.send(err);
         }
 
-        // var oldPosts = project.posts;
-        // extend(true, project, req.body.project);
-        // project.posts.map(function(_id) {
-        //     var index = oldPosts.indexOf(_id);
-        //     if (index === -1) {
-        //         project.posts.push(oldPosts[_id]);
-        //     }
-        // });
+        extend(true, project, req.body.project);
 
         project.save(function(err, project) {
             if (err) {
@@ -68,3 +62,49 @@ module.exports.getOne = function(req, res, id) {
     });
 };
 
+module.exports.sync = function(req, res) {
+    var github = new githubAPI({
+        version: '3.0.0'
+    });
+
+    github.repos.getFromUser({ 
+        user: 'kuzzmi'
+    }, function(err, data) {
+        if (err) {
+            res.send(err);
+        }
+
+        data.forEach(function(_project) {
+            Project.findOne({
+                githubID: _project.id
+            }, function(err, project) {
+                if (err) {
+                    res.send(err);
+                }
+
+                if (!project) {
+                    project = new Project({
+                        githubID: _project.id,
+                        name: _project.name,
+                        url: _project.html_url,
+                        description: _project.description,
+                        dateCreated: _project.created_at,
+                        dateUpdated: _project.pushed_at,
+                        isOwner: !_project.fork,
+                        stars: _project.stargazers_count,
+                        isPublished: false,
+                        posts: []
+                    });
+
+                    project.save(function(err) {
+                        if (err) {
+                            res.send(err);
+                        }
+                    });
+                }
+            });
+        });
+
+        res.json(data);
+    });
+};

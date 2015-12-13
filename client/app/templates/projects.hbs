@@ -1,3 +1,5 @@
+{{title "Projects"}}
+
 <div class="posts-list">
     {{#admin-toolbar}}
         <li>
@@ -6,11 +8,67 @@
     {{/admin-toolbar}}
     <ul>
         {{#each model as |project|}}
-            <li>
-                <p class="project-title">
-                    {{project.fullname}}
-                </p>
-            </li>
+            {{#if project.isPublished}}
+                <li>
+                    <p class="project-stars">
+                        {{#if project.stars}}
+                        <small>
+                            Stars: [ {{project.stars}} ]
+                        </small>
+                        {{/if}}
+                    </p>
+                    <p class="project-title">
+                        {{if project.isPublished "" "[ DRAFT ]"}}
+                        <a href="{{project.url}}">{{project.name}}</a>
+                    </p>
+                    <p>
+                        {{project.description}}
+                    </p>
+                    <p class="project-date project-date-created">
+                        Created {{moment-from-now project.dateCreated}}
+                    </p>
+                    <p class="project-date project-date-updated">
+                        Updated {{moment-from-now project.dateUpdated}}
+                    </p>
+                    <p class="project-ownership">
+                        {{#if project.isOwner}}
+                            [ owner ]
+                        {{else}}
+                            [ collaborator ]
+                        {{/if}}
+                    </p>
+                </li>
+            {{/if}}
+        {{/each}}
+        {{#each model as |project|}}
+            {{#if project.isPublished}}
+            {{else}}
+                <li>
+                    <p class="project-publish">
+                        <a {{action "publish" project}}>Publish</a>
+                    </p>
+                    <p class="project-title">
+                        [ DRAFT ]
+                        <a href="{{project.url}}">{{project.name}}</a>
+                    </p>
+                    <p>
+                        {{project.description}}
+                    </p>
+                    <p class="project-date project-date-created">
+                        Created {{moment-from-now project.dateCreated}}
+                    </p>
+                    <p class="project-date project-date-updated">
+                        Updated {{moment-from-now project.dateUpdated}}
+                    </p>
+                    <p class="project-ownership">
+                        {{#if project.isOwner}}
+                            [ owner ]
+                        {{else}}
+                            [ collaborator ]
+                        {{/if}}
+                    </p>
+                </li>
+            {{/if}}
         {{/each}}
     </ul>
 </div>

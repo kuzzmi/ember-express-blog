@@ -4,10 +4,13 @@ var Schema = mongoose.Schema;
 var ProjectSchema = new Schema({
     name: String,
     url: String,
+    description: String,
+    githubID: Number,
     dateCreated: Date,
     dateUpdated: Date,
     stars: Number,
-    status: String,
+    isOwner: Boolean,
+    isPublished: Boolean,
     posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }]
 });
 
