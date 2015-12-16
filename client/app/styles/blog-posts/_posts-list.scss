@@ -1,4 +1,4 @@
-.posts-list {
+.list {
     & > ul {
         margin: 0;
         padding: 0;
@@ -8,21 +8,25 @@
             p {
                 margin: 0;
                 padding: 0;
+                margin-bottom: 10px;
 
-                &.post-title {
+                &.title {
                     font-size: $font-size-title;
                     font-weight: 700;
-                    margin-bottom: 10px;
 
                     @include max-screen(768px) {
                         font-size: $font-size-title * 0.8;
                     }
                 }
 
-                &.post-description { 
-                    margin-bottom: 10px; 
+                &.project {
                 }
-                &.post-date { }
+
+                &.description { 
+                }
+
+                &.date {
+                }
             }
         }
     }

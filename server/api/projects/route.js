@@ -7,7 +7,7 @@ module.exports.add = function(req, res) {
     var project = new Project(req.body.project);
     project.save(function(err) {
         if (err) {
-            res.send(err);
+            res.status(500).send(err);
         }
         res.json({
             project: project
@@ -16,10 +16,15 @@ module.exports.add = function(req, res) {
 };
 
 module.exports.getAll = function(req, res) {
-    var query = req.query || null;
-    Project.find(query, function(err, projects) {
+    if (!req.user) {
+        req.query.isPublished = true;
+    } else if (req.query.isPublished) {
+        delete req.query.isPublished;
+    }
+
+    Project.find(req.query, function(err, projects) {
         if (err) {
-            res.send(err);
+            res.status(500).send(err);
         }
         res.json({
             projects: projects
@@ -33,14 +38,14 @@ module.exports.update = function(req, res) {
         _id: req.params.id
     }, function(err, project) {
         if (err) {
-            res.send(err);
+            res.status(500).send(err);
         }
 
         extend(true, project, req.body.project);
 
         project.save(function(err, project) {
             if (err) {
-                res.send(err);
+                res.status(500).send(err);
             }
             res.json({
                 project: project
@@ -51,10 +56,10 @@ module.exports.update = function(req, res) {
 
 module.exports.getOne = function(req, res, id) {
     Project.findOne({
-        _id: id
+        _id: req.params.id
     }, function(err, project) {
         if (err) {
-            res.send(err);
+            res.status(500).send(err);
         }
         res.json({
             project: project
@@ -71,7 +76,7 @@ module.exports.sync = function(req, res) {
         user: 'kuzzmi'
     }, function(err, data) {
         if (err) {
-            res.send(err);
+            res.status(500).send(err);
         }
 
         data.forEach(function(_project) {
@@ -79,7 +84,7 @@ module.exports.sync = function(req, res) {
                 githubID: _project.id
             }, function(err, project) {
                 if (err) {
-                    res.send(err);
+                    res.status(500).send(err);
                 }
 
                 if (!project) {
@@ -98,7 +103,7 @@ module.exports.sync = function(req, res) {
 
                     project.save(function(err) {
                         if (err) {
-                            res.send(err);
+                            res.status(500).send(err);
                         }
                     });
                 }

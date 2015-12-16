@@ -12,13 +12,21 @@ export default Ember.Component.extend({
                 name: value
             });
         }
-        this.get('items').addObject(value);
+        if (this.get('items')) {
+            this.get('items').addObject(value);
+        } else if (this.get('item')) {
+            this.set('item', value);
+        }
         this.set('foundItems', []);
         this.set('newItem', null);
     },
 
     removeItem(value) {
-        this.get('items').removeObject(value);
+        if (this.get('items')) {
+            this.get('items').removeObject(value);
+        } else if (this.get('item')) {
+            this.set('item', undefined);
+        }
     },
 
     findItem(value) {

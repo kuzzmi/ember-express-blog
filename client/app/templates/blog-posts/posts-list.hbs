@@ -1,4 +1,4 @@
-<div class="posts-list">
+<div class="list">
     {{#admin-toolbar}}
         <li>
             {{link-to "[F4] New post" "blog-posts.post-new"}}
@@ -8,16 +8,23 @@
     <ul>
         {{#each model as |item|}}
             <li>
-                <p class="post-created">
-                    {{if item.isPublished "" "[ DRAFT ]"}}
+                <p class="created">
+                    <b> {{if item.isPublished "" "[ DRAFT ]"}} </b>
                     {{moment-format item.dateCreated "DD/MM/YY HH:mm"}}
                 </p>
-                <p class="post-title">
+                <p class="title">
                     {{#link-to "blog-posts.post-read" item}}{{item.title}}{{/link-to}}
                 </p>
-                <p class="post-description">
+                <p class="description">
                     {{item.description}}
                 </p>
+                {{!--
+                {{#if item.project}}
+                    <p class="project">
+                        Related to project: {{item.project.name}}
+                    </p>
+                {{/if}}
+                --}}
                 {{tags-list tags=item.tags}}
             </li>
         {{/each}}

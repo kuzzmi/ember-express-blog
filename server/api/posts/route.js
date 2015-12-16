@@ -10,7 +10,7 @@ module.exports.add = function(req, res) {
         if (err) {
             res.send(err);
         }
-        Post.populate(post, 'tags', function() {
+        Post.populate(post, 'tags project', function() {
             res.json({
                 post: post
             });
@@ -27,6 +27,7 @@ module.exports.getAll = function(req, res) {
 
     Post.find(req.query)
         .populate('tags')
+        // .populate('project')
         .exec(function(err, posts) {
             if (err) {
                 res.send(err);
@@ -49,6 +50,7 @@ module.exports.getOne = function(req, res) {
 
     Post.findOne(query)
     .populate('tags')
+    // .populate('project')
     .exec(function(err, post) {
         if (err) {
             res.send(err);
@@ -72,6 +74,7 @@ module.exports.update = function(req, res) {
         post.tags = newPost.tags;
         post.title = newPost.title;
         post.description = newPost.description;
+        post.project = newPost.project;
         post.isPublished = newPost.isPublished;
 
         post.save(function(err, post) {

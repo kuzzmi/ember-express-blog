@@ -1,8 +1,16 @@
 <div class="autocomplete">
-    {{#each items as |item|}}
-    <span class="selected-value" {{action "remove" item}}>{{output-value item key}}</span>
-    {{/each}}
-    {{input type="text" placeholder="start entering tag" value=newItem type=text key-up="keyUp"}}
+    {{#if items}}
+        {{#each items as |item|}}
+        <span class="selected-value" {{action "remove" item}}>{{output-value item key}}</span>
+        {{/each}}
+    {{/if}}
+    {{#if item}}
+        <span class="selected-value" {{action "remove" item}}>{{output-value item key}}</span>
+    {{/if}}
+    {{#if item}}
+    {{else}}
+        {{input type="text" placeholder="start typing" value=newItem type=text key-up="keyUp"}}
+    {{/if}}
     <ul class="autocomplete-results">
     {{#each foundItems as |item|}}
         <li>

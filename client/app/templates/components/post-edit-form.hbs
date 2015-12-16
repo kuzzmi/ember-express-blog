@@ -30,6 +30,8 @@
             {{input id="title" value=post.title placeholder="post title" type="text"}}
             <p class="label">Published</p>
             {{input id="published" type="checkbox" name="isPublished" checked=post.isPublished}}
+            <p class="label">Project</p>
+            {{autocomplete-input item=post.project key="name" model="project"}}
             <p class="label">Tags</p>
             {{autocomplete-input items=post.tags key="name" model="tag"}}
             <p class="label">Description</p>

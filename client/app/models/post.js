@@ -8,5 +8,6 @@ export default DS.Model.extend({
     description: DS.attr('string'),
     dateCreated: DS.attr('date'),
     isPublished: DS.attr('boolean'),
-    tags: DS.hasMany('tag', { async: true })
+    tags: DS.hasMany('tag', { async: true }),
+    project: DS.belongsTo('project', { async: true })
 });
