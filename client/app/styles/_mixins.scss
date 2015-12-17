@@ -1,6 +1,7 @@
 @mixin tag-style() {
     font-weight: 500;
+    color: $grey-dark;
     background-color: $grey-lightest;
     padding: 2px 5px;
-    cursor: pointer;
+    cursor: default;
 }

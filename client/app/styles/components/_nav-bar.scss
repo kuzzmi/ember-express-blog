@@ -153,6 +153,7 @@ nav {
                 a {
                     transition: color .25s cubic-bezier(.35,0,.25,1), background-color .125s cubic-bezier(.35,0,.25,1);
                     padding: 0 10px;
+                    color: $grey-dark;
                     &.active {
                         color: white;
                         @include max-screen(768px) {

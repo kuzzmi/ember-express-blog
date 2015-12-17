@@ -6,6 +6,9 @@ module.exports = function(environment) {
         environment: environment,
         baseURL: '/',
         locationType: 'auto',
+        disqus: {
+            shortname: 'kuzzmi'
+        },
         EmberENV: {
             FEATURES: {
                 // Here you can enable experimental features on an ember canary build
@@ -24,10 +27,11 @@ module.exports = function(environment) {
         },
 
         contentSecurityPolicy: {
-            'script-src': "'self'",
-            'style-src': "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com",
+            'script-src': "'self' kuzzmi.disqus.com referrer.disqus.com ssl.google-analytics.com",
+            'style-src': "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com a.disquscdn.com",
+            'child-src': "'self' 'unsafe-inline' disqus.com",
             'font-src': "'self' 'unsafe-inline' fonts.gstatic.com",
-            'img-src': "'self' 'unsafe-inline' www.gravatar.com",
+            'img-src': "'self' 'unsafe-inline' www.gravatar.com a.disquscdn.com referrer.disqus.com",
             'connect-src': "'self' http://localhost:3000"
         },
 
