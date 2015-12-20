@@ -6,18 +6,21 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('blog-posts', { path: '/' }, function() {
-    this.route('posts-list', { path: '/' });
-    this.route('post-edit', { path: 'blog/:slug/edit' });
-    this.route('post-new', { path: 'blog/new' });
-    this.route('post-read', { path: 'blog/:slug' });
-  });
-  this.route('about');
-  this.route('projects');
-  this.route('auth', function() {
-      this.route('login');
-  });
-  this.route('404');
+    this.route('blog-posts', { path: '/' }, function() {
+        this.route('posts-list', { path: '/' });
+        this.route('post-edit', { path: 'blog/:slug/edit' });
+        this.route('post-new', { path: 'blog/new' });
+        this.route('post-read', { path: 'blog/:slug' });
+    });
+    this.route('about');
+    this.route('projects', function() {
+        this.route('create');
+        this.route('list');
+    });
+    this.route('auth', function() {
+        this.route('login');
+    });
+    this.route('404');
 });
 
 export default Router;

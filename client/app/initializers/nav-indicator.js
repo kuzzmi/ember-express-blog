@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 var initialized = false;
 
-export function initialize(/* application */) {
+export function initialize() {
     if (initialized) {
         return;
     }

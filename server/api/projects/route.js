@@ -22,7 +22,9 @@ module.exports.getAll = function(req, res) {
         delete req.query.isPublished;
     }
 
-    Project.find(req.query, function(err, projects) {
+    Project.find(req.query)
+        .sort('-dateUpdated')
+        .exec(function(err, projects) {
         if (err) {
             res.status(500).send(err);
         }
@@ -101,6 +103,17 @@ module.exports.sync = function(req, res) {
                         posts: []
                     });
 
+                    project.save(function(err) {
+                        if (err) {
+                            res.status(500).send(err);
+                        }
+                    });
+                } else {
+                    project.name = _project.name; 
+                    project.description = _project.description;
+                    project.url = _project.html_url;
+                    project.dateUpdated = _project.pushed_at;
+                    project.stars = _project.stargazers_count;
                     project.save(function(err) {
                         if (err) {
                             res.status(500).send(err);

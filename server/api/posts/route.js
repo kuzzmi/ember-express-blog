@@ -27,6 +27,7 @@ module.exports.getAll = function(req, res) {
 
     Post.find(req.query)
         .populate('tags')
+        .sort('-dateCreated')
         // .populate('project')
         .exec(function(err, posts) {
             if (err) {

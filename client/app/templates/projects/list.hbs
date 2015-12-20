@@ -1,0 +1,68 @@
+{{title "List"}}
+<div class="list">
+    {{#admin-toolbar}}
+        <li>
+            <a {{action "sync"}}>[F3] Sync</a>
+        </li>
+        <li>
+            {{link-to "[F4] New project" "projects.create"}}
+        </li>
+    {{/admin-toolbar}}
+    <ul>
+        {{#each model as |project|}}
+            {{#if project.isPublished}}
+                <li>
+                    <p class="date date-created">
+                        Created {{moment-from-now project.dateCreated}}
+                    </p>
+                    <p class="date date-updated">
+                        Updated {{moment-from-now project.dateUpdated}}
+                    </p>
+                    <p class="title">
+                        <a href="{{project.url}}">{{project.name}}</a>
+                    </p>
+                    <p class="description">
+                        {{project.description}}
+                    </p>
+                    <p class="ownership">
+                        {{#if project.isOwner}}
+                            [ owner ]
+                        {{else}}
+                            [ collaborator ]
+                        {{/if}}
+                    </p>
+                </li>
+            {{/if}}
+        {{/each}}
+        {{#each model as |project|}}
+            {{#if project.isPublished}}
+            {{else}}
+                <li>
+                    <p class="actions">
+                        [ draft ]
+                        <a {{action "publish" project}}>Publish</a>
+                    </p>
+                    <p class="date date-created">
+                        Created {{moment-from-now project.dateCreated}}
+                    </p>
+                    <p class="date date-updated">
+                        Updated {{moment-from-now project.dateUpdated}}
+                    </p>
+                    <p class="title">
+                        <a href="{{project.url}}">{{project.name}}</a>
+                    </p>
+                    <p>
+                        {{project.description}}
+                    </p>
+                    <p class="ownership">
+                        {{#if project.isOwner}}
+                            [ owner ]
+                        {{else}}
+                            [ collaborator ]
+                        {{/if}}
+                    </p>
+                </li>
+            {{/if}}
+        {{/each}}
+    </ul>
+</div>

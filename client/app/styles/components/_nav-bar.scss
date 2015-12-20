@@ -14,7 +14,6 @@
 }
 
 nav {
-    // opacity: 0.1;
     padding: 80px 40px;
     position: relative;
     box-sizing: content-box;
@@ -25,6 +24,7 @@ nav {
     }
 
     .blog-title {
+        opacity: 0.1;
         height: 100%;
         position: relative;
         display: inline-block;
@@ -153,6 +153,7 @@ nav {
                 a {
                     transition: color .25s cubic-bezier(.35,0,.25,1), background-color .125s cubic-bezier(.35,0,.25,1);
                     padding: 0 10px;
+                    color: $grey-dark;
                     &.active {
                         color: white;
                         @include max-screen(768px) {

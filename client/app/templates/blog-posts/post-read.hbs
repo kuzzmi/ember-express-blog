@@ -20,4 +20,6 @@
         {{{model.body}}}
     {{/blog-post-body}}
     {{tags-list tags=model.tags}}
+    <p class="comments">Comments</p>
+    {{disqus-comments identifier=model.id title=model.title}}
 </div>

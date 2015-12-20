@@ -105,6 +105,20 @@ exports.me = function(req, res, next) {
 };
 
 /**
+ * Get my info
+ */
+exports.setup = function(req, res, next) {
+    User.find({}, '-salt -hashedPassword', function(err, users) {
+        if (err) return res.status(500).send(err);
+        if (users.length !== 0) {
+            var error = new Error('Users route has been already setup');
+            return res.status(500).send(error);
+        }
+        res.status(200).json(users);
+    });
+};
+
+/**
  * Authentication callback
  */
 exports.authCallback = function(req, res, next) {

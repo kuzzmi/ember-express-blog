@@ -8,11 +8,15 @@
             p {
                 margin: 0;
                 padding: 0;
-                margin-bottom: 10px;
 
                 &.title {
+                    margin-bottom: 10px;
                     font-size: $font-size-title;
                     font-weight: 700;
+
+                    a {
+                        color: $grey-dark;
+                    }
 
                     @include max-screen(768px) {
                         font-size: $font-size-title * 0.8;
