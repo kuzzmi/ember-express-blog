@@ -1,0 +1,30 @@
+<div class="post-edit-form">
+    {{#admin-toolbar}}
+        <li>
+            <a {{action "save" project}}>[F2] Save</a>
+        </li>
+        <li>
+            {{#if project.id}}
+                {{link-to "[F10] Close" "blog-posts.post-read" post}}
+            {{else}}
+                {{link-to "[F10] Close" "blog-posts.posts-list"}}
+            {{/if}}
+        </li>
+    {{/admin-toolbar}}
+    <p class="current-time">
+        {{moment-from-now project.dateCreated interval=1000}}
+    </p>
+    <div class="form">
+        <h2 class="title form-title">
+            {{form-title}}
+        </h2>
+        <form>
+            <p class="label">Name</p>
+            {{input id="name" value=project.name placeholder="project name" type="text"}}
+            <p class="label">Published</p>
+            {{input id="published" type="checkbox" name="isPublished" checked=project.isPublished}}
+            <p class="label">Description</p>
+            {{textarea id="description" value=project.description placeholder="project description" type="text"}}
+        </form>
+    </div>
+</div>
