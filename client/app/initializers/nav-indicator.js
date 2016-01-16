@@ -27,7 +27,8 @@ export function initialize() {
                     setIndicator();
                 } else {
                     let checker = setInterval(() => {
-                        if (page.hasClass('wf-active')) {
+                        // if (page.hasClass('wf-active')) {
+                        if (page.hasClass('wf-inactive') || page.hasClass('wf-loading')) {
                             areFontsLoaded = true;
                             setIndicator();
                             clearInterval(checker);

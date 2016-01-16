@@ -115,7 +115,7 @@ function signToken(id, role) {
         _id: id,
         role: role
     }, config.secret, {
-        expiresIn: 60 * 60 * 5
+        expiresIn: config.tokenExpiration
     });
 }
 

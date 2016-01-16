@@ -21,6 +21,8 @@
         <form>
             <p class="label">Name</p>
             {{input id="name" value=project.name placeholder="project name" type="text"}}
+            <p class="label">URL</p>
+            {{input id="url" value=project.url placeholder="project url" type="text"}}
             <p class="label">Published</p>
             {{input id="published" type="checkbox" name="isPublished" checked=project.isPublished}}
             <p class="label">Description</p>

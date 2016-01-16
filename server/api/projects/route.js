@@ -77,7 +77,7 @@ module.exports.sync = function(req, res) {
     github.repos.getFromUser({ 
         user: 'kuzzmi'
     }, function(err, data) {
-        if (err) {
+        if (err && res) {
             res.status(500).send(err);
         }
 
@@ -85,7 +85,7 @@ module.exports.sync = function(req, res) {
             Project.findOne({
                 githubID: _project.id
             }, function(err, project) {
-                if (err) {
+                if (err && res) {
                     res.status(500).send(err);
                 }
 
@@ -104,7 +104,7 @@ module.exports.sync = function(req, res) {
                     });
 
                     project.save(function(err) {
-                        if (err) {
+                        if (err && res) {
                             res.status(500).send(err);
                         }
                     });
@@ -115,14 +115,16 @@ module.exports.sync = function(req, res) {
                     project.dateUpdated = _project.pushed_at;
                     project.stars = _project.stargazers_count;
                     project.save(function(err) {
-                        if (err) {
+                        if (err && res) {
                             res.status(500).send(err);
                         }
                     });
                 }
             });
         });
-
-        res.json(data);
+        
+        if (res) {
+            res.json(data);
+        }
     });
 };
