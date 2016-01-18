@@ -25,7 +25,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'https://beta.kuzzmi.com');
+    res.header('Access-Control-Allow-Origin', 'https://kuzzmi.com');
     if (app.get('env') === 'development') {
         res.header('Access-Control-Allow-Origin', '*');
     }

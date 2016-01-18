@@ -16,6 +16,7 @@ export default Ember.Component.extend({
         new CodeMirror(myTextarea, {
             value: this.get('post.markdown') || '',
             mode: 'markdown',
+            lineWrapping: true,
             keyMap: 'vim'
         }).on('change', function(editor) {
             var body = editor.getValue();

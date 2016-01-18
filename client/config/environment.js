@@ -65,7 +65,7 @@ module.exports = function(environment) {
     }
 
     if (environment === 'production') {
-        ENV.API.host = 'https://beta.kuzzmi.com';
+        ENV.API.host = 'https://kuzzmi.com';
         ENV.contentSecurityPolicy = {
             'script-src': "'self'",
             'style-src': "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com",
