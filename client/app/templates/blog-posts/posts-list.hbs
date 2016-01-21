@@ -10,7 +10,7 @@
             <li>
                 <p class="created">
                     <b> {{if item.isPublished "" "[ DRAFT ]"}} </b>
-                    {{moment-format item.dateCreated "DD/MM/YY HH:mm"}}
+                    {{moment-from-now item.dateCreated interval=60000}}
                 </p>
                 <p class="title">
                     {{#link-to "blog-posts.post-read" item}}{{item.title}}{{/link-to}}
@@ -19,13 +19,18 @@
                     {{item.description}}
                 </p>
                 {{!--
+                <p class="comments">
+                    <small>{{disqus-comment-count identifier=item.id}}</small>
+                </p>
+                --}}
+                {{tags-list tags=item.tags}}
+                {{!--
                 {{#if item.project}}
                     <p class="project">
                         Related to project: {{item.project.name}}
                     </p>
                 {{/if}}
                 --}}
-                {{tags-list tags=item.tags}}
             </li>
         {{/each}}
     </ul>

@@ -16,8 +16,6 @@ export function initialize() {
                     let indicator = Ember.$('nav .active-indicator')[0];
                     let activeLink = Ember.$('nav li a.active')[0];
                     if (indicator && activeLink) {
-                        console.log('Setting a new indicator style');
-                        console.log(Ember.$('nav li a.active'));
                         indicator.style.left  = activeLink.offsetLeft + 'px';
                         indicator.style.width = activeLink.offsetWidth + 'px';
                     }
@@ -32,7 +30,7 @@ export function initialize() {
                             setIndicator();
                             clearInterval(checker);
                         }
-                    }, 10);
+                    }, 100);
                 }
 
                 return true;

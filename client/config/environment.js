@@ -27,7 +27,7 @@ module.exports = function(environment) {
         },
 
         contentSecurityPolicy: {
-            'script-src': "'self' kuzzmi.disqus.com referrer.disqus.com ssl.google-analytics.com",
+            'script-src': "'self' 'unsafe-inline' kuzzmi.disqus.com referrer.disqus.com www.google-analytics.com",
             'style-src': "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com a.disquscdn.com",
             'child-src': "'self' 'unsafe-inline' disqus.com",
             'font-src': "'self' 'unsafe-inline' fonts.gstatic.com",
@@ -66,9 +66,13 @@ module.exports = function(environment) {
 
     if (environment === 'production') {
         ENV.API.host = 'https://kuzzmi.com';
+        ENV.googleAnalytics = {
+            webPropertyId: 'UA-51775404-4'
+        };
         ENV.contentSecurityPolicy = {
-            'script-src': "'self'",
+            'script-src': "'self' 'unsafe-inline' www.google-analytics.com",
             'style-src': "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com",
+            'connect-src': "'self' www.google-analytics.com",
             'font-src': "'self' 'unsafe-inline' fonts.gstatic.com",
             'img-src': "'self' 'unsafe-inline' www.gravatar.com"
         };

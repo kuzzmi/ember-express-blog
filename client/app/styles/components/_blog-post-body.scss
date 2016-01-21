@@ -28,14 +28,15 @@ $space: -9999px;
         }
     }
 
-    pre {
+    pre, blockquote {
         @include outofspace;
-
         @include max-screen(768px) {
             margin-left: -20px;
             margin-right: -20px;
         }
+    }
 
+    pre {
         background: #444;
     }
 
@@ -55,12 +56,15 @@ $space: -9999px;
     }
 
     blockquote {
-        @include outofspace;
         background: $grey-lightest;
         padding: 20px 0;
 
-        p {
-            max-width: 800px;
+        @include max-screen(768px) {
+            padding: 20px;
+        }
+
+        p, ul, ol {
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
