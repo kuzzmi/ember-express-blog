@@ -9,7 +9,7 @@
 
 html,
 body {
-    font-family: 'Roboto Mono', 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', 'Roboto', monospace;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -62,7 +62,7 @@ form {
     input[type="password"], 
     input[type="submit"], 
     textarea {
-        font-family: 'Roboto Mono', 'Roboto', sans-serif;
+        font-family: 'Roboto Mono', 'Roboto', monospace;
         display: block;
         margin-bottom: 20px;
         width: 100%;

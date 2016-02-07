@@ -30,7 +30,7 @@ export function initialize() {
                             setIndicator();
                             clearInterval(checker);
                         }
-                    }, 100);
+                    }, 10);
                 }
 
                 return true;
