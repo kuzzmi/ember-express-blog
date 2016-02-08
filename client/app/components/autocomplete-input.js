@@ -5,6 +5,7 @@ export default Ember.Component.extend({
 
     foundItems: null,
     newItem: null,
+    focused: false,
 
     addItem(value) {
         if (typeof value === 'string') {
@@ -36,7 +37,10 @@ export default Ember.Component.extend({
         query[key] = { '$regex': value };
 
         store.query(model, query).then((items) => {
-            this.set('foundItems', items);
+            this.set('foundItems', items.filterBy('name', name => {
+                console.log(name);
+                return true;
+            }));
         });
     },
 
@@ -61,6 +65,14 @@ export default Ember.Component.extend({
                 // Enter key
                 case 13:
                     this.addItem(value);
+                    return;
+
+                // Down arrow
+                case 40:
+                    let firstItem = this.get('foundItems').objectAt(0);
+                    console.log(firstItem);
+                    this.addItem(firstItem);
+                    this.set('focused', 0);
                     return;
                 
                 default:

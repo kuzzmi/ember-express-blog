@@ -12,8 +12,8 @@
         {{input type="text" placeholder="start typing" value=newItem type=text key-up="keyUp"}}
     {{/if}}
     <ul class="autocomplete-results">
-    {{#each foundItems as |item|}}
-        <li>
+    {{#each foundItems as |item index|}}
+        <li class="{{if (eq focused index) 'focused'}}">
             <span class="found-item" {{action "add" item}}>{{output-value item key}}</span>
         </li>
     {{/each}}
