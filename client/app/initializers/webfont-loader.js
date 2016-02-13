@@ -2,7 +2,7 @@
 export function initialize(/* application */) {
     WebFont.load({
         google: {
-            families: ['Roboto Mono']
+            families: ['Roboto Mono:400,500,700']
         }
     });
 }

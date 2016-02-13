@@ -70,7 +70,6 @@ nav {
             color: $accent;
             font-size: $font-size-navbar;
             font-weight: 500;
-            font-family: 'Roboto Mono';
 
             @include max-screen(768px) {
                 position: relative;
@@ -139,7 +138,6 @@ nav {
             li {
                 display: inline-block;
                 text-transform: lowercase;
-                font-family: 'Roboto Mono';
                 font-weight: 500;
                 font-size: $font-size-navbar;
                 padding: 0 10px;
