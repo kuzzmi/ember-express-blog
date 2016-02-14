@@ -23,7 +23,7 @@ var getContent = function(url, callback) {
 
 var respond = function (req, res) {
     client.get(req.params[0], function(err, data) {
-        if (!data) {
+        if (!data || req.params[0] !== '/') {
             url = 'https://kuzzmi.com' + req.params[0];
             getContent(url, function (content) {
                 client.set(req.params[0], content);
