@@ -117,3 +117,8 @@ form {
     }
 }
 
+// SHOULD BE MOVED TO HELPERS
+
+.hidden {
+    display: none !important;
+}
