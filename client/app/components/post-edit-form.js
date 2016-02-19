@@ -65,6 +65,15 @@ export default Ember.Component.extend({
                     }); 
                 }, 0);
             });
+        },
+
+        fullscreen() {
+            Ember.$('.not-editor').toggleClass('hidden');
+            Ember.$('.title.form-title').toggleClass('hidden');
+            Ember.$('.current-time').toggleClass('hidden');
+            Ember.$('.toolbar').toggleClass('hidden');
+            Ember.$('nav').toggleClass('hidden');
+            Ember.$('.editor').toggleClass('fullscreen');
         }
     }
 });

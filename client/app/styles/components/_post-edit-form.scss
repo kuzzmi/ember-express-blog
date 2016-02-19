@@ -13,10 +13,6 @@
 
     .form, .preview {
         display: block;
-
-        &.hidden {
-            display: none;
-        }
     }
 
     form {
@@ -27,6 +23,7 @@
                 content: ":"
             }
         }
+
         .CodeMirror {
             font-family: 'Roboto Mono', monospace;
             height: 500px;
@@ -35,5 +32,17 @@
                 background-color: $text-color;
             }
         }
+
+        .editor.fullscreen {
+            z-index: 1000;
+            margin-top: 100px;
+            .label {
+                font-weight: 900;
+            }
+            .CodeMirror {
+                height: calc(80vh);
+            }
+        }
+
     }
 }

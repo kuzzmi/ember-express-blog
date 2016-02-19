@@ -26,18 +26,22 @@
             {{form-title}} 
         </h2>
         <form>
-            <p class="label">Title</p>
-            {{input id="title" value=post.title placeholder="post title" type="text"}}
-            <p class="label">Published</p>
-            {{input id="published" type="checkbox" name="isPublished" checked=post.isPublished}}
-            <p class="label">Project</p>
-            {{autocomplete-input item=post.project key="name" model="project"}}
-            <p class="label">Tags</p>
-            {{autocomplete-input items=post.tags key="name" model="tag"}}
-            <p class="label">Description</p>
-            {{textarea id="description" value=post.description placeholder="post description" type="text"}}
-            <p class="label">Body</p>
-            <div id="editor-body"></div>
+            <div class="not-editor">
+                <p class="label">Title</p>
+                {{input id="title" value=post.title placeholder="post title" type="text"}}
+                <p class="label">Published</p>
+                {{input id="published" type="checkbox" name="isPublished" checked=post.isPublished}}
+                <p class="label">Project</p>
+                {{autocomplete-input item=post.project key="name" model="project"}}
+                <p class="label">Tags</p>
+                {{autocomplete-input items=post.tags key="name" model="tag"}}
+                <p class="label">Description</p>
+                {{textarea id="description" value=post.description placeholder="post description" type="text"}}
+            </div>
+            <div class="editor">
+                <p class="label"><a {{ action "fullscreen" }}>{{fa-icon "fa-arrows-alt"}} Body</a></p>
+                <div id="editor-body"></div>
+            </div>
         </form>
     </div>
     <div class="preview {{if isPreview '' 'hidden'}}">
