@@ -42,6 +42,7 @@
     "ember-cli-release": "0.2.8",
     "ember-cli-sass": "^5.1.0",
     "ember-cli-sri": "^1.1.0",
+    "ember-cli-webfontloader": "^0.2.0",
     "ember-cli-uglify": "^1.2.0",
     "ember-data": "1.13.15",
     "ember-deploy-ssh-index": "0.0.2",
