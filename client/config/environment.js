@@ -40,6 +40,12 @@ module.exports = function(environment) {
             authenticationRoute: 'auth.login',
             routeAfterAuthentication: 'blog-posts',
             routeIfAlreadyAuthenticated: 'blog-posts'
+        },
+
+        author: {
+            email: 'igor@kuzzmi.com',
+            name: 'Igor',
+            lastName: 'Kuzmenko'
         }
     };
 
