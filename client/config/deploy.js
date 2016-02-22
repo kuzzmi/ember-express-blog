@@ -20,7 +20,7 @@ module.exports = function(deployTarget) {
         host: 'beta.kuzzmi.com',
         username: 'root',
         privateKeyFile: process.env.SSH_KEY_FILE,
-        passphrase: '27061963'
+        passphrase: ''
     };
     // configure other plugins for staging deploy target here
   }
