@@ -46,6 +46,12 @@ module.exports = function(environment) {
             email: 'igor@kuzzmi.com',
             name: 'Igor',
             lastName: 'Kuzmenko'
+        },
+
+        webFontConfig: {
+            google: {
+                families: ['Roboto Mono:400,500,700']
+            }
         }
     };
 
