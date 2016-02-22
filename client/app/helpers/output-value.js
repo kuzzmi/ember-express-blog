@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export function outputValue(params/*, hash*/) {
+export function outputValue(params) {
     let object = params[0],
         key = params[1];
 
