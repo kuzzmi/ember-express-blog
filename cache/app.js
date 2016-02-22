@@ -7,14 +7,17 @@ var app = express();
 var getContent = function(url, callback) {
     var content = '';
 
-    var phantom = require('child_process').spawn('phantomjs', ['./phantom.js', url]);
+    var phantom = require('child_process').spawn('phantomjs', ['/root/ember-express-blog/cache/phantom.js', url]);
     phantom.stdout.setEncoding('utf8');
     phantom.stdout.on('data', function(data) {
         content += data.toString();
     });
+    phantom.stderr.on('data', function(data) {
+        console.log(data.toString());
+    });
     phantom.on('exit', function(code) {
         if (code !== 0) {
-            console.log('We have an error');
+            console.log('We have an error: ' + code);
         } else {
             callback(content);
         }
@@ -23,7 +26,7 @@ var getContent = function(url, callback) {
 
 var respond = function (req, res) {
     client.get(req.params[0], function(err, data) {
-        if (!data || req.params[0] !== '/') {
+        if (!data || req.params[0] === '/') {
             url = 'https://kuzzmi.com' + req.params[0];
             getContent(url, function (content) {
                 client.set(req.params[0], content);

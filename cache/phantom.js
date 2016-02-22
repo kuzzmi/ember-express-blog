@@ -14,6 +14,7 @@ page.onResourceReceived = function (response) {
         requestIds[requestIds.indexOf(response.id)] = null;
     }
 };
+
 page.onResourceRequested = function (request) {
     if(requestIds.indexOf(request.id) === -1) {
         requestIds.push(request.id);
@@ -24,27 +25,12 @@ page.onResourceRequested = function (request) {
 page.open(system.args[1], function (status) {
     if (status !== 'success') {
         console.log('Unable to access network');
+	phantom.exit();
     } else {
-        var p = page.evaluate(function () {
-            return document.getElementsByTagName('html')[0].innerHTML;
-        });
-        console.log(p);
+        setTimeout(function() {
+            var p = page.content;
+            console.log(p);
+            phantom.exit();
+	}, 1500);
     }
-    phantom.exit();
 });
-
-
-// Open the page
-// page.open(, function () {});
-//
-// var checkComplete = function () {
-//     // We don't allow it to take longer than 5 seconds but
-//     // don't return until all requests are finished
-//     if((new Date().getTime() - lastReceived > 300 && requestCount === responseCount) || new Date().getTime() - startTime > 5000)  {
-//         clearInterval(checkCompleteInterval);
-//         console.log(page.content);
-//         phantom.exit();
-//     }
-// };
-// Let us check to see if the page is finished rendering
-// var checkCompleteInterval = setInterval(checkComplete, 1);
