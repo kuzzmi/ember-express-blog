@@ -6,11 +6,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var compression = require('compression');
 
 var app = express();
 
 // setting up mongodb connection
 mongoose.connect(config.database);
+
+app.use(compression({
+    level: 9
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
