@@ -103,15 +103,6 @@ export default Ember.Route.extend({
             }
         }];
 
-
-    /*
-<meta name="author" content="Harriet Smith" />
-<meta name="contact" content="harrietsmith@harrietsmith.us" />
-<meta name="copyright" content="Copyright (c)1997-2004 Harriet Smith. All Rights Reserved." />
-<meta name="description" content="Story about my dog giving birth to puppies." />
-<meta name="keywords" content="stories, tales, harriet, smith, harriet smith, storytelling, day, life, dog, birth, puppies, happy" />
-    */
-
         this.set('headTags', tags);
     },
     
