@@ -40,6 +40,12 @@ module.exports = function(environment) {
             authenticationRoute: 'auth.login',
             routeAfterAuthentication: 'blog-posts',
             routeIfAlreadyAuthenticated: 'blog-posts'
+        },
+
+        webFontConfig: {
+            google: {
+                families: ['Roboto Mono:400,500,700']
+            }
         }
     };
 

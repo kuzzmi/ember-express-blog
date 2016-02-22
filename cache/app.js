@@ -7,7 +7,7 @@ var app = express();
 var getContent = function(url, callback) {
     var content = '';
 
-    var phantom = require('child_process').spawn('phantomjs', ['phantom.js', url]);
+    var phantom = require('child_process').spawn('phantomjs', ['./phantom.js', url]);
     phantom.stdout.setEncoding('utf8');
     phantom.stdout.on('data', function(data) {
         content += data.toString();

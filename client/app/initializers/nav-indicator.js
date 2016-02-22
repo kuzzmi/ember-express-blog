@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { WebFont } from 'webfontloader';
 
 var initialized = false;
 
@@ -6,37 +7,33 @@ export function initialize() {
     if (initialized) {
         return;
     }
+
+    let areFontsLoaded = false;
+
+    let setIndicator = () => {
+        let indicator = Ember.$('nav .active-indicator')[0];
+        let activeLink = Ember.$('nav li a.active')[0];
+        if (indicator && activeLink) {
+            indicator.style.left  = activeLink.offsetLeft + 'px';
+            indicator.style.width = activeLink.offsetWidth + 'px';
+        }
+    };
+
     Ember.Route.reopen({
         actions: {
             didTransition() {
-                let areFontsLoaded = false;
-                let page = Ember.$('html');
-
-                let setIndicator = () => {
-                    let indicator = Ember.$('nav .active-indicator')[0];
-                    let activeLink = Ember.$('nav li a.active')[0];
-                    if (indicator && activeLink) {
-                        indicator.style.left  = activeLink.offsetLeft + 'px';
-                        indicator.style.width = activeLink.offsetWidth + 'px';
-                    }
-                };
-
                 if (areFontsLoaded) {
-                    setIndicator();
+                    setTimeout(setIndicator, 0);
                 } else {
-                    let checker = setInterval(() => {
-                        if (page.hasClass('wf-active')) {
-                            areFontsLoaded = true;
-                            setIndicator();
-                            clearInterval(checker);
-                        }
-                    }, 10);
+                    WebFont.on('active', () => {
+                        areFontsLoaded = true;
+                        setIndicator();
+                    });
                 }
-
-                return true;
             }
         }
     });
+
     initialized = true;
 }
 
