@@ -5,9 +5,15 @@
           <span></span>
           <span></span>
       </button>
-      {{#link-to "blog-posts"}}
-          {{title}}<span class="animated-dot">.</span>
-      {{/link-to}}
+      {{#if user.isAdmin}}
+          {{#link-to "admin"}}
+              {{title}}<span class="animated-dot">.</span>
+          {{/link-to}}
+      {{else}}
+          {{#link-to "blog-posts"}}
+              {{title}}<span class="animated-dot">.</span>
+          {{/link-to}}
+      {{/if}}
   </div>
   <div class="navbar">
     <ul>
