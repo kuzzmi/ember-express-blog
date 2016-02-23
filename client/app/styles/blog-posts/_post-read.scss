@@ -10,11 +10,20 @@
             padding-bottom: 20px;
         }
 
-        &.comments {
+        &.comments, &.social-buttons {
             font-size: $font-size-title * 0.6;
             margin-top: 20px;
             font-weight: 700;
         }
+
+        .hint {
+            cursor: help;
+            border-bottom: 1px dashed $grey;
+        }
+    }
+
+    .addthis_sharing_toolbox {
+        margin-top: 10px;
     }
 
 }

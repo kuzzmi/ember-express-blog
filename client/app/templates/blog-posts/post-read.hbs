@@ -20,6 +20,10 @@
         {{{model.body}}}
     {{/blog-post-body}}
     {{tags-list tags=model.tags}}
+    <p class="social-buttons">
+        <span class="hint" title="I don't know yet how this service works, probably, it will be replaced with plain sharing buttons">Share this post</span>
+    </p>
+    <div class="addthis_sharing_toolbox"></div>
     <p class="comments">Comments</p>
     {{disqus-comments identifier=model.id title=model.title}}
 </div>

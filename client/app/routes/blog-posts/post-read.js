@@ -33,6 +33,20 @@ export default Ember.Route.extend({
             }
         }, {
             type: 'meta',
+            tagId: 'meta-twitter-site-tag',
+            attrs: {
+                property: 'twitter:site',
+                content: '@' + author.nickname
+            }
+        }, {
+            type: 'meta',
+            tagId: 'meta-twitter-creator-tag',
+            attrs: {
+                property: 'twitter:creator',
+                content: '@' + author.nickname
+            }
+        }, {
+            type: 'meta',
             tagId: 'meta-twitter-description-tag',
             attrs: {
                 property: 'twitter:description',
@@ -57,7 +71,7 @@ export default Ember.Route.extend({
             tagId: 'meta-og-author-tag',
             attrs: {
                 property: 'article:author',
-                content: fullname
+                content: author.facebook
             }
         }, {
             type: 'meta',

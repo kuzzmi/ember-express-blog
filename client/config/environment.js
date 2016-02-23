@@ -27,8 +27,9 @@ module.exports = function(environment) {
         },
 
         contentSecurityPolicy: {
-            'script-src': "'self' 'unsafe-inline' kuzzmi.disqus.com referrer.disqus.com www.google-analytics.com",
+            'script-src': "'self' 'unsafe-inline' kuzzmi.disqus.com referrer.disqus.com www.google-analytics.com s7.addthis.com",
             'style-src': "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com a.disquscdn.com",
+            'frame-src': "'self' 'unsafe-inline' disqus.com s7.addthis.com",
             'child-src': "'self' 'unsafe-inline' disqus.com",
             'font-src': "'self' 'unsafe-inline' fonts.gstatic.com",
             'img-src': "'self' 'unsafe-inline' www.gravatar.com a.disquscdn.com referrer.disqus.com",
@@ -43,7 +44,9 @@ module.exports = function(environment) {
         },
 
         author: {
+            nickname: 'kuzzmi',
             email: 'igor@kuzzmi.com',
+            facebook: 'https://www.facebook.com/ikuzmenko',
             name: 'Igor',
             lastName: 'Kuzmenko'
         },

@@ -18,7 +18,7 @@ module.exports = function(deployTarget) {
         // remoteDir: '/root/tmpw',
         remoteDir: '/tmp/',
         host: 'beta.kuzzmi.com',
-        username: 'root',
+        username: '',
         privateKeyFile: process.env.SSH_KEY_FILE,
         passphrase: ''
     };
@@ -27,6 +27,7 @@ module.exports = function(deployTarget) {
 
   if (deployTarget === 'production') {
     ENV.build.environment = 'production';
+    ENV.build.outputPath = 'dist';
     // configure other plugins for production deploy target here
   }
 
