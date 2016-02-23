@@ -7,7 +7,7 @@
         <ul>
             {{#each model as |menuItem|}}
             <li>
-                <a>{{menuItem.title}}</a>
+                <h3>{{link-to menuItem.title menuItem.route}}</h3>
             </li>
             {{/each}}
         </ul>

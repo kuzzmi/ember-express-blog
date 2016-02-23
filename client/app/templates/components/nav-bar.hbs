@@ -5,15 +5,9 @@
           <span></span>
           <span></span>
       </button>
-      {{#if user.isAdmin}}
-          {{#link-to "admin"}}
-              {{title}}<span class="animated-dot">.</span>
-          {{/link-to}}
-      {{else}}
           {{#link-to "blog-posts"}}
               {{title}}<span class="animated-dot">.</span>
           {{/link-to}}
-      {{/if}}
   </div>
   <div class="navbar">
     <ul>
@@ -22,7 +16,11 @@
       <li>{{#link-to "about"}}About{{/link-to}}</li>
       <li>
           {{#if session.isAuthenticated}}
-              <a {{action 'invalidateSession'}}>Logout</a>
+              {{#if user.isAdmin}}
+                  {{link-to "admin" "admin"}}
+              {{else}}
+                  <a {{action 'invalidateSession'}}>Logout</a>
+              {{/if}}
           {{else}}
               {{link-to "Login" "auth.login"}}
           {{/if}}

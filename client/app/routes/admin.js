@@ -3,16 +3,19 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
     model() {
+        const root = 'admin';
         const menu = [{
             title: 'Dashboard',
-            route: 'main'
-        }, {
+            route: [ root, 'dashboard' ].join('.')
+        }
+        , {
             title: 'Invites',
-            route: 'invites'
+            // route: [ root, 'invites' ].join('.')
         }, {
             title: 'System',
-            route: 'system'
-        }];
+            // route: [ root, 'system' ].join('.')
+        }
+        ];
         return menu;
     }
 });

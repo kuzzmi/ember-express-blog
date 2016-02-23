@@ -13,9 +13,7 @@
         <b> {{if model.isPublished "" "[ DRAFT ]"}} </b>
         {{moment-format model.dateCreated "DD/MM/YY HH:mm"}}
     </p>
-    <h1>
-        {{model.title}} 
-    </h1>
+    <h1>{{model.title}}</h1>
     {{#blog-post-body}}
         {{{model.body}}}
     {{/blog-post-body}}

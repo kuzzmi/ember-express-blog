@@ -23,7 +23,9 @@ Router.map(function() {
       this.route('login');
   });
   this.route('404');
-  this.route('admin');
+  this.route('admin', function() {
+    this.route('dashboard');
+  });
 });
 
 export default Router;
