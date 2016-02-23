@@ -1,19 +1,13 @@
 .login-form {
-    .title {
-        margin: 0;
-        font-size: $font-size-title;
-        font-weight: 700;
-        padding-bottom: 20px;
+    h1 {
+        margin-bottom: 40px;
     }
-
+    form {
+        margin-top: 20px;
+    }
     .error-message {
         padding: 12px 20px;
         color: white;
         background-color: $red;
-
-        .message-title {
-            margin-top: 0;
-            font-weight: 700;
-        }
     }
 }

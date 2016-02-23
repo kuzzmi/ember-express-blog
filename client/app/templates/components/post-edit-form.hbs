@@ -22,24 +22,26 @@
         {{moment-from-now post.dateCreated interval=60000}}
     </p>
     <div class="form {{if isPreview 'hidden' ''}}">
-        <h2 class="title form-title">
-            {{form-title}} 
-        </h2>
         <form>
+            <h1>
+                {{form-title}} 
+            </h1>
             <div class="not-editor">
-                <p class="label">Title</p>
+                <label for="title">Title</label>
                 {{input id="title" value=post.title placeholder="post title" type="text"}}
-                <p class="label">Published</p>
-                {{input id="published" type="checkbox" name="isPublished" checked=post.isPublished}}
-                <p class="label">Project</p>
+                <label>Project</label>
                 {{autocomplete-input item=post.project key="name" model="project"}}
-                <p class="label">Tags</p>
+                <label>Tags</label>
                 {{autocomplete-input items=post.tags key="name" model="tag"}}
-                <p class="label">Description</p>
+                <label for="description">Description</label>
                 {{textarea id="description" value=post.description placeholder="post description" type="text"}}
+                <div class="inline-input">
+                    <label for="published">Published</label>
+                    {{input id="published" type="checkbox" name="isPublished" checked=post.isPublished}}
+                </div>
             </div>
             <div class="editor">
-                <p class="label"><a {{ action "fullscreen" }}>{{fa-icon "fa-arrows-alt"}} Body</a></p>
+                <label><a {{ action "fullscreen" }}>{{fa-icon "fa-arrows-alt"}} Body</a></label>
                 <div id="editor-body"></div>
             </div>
         </form>

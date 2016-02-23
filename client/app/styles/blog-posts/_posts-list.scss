@@ -2,39 +2,18 @@
     & > ul {
         margin: 0;
         padding: 0;
-        list-style: none;
         & > li {
             padding-bottom: 80px;
-            p {
-                margin: 0;
-                padding: 0;
 
-                &.title {
-                    margin-bottom: 10px;
-                    font-size: $font-size-title;
-                    font-weight: 700;
+            h1 {
+                margin-bottom: 10px;
 
-                    a {
-                        color: $grey-dark;
-                    }
-
-                    @include max-screen(768px) {
-                        font-size: $font-size-title * 0.8;
-                    }
+                a {
+                    color: $grey-dark;
                 }
 
-                &.project {
-                }
-
-                &.description { 
-                }
-
-                &.date {
-                }
-
-                &.comments {
-                    margin-top: 10px;
-                    margin-bottom: 7px;
+                @include max-screen(768px) {
+                    font-size: $font-size-title * 0.8;
                 }
             }
         }

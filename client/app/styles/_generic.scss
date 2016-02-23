@@ -1,0 +1,118 @@
+a {
+    text-decoration: none;
+    color: $accent;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    vertical-align: middle;
+    border: 0;
+    max-width: 95%;
+}
+
+table {
+    width: 100%;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    input:not([type]),
+    input[type="text"], 
+    input[type="password"], 
+    input[type="submit"], 
+    textarea {
+        font-family: 'Roboto Mono', monospace;
+        display: block;
+        margin-bottom: 20px;
+        width: 100%;
+        border: 0;
+        outline: 0;
+        font-size: 16px;
+    }
+    
+    input:not([type]),
+    input[type="text"], 
+    input[type="password"], 
+    input[type="submit"] {
+        border-bottom: 1px solid $grey-light;
+        padding: 5px 0px;
+
+        &[type="submit"] {
+            color: white;
+            font-weight: 700;
+            background-color: $green;
+        }
+    }
+
+    input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        margin-bottom: 20px;
+        background: none;
+        border: 1px solid $grey-light;
+    }
+
+    label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 10px;
+        &:after {
+            content: ":"
+        }
+    }
+
+    div.inline-input {
+        margin: 20px 0;
+
+        label {
+            margin: 0px;
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        input[type="checkbox"] {
+            margin: 0px;
+            display: inline-block;
+            position: relative;
+            vertical-align: middle;
+        }
+    }
+
+}
+
+// LISTS
+
+ol {
+    padding-left: 75px;
+
+    @include max-screen(768px) {
+        padding-left: 20px;
+    }
+}
+
+ul {
+    list-style: none;
+}
+
+// LISTS END
+
+// HEADERS
+
+h1, h2, h3, h4 {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+// HEADERS END

@@ -8,22 +8,14 @@ $space: -9999px;
     p {
         padding: 10px 0;
 
-        img {
-            display: block;
-            margin: 0 auto;
-            vertical-align: middle;
-            border: 0;
-            max-width: 90%;
-        }
-
         code {
             @include max-screen(768px) {
                 font-size: 90%;
                 padding: 0px 4px;
             }
 
-            font-size: 12px;
-            padding: 3px 5px;
+            font-size: 14px;
+            padding: 2px 4px;
             border-radius: 2px;
             background: $grey-lightest;
         }
@@ -71,10 +63,6 @@ $space: -9999px;
         }
     }
 
-    a {
-        color: $accent;
-    }
-
     dl {
         dt {
             font-weight: 500;
@@ -89,21 +77,7 @@ $space: -9999px;
         color: $grey;
     }
 
-    table {
-        width: 100%;
-    }
-
-    ol {
-        padding-left: 75px;
-
-        @include max-screen(768px) {
-            padding-left: 20px;
-        }
-    }
-
     ul {
-        list-style: none;
-
         @include max-screen(768px) {
             padding-left: 20px;
         }

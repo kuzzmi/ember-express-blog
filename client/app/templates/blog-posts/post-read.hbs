@@ -13,13 +13,13 @@
         <b> {{if model.isPublished "" "[ DRAFT ]"}} </b>
         {{moment-format model.dateCreated "DD/MM/YY HH:mm"}}
     </p>
-    <p class="post-title">
+    <h1>
         {{model.title}} 
-    </p>
+    </h1>
     {{#blog-post-body}}
         {{{model.body}}}
     {{/blog-post-body}}
     {{tags-list tags=model.tags}}
-    <p class="comments">Comments</p>
+    <h3>Comments</h3>
     {{disqus-comments identifier=model.id title=model.title}}
 </div>

@@ -2,11 +2,15 @@
 @import '_mixins';
 @import '_media-queries';
 @import '_application';
-@import '_projects';
+@import '_generic';
+
+@import 'admin/_main';
 @import 'auth/_login';
 @import 'blog-posts/_posts-list';
 @import 'blog-posts/_post-read';
 @import 'blog-posts/_post-new';
+@import 'projects/_main';
+
 @import 'components/_nav-bar';
 @import 'components/_tags-list';
 @import 'components/_admin-toolbar';

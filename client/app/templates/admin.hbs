@@ -1,0 +1,18 @@
+{{title "Administration Panel"}}
+<h1>Administration</h1>
+
+<div class="administration">
+    <div class="menu">
+        <ul>
+            {{#each model as |menuItem|}}
+            <li>{{menuItem.title}}</li>
+            {{/each}}
+        </ul>
+    </div>
+    <div class="page">
+        <h4>Quick actions</h4>
+
+        {{outlet}}
+    </div>
+
+</div>

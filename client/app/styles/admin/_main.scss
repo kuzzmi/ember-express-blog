@@ -1,0 +1,20 @@
+.administration {
+    .menu {
+        width: 20%;
+        float: left;
+        display: inline-block;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            li {
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .page {
+        float: left;
+        display: inline-block;
+    }
+}
