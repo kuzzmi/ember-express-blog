@@ -1,9 +1,18 @@
 <h3>Quick actions</h3>
+
 <ul>
-    <li>Action 1</li>
-    <li>Action 2</li>
-    <li>Action 3</li>
-    <li>Action 4</li>
-    <li>Action 5</li>
+    <li>
+        <a {{action "recacheRoutes"}}>Drop cache and rerender routes</a>
+    </li>
+    <li>
+        <a {{action "cacheRoutes"}}>Render and cache new routes</a>
+    </li>
+    <li>
+        <a {{action "generateSitemap"}}>Regenerate a sitemap</a> (currently {{sitemap.length}} routes)
+    </li>
+    <li>
+        <a {{action "editSitemap"}}>Edit a sitemap</a>
+    </li>
 </ul>
+
 {{outlet}}

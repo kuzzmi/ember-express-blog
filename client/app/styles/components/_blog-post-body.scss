@@ -72,18 +72,14 @@ $space: -9999px;
         }
     }
 
-    caption {
-        font-size: 12px;
-        color: $grey;
-    }
-
     ul {
-        @include max-screen(768px) {
-            padding-left: 20px;
-        }
-
         li:before {
             content: "* ";
         }
+    }
+
+    caption {
+        font-size: 12px;
+        color: $grey;
     }
 }

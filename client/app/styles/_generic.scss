@@ -103,6 +103,10 @@ ol {
 
 ul {
     list-style: none;
+
+    @include max-screen(768px) {
+        padding-left: 20px;
+    }
 }
 
 // LISTS END

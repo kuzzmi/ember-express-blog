@@ -1,8 +1,10 @@
 .administration {
+    display: flex;
+    flex-direction: row;
+
     .menu {
         width: 20%;
         float: left;
-        display: inline-block;
 
         ul {
             margin: 0;
@@ -23,7 +25,12 @@
     }
 
     .page {
+        li:before {
+            content: "* ";
+        }
         float: left;
-        display: inline-block;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
     }
 }

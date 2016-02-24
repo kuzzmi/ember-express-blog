@@ -17,5 +17,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         }
         ];
         return menu;
+    },
+
+    afterModel() {
+        this.transitionTo('admin.dashboard');
     }
 });

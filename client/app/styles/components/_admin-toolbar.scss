@@ -15,6 +15,9 @@
         li {
             font-weight: 500;
             display: inline-block;
+            &:before {
+                content: none;
+            }
 
             a {
                 color: $grey-dark;

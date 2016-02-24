@@ -6,7 +6,6 @@ export default Ember.Route.extend({
             post.get('tags').then(tags => {
                 return tags.save();
             }).then((tags) => {
-                console.log(tags);
                 return post.save();
             }).then(() => {
                 this.transitionTo('blog-posts.post-read', post);
