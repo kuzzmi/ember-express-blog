@@ -1,10 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+    session: Ember.inject.service(),
     api: Ember.inject.service(),
 
     sitemap: [],
-    status: {},
+    success: {},
+    error: {},
 
     init() {
         this._super(...arguments);
@@ -20,18 +22,22 @@ export default Ember.Controller.extend({
 
         rebuildCache() {
             this.get('api').call(true, 'admin/cache/rebuild', (status) => {
-                this.set('status.rebuildCache', status);
-            }, (status) => {
-                this.set('status.rebuildCache', 'ERROR');
+                this.set('success.rebuildCache', status);
+            }, () => {
+                this.set('error.rebuildCache', 'ERROR');
             });
         },
 
         updateCache() {
             this.get('api').call(true, 'admin/cache/update', (status) => {
-                this.set('status.updateCache', status);
-            }, (status) => {
-                this.set('status.updateCache', 'ERROR');
+                this.set('success.updateCache', status);
+            }, () => {
+                this.set('error.updateCache', 'ERROR');
             });
         },
+
+        invalidateSession() {
+            this.get('session').invalidate();
+        }
     }
 });

@@ -7,15 +7,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         const menu = [{
             title: 'Dashboard',
             route: [ root, 'dashboard' ].join('.')
-        }
-        , {
+        }, {
             title: 'Invites',
-            // route: [ root, 'invites' ].join('.')
+            route: [ root, 'invites' ].join('.')
         }, {
             title: 'System',
             // route: [ root, 'system' ].join('.')
-        }
-        ];
+        }];
         return menu;
     },
 

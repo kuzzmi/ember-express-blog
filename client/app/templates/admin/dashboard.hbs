@@ -3,19 +3,25 @@
 
     <ul>
         <li>
-            <a {{action "rebuildCache"}}>Drop cache and rerender routes</a>
-            <span class="status">{{or status.rebuildCache "..."}}</span>
+            {{#inline-action action="rebuildCache" error=error.rebuildCache success=success.rebuildCache}}
+                Drop cache and rerender routes
+            {{/inline-action}}
         </li>
         <li>
-            <a {{action "updateCache"}}>Render and cache new routes</a>
-            <span class="status">{{or status.updateCache "..."}}</span>
+            {{#inline-action action="updateCache" error=error.updateCache success=success.updateCache}}
+                Render and cache new routes
+            {{/inline-action}}
         </li>
         <li>
-            <a {{action "generateSitemap"}}>Regenerate a sitemap</a> 
-            <span class="status">{{sitemap.length}} routes</span>
+            {{#inline-action action="generateSitemap"}}
+                Regenerate a sitemap
+            {{/inline-action}}
         </li>
         <li>
             <a {{action "editSitemap"}}>Edit a sitemap</a>
+        </li>
+        <li>
+            <a {{action "invalidateSession"}}>Logout</a>
         </li>
     </ul>
 

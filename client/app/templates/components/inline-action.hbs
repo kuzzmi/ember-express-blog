@@ -1,0 +1,6 @@
+<a {{action "action"}}>{{yield}}</a>
+{{#if error}}
+<span class="status error">{{error}}</span>
+{{else}}
+<span class="status success">{{success}}</span>
+{{/if}}

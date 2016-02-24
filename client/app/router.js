@@ -25,6 +25,7 @@ Router.map(function() {
   this.route('404');
   this.route('admin', function() {
     this.route('dashboard');
+    this.route('invites');
   });
 });
 

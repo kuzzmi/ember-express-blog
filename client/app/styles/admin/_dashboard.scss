@@ -1,9 +1,6 @@
 .administration .dashboard {
-    li:before {
-        content: "* ";
-    }
-    
-    .status {
-        float: right;
+    ul {
+        padding: 0;
+        width: 50%;
     }
 }
