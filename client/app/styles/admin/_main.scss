@@ -25,9 +25,6 @@
     }
 
     .page {
-        li:before {
-            content: "* ";
-        }
         float: left;
         display: flex;
         flex: 1;

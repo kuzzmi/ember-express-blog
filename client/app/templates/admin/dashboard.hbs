@@ -1,18 +1,23 @@
-<h3>Quick actions</h3>
+<div class="dashboard">
+    <h3>Quick actions</h3>
 
-<ul>
-    <li>
-        <a {{action "recacheRoutes"}}>Drop cache and rerender routes</a>
-    </li>
-    <li>
-        <a {{action "cacheRoutes"}}>Render and cache new routes</a>
-    </li>
-    <li>
-        <a {{action "generateSitemap"}}>Regenerate a sitemap</a> (currently {{sitemap.length}} routes)
-    </li>
-    <li>
-        <a {{action "editSitemap"}}>Edit a sitemap</a>
-    </li>
-</ul>
+    <ul>
+        <li>
+            <a {{action "rebuildCache"}}>Drop cache and rerender routes</a>
+            <span class="status">{{or status.rebuildCache "..."}}</span>
+        </li>
+        <li>
+            <a {{action "updateCache"}}>Render and cache new routes</a>
+            <span class="status">{{or status.updateCache "..."}}</span>
+        </li>
+        <li>
+            <a {{action "generateSitemap"}}>Regenerate a sitemap</a> 
+            <span class="status">{{sitemap.length}} routes</span>
+        </li>
+        <li>
+            <a {{action "editSitemap"}}>Edit a sitemap</a>
+        </li>
+    </ul>
 
-{{outlet}}
+    {{outlet}}
+</div>

@@ -1,0 +1,9 @@
+.administration .dashboard {
+    li:before {
+        content: "* ";
+    }
+    
+    .status {
+        float: right;
+    }
+}

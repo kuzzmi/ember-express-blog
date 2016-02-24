@@ -1,4 +1,8 @@
 var Post = require('../../models/post');
+var redis = require('redis');
+var redisClient = redis.createClient();
+
+var cachedRoutes = [];
 // var passport = require('passport');
 // var config = require('../../config/config');
 // var jwt = require('jsonwebtoken');
@@ -13,6 +17,20 @@ exports.generateSitemap = function(req, res) {
             return p.slug;
         }));
     });
+};
+
+exports.rebuildCache = function(req, res) {
+    res.flushdb(function(err) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.send(200);
+        }
+    });
+};
+
+exports.updateCache = function(req, res) {
+    res.send(200);
 };
 
 /**
