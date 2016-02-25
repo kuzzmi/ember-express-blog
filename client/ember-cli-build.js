@@ -26,7 +26,6 @@ module.exports = function(defaults) {
   app.import('bower_components/codemirror/mode/markdown/markdown.js');
   app.import('bower_components/codemirror/lib/codemirror.css');
   app.import('bower_components/codemirror/theme/hopscotch.css');
-  app.import('vendor/pace.min.js');
 
   return app.toTree();
 };

@@ -55,6 +55,10 @@ module.exports = function(environment) {
             google: {
                 families: ['Roboto Mono:400,500,700']
             }
+        },
+
+        pace: {
+            theme: 'minimal'
         }
     };
 
