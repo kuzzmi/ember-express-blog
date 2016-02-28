@@ -8,8 +8,19 @@ export default Ember.Service.extend({
     init() {
         this._super(...arguments);
 
-        this.set('user', {});
-        this.getData();
+        let user = this.get('session').get('data.user');
+        if (user) {
+            this.set('user', user);
+        } else {
+            this.getData();
+        }
+        
+        this.get('session').on('authenticationSucceeded', () => {
+            this.getData();
+        });
+        this.get('session').on('invalidationSucceeded', () => {
+            this.get('session').set('data.user', {});
+        });
     },
 
     isAdmin: Ember.computed('user', function() {
@@ -20,6 +31,7 @@ export default Ember.Service.extend({
     getData: function() {
         this.get('api').call(true, 'users/me', data => {
             this.set('user', data);
+            this.get('session').set('data.user', data);
         });
-    }.observes('session.isAuthenticated').on('init')
+    }
 });
