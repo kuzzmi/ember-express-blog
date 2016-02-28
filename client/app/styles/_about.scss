@@ -1,0 +1,14 @@
+.about {
+    p {
+        padding-bottom: 10px;
+    }
+    img {
+        margin: 0;
+        margin-bottom: 20px;
+    }
+    ul {
+        li:before {
+            content: '* ';
+        }
+    }
+}

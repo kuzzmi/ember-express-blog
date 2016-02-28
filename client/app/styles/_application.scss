@@ -25,16 +25,11 @@ body {
         font-size: 100%;
     }
 
-    &.wf-loading * {
+    &.wf-loading {
         font-size: 17px;
         font-family: monospace;
         line-height: 23px;
     }
-
-    // @include hdpi(3) {
-    //     font-size: 115%;
-    // }
-    // (<768px)(≥768px)(≥992px)(≥1200px)  
 }
 
 .wrapper {
@@ -54,58 +49,4 @@ body {
             padding-top: 0px;
         }
     }
-}
-    
-a {
-    text-decoration: none;
-    color: $accent;
-    cursor: pointer;
-
-    &:hover {
-        text-decoration: underline;
-    }
-}
-
-form {
-    input:not([type]),
-    input[type="text"], 
-    input[type="password"], 
-    input[type="submit"], 
-    textarea {
-        font-family: 'Roboto Mono', 'Roboto', monospace;
-        display: block;
-        margin-bottom: 20px;
-        width: 100%;
-        border: 0;
-        outline: 0;
-        font-size: 16px;
-    }
-    
-    input:not([type]),
-    input[type="text"], 
-    input[type="password"], 
-    input[type="submit"] {
-        border-bottom: 1px solid $grey-light;
-        padding: 5px 0px;
-
-        &[type="submit"] {
-            color: white;
-            font-weight: 700;
-            background-color: $green;
-        }
-    }
-
-    input[type="checkbox"] {
-        width: 16px;
-        height: 16px;
-        margin-bottom: 20px;
-        background: none;
-        border: 1px solid $grey-light;
-    }
-}
-
-// SHOULD BE MOVED TO HELPERS
-
-.hidden {
-    display: none !important;
 }

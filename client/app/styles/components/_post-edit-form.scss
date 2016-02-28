@@ -1,29 +1,9 @@
 .post-edit-form {
-    .title {
-        margin: 0;
-        font-size: $font-size-title;
-        font-weight: 700;
-        padding-bottom: 20px;
-    }
-
-    p {
-        margin: 0;
-        padding: 0;
-    }
-
     .form, .preview {
         display: block;
     }
 
     form {
-        p.label {
-            font-weight: 500;
-            margin-bottom: 10px;
-            &:after {
-                content: ":"
-            }
-        }
-
         .CodeMirror {
             font-family: 'Roboto Mono', monospace;
             height: 500px;

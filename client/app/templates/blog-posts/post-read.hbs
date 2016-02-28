@@ -13,17 +13,20 @@
         <b> {{if model.isPublished "" "[ DRAFT ]"}} </b>
         {{moment-format model.dateCreated "DD/MM/YY HH:mm"}}
     </p>
-    <p class="post-title">
-        {{model.title}} 
-    </p>
+    <h1>
+        {{model.title}}
+    </h1>
     {{#blog-post-body}}
         {{{model.body}}}
     {{/blog-post-body}}
     {{tags-list tags=model.tags}}
-    <p class="social-buttons">
-        <span class="hint" title="I don't know yet how this service works, probably, it will be replaced with plain sharing buttons">Share this post</span>
-    </p>
+    <h3>
+        <span class="hint" 
+              title="I don't know yet how this service works, probably, it will be replaced with plain sharing buttons">
+            Share this post
+        </span>
+    </h3>
     <div class="addthis_sharing_toolbox"></div>
-    <p class="comments">Comments</p>
+    <h3>Comments</h3>
     {{disqus-comments identifier=model.id title=model.title}}
 </div>

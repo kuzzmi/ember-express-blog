@@ -2,24 +2,11 @@
     p {
         margin: 0;
         padding: 0;
+    }
 
-        &.post-title {
-            margin-bottom: 10px;
-            font-size: $font-size-title;
-            font-weight: 700;
-            padding-bottom: 20px;
-        }
-
-        &.comments, &.social-buttons {
-            font-size: $font-size-title * 0.6;
-            margin-top: 20px;
-            font-weight: 700;
-        }
-
-        .hint {
-            cursor: help;
-            border-bottom: 1px dashed $grey;
-        }
+    .hint {
+        cursor: help;
+        border-bottom: 1px dashed $grey;
     }
 
     .addthis_sharing_toolbox {

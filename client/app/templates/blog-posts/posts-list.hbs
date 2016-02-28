@@ -12,17 +12,12 @@
                     <b> {{if item.isPublished "" "[ DRAFT ]"}} </b>
                     {{moment-from-now item.dateCreated interval=60000}}
                 </p>
-                <p class="title">
-                    {{#link-to "blog-posts.post-read" item}}{{item.title}}{{/link-to}}
-                </p>
+                <h1>
+                    {{link-to item.title "blog-posts.post-read" item}}
+                </h1>
                 <p class="description">
                     {{item.description}}
                 </p>
-                {{!--
-                <p class="comments">
-                    <small>{{disqus-comment-count identifier=item.id}}</small>
-                </p>
-                --}}
                 {{tags-list tags=item.tags}}
                 {{!--
                 {{#if item.project}}

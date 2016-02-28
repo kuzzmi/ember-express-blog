@@ -1,42 +1,10 @@
 .list {
     & > ul {
-        margin: 0;
         padding: 0;
-        list-style: none;
+        margin: 0;
+
         & > li {
             padding-bottom: 80px;
-            p {
-                margin: 0;
-                padding: 0;
-
-                &.title {
-                    margin-bottom: 10px;
-                    font-size: $font-size-title;
-                    font-weight: 700;
-
-                    a {
-                        color: $grey-dark;
-                    }
-
-                    @include max-screen(768px) {
-                        font-size: $font-size-title * 0.8;
-                    }
-                }
-
-                &.project {
-                }
-
-                &.description { 
-                }
-
-                &.date {
-                }
-
-                &.comments {
-                    margin-top: 10px;
-                    margin-bottom: 7px;
-                }
-            }
         }
     }
 }
