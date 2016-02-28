@@ -28,7 +28,7 @@ export function initialize() {
                     WebFont.on('active', () => {
                         areFontsLoaded = true;
                         setIndicator();
-                    });
+                    }, true);
                 }
             }
         }
