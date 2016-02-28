@@ -20,7 +20,8 @@
     "blueimp-md5": "~1.1.1",
     "ember-simple-auth": "0.8.0",
     "font-awesome": "~4.4.0",
-    "pace": "~1.0.2"
+    "pace": "~1.0.2",
+    "dinosheets": "0.1.1"
   },
   "resolutions": {
     "codemirror": "~5.8.0"

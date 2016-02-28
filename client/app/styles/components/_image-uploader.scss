@@ -1,0 +1,20 @@
+.dropzone {
+    margin-bottom: 20px;
+    #upload-image {
+        p {
+            border: 1px solid;
+            padding: 20px;
+            text-align: center;
+        }
+    }
+}
+
+.uploaded-files {
+    li {
+        img {
+            display: inline-block;
+            margin: 0;
+            max-width: 200px;
+        }
+    }
+}
