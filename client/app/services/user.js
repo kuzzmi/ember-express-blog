@@ -24,8 +24,10 @@ export default Ember.Service.extend({
     },
 
     isAdmin: Ember.computed('user', function() {
-        let user = this.get('user');
-        return user.role === 'admin';
+        const user = this.get('user');
+        if (user) {
+            return user.role === 'admin';
+        }
     }),
 
     getData: function() {
