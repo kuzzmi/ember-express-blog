@@ -78,8 +78,15 @@ export default Ember.Component.extend({
         insertLink(image) {
             let editor = this.get('editor');
 
-            let val = editor.doc.getValue();
-            editor.doc.setValue(val + '\r\n![](' + image.url + ')');
+            let val = editor.doc.getValue().split('\n');
+            let cur = editor.doc.getCursor();
+            let img = '![](' + image.url + ')';
+
+            val.splice(cur.line + 1, 0, '', img);
+
+            editor.doc.setValue(val.join('\n'));
+
+            editor.doc.setCursor(cur.line + 1);
         },
 
         fullscreen() {
