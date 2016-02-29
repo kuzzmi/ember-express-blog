@@ -64,6 +64,7 @@ module.exports = function(environment) {
 
     if (environment === 'development') {
         ENV.API.host = 'http://localhost:3000';
+        ENV.API.uploadPath = '';
         // ENV.APP.LOG_RESOLVER = true;
         ENV.APP.LOG_ACTIVE_GENERATION = true;
         ENV.APP.LOG_TRANSITIONS = true;
@@ -85,6 +86,7 @@ module.exports = function(environment) {
 
     if (environment === 'production') {
         ENV.API.host = 'https://kuzzmi.com';
+        ENV.API.uploadPath = 'https://kuzzmi.com/uploads/';
         ENV.googleAnalytics = {
             webPropertyId: 'UA-51775404-4'
         };

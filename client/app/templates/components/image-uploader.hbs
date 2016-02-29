@@ -19,7 +19,9 @@
   {{#each links as |link|}}
   <li>
     <img src="{{link.file}}" alt="" />
-    {{ link.name }}
+    <a {{action "action" link}}>
+      {{ link.name }}
+    </a>
   </li>
   {{/each}}
 </ul>

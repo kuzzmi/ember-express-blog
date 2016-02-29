@@ -3,8 +3,12 @@ var express = require('express');
 var router = express.Router();
 var posts = require('./route');
 var auth = require('../../auth/service');
+var config = require('../../config/config');
+var multer = require('multer');
+var upload = multer({ dest: config.uploadPath });
 
 router.post('/', auth.hasRole('admin'), posts.add);
+router.post('/upload', upload.single('file'), posts.upload);
 router.get('/', auth.hasRoleNotStrict('admin'), posts.getAll);
 router.put('/:id', auth.hasRole('admin'), posts.update);
 router.get('/:slug', auth.hasRoleNotStrict('admin'), posts.getOne);

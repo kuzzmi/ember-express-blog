@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import config from '../config/environment';
 
 let self;
 
@@ -11,6 +12,10 @@ export default Ember.Component.extend({
     },
 
     actions: {
+        action(link) {
+            this.sendAction('action', link);
+        },
+
         uploadImage: (file) => {
             console.log(self);
             let image = {
@@ -19,7 +24,6 @@ export default Ember.Component.extend({
 
             file.read().then((url) => {
                 image.file = url;
-                self.get('links').addObject(image);
             });
 
 
@@ -31,11 +35,14 @@ export default Ember.Component.extend({
             // const me = this;
 
             // console.log(file);
-            // file.upload('/api/posts/upload').then((response) => {
-            //     // console.log(file);
-            //     console.log(response);
-            //     // this.set(image, 'url', response.headers.Location);
-            // }, () => { });
+            const path = [config.API.host, config.API.namespace, 'posts/upload'].join('/');
+            //
+            file.upload(path).then((response) => {
+                // console.log(file);
+                image.url = config.API.uploadPath + '/' + response.body[0].data;
+                self.get('links').addObject(image);
+                // this.set(image, 'url', response.headers.Location);
+            }, () => { });
         }
     }
 });

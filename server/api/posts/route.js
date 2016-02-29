@@ -109,3 +109,6 @@ module.exports.delete = function(req, res) {
     });
 };
 
+module.exports.upload = function(req, res) {
+    res.send(req.file.path);
+};

@@ -4,25 +4,32 @@
 import Ember from 'ember';
 import config from '../config/environment';
 
+const cm = CodeMirror;
+
 export default Ember.Component.extend({
     store: Ember.inject.service(),
+    editor: null,
     preview: '',
     isPreview: false,
 
     /* events */
     didInsertElement() {
-        var self = this;
+        let self = this;
         this._super(...arguments);
-        var myTextarea = this.$('#editor-body')[0];
-        new CodeMirror(myTextarea, {
+        let myTextarea = this.$('#editor-body')[0];
+        let editor = cm(myTextarea, {
             value: this.get('post.markdown') || '',
             mode: 'markdown',
             lineWrapping: true,
             keyMap: 'vim'
-        }).on('change', function(editor) {
-            var body = editor.getValue();
+        });
+        
+        editor.on('change', function(editor) {
+            let body = editor.getValue();
             self.set('post.markdown', body);
         });
+
+        this.set('editor', editor);
         
         this.$('input:first').focus();
     },
@@ -47,8 +54,8 @@ export default Ember.Component.extend({
         },
 
         preview(post) {
-            var url = [config.API.host, config.API.namespace, 'posts', 'preview'].join('/');
-            var self = this;
+            let url = [config.API.host, config.API.namespace, 'posts', 'preview'].join('/');
+            let self = this;
             Ember.$.ajax({
                 type: 'POST',
                 url: url,
@@ -68,9 +75,16 @@ export default Ember.Component.extend({
             });
         },
 
+        insertLink(image) {
+            let editor = this.get('editor');
+
+            let val = editor.doc.getValue();
+            editor.doc.setValue(val + '\r\n![](' + image.url + ')');
+        },
+
         fullscreen() {
             Ember.$('.not-editor').toggleClass('hidden');
-            Ember.$('.title.form-title').toggleClass('hidden');
+            Ember.$('h1').toggleClass('hidden');
             Ember.$('.current-time').toggleClass('hidden');
             Ember.$('.toolbar').toggleClass('hidden');
             Ember.$('nav').toggleClass('hidden');
