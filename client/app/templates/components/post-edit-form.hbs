@@ -17,6 +17,9 @@
                 {{link-to "[F10] Close" "blog-posts.posts-list"}}
             {{/if}}
         </li>
+        <li>
+            <a {{action "fullscreen"}}>[F11] Fullscreen</a>
+        </li>
     {{/admin-toolbar}}
     <p class="current-time">
         {{moment-from-now post.dateCreated interval=60000}}

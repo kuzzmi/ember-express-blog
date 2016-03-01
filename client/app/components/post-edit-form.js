@@ -81,12 +81,15 @@ export default Ember.Component.extend({
             let val = editor.doc.getValue().split('\n');
             let cur = editor.doc.getCursor();
             let img = '![](' + image.url + ')';
+            let scroll = editor.getScrollInfo();
 
             val.splice(cur.line + 1, 0, '', img);
 
             editor.doc.setValue(val.join('\n'));
 
-            editor.doc.setCursor(cur.line + 1);
+            editor.doc.setCursor(cur.line + 3);
+            editor.scrollTo(0, scroll.top);
+            editor.focus();
         },
 
         fullscreen() {
@@ -96,6 +99,7 @@ export default Ember.Component.extend({
             Ember.$('.toolbar').toggleClass('hidden');
             Ember.$('nav').toggleClass('hidden');
             Ember.$('.editor').toggleClass('fullscreen');
+            this.get('editor').refresh();
         }
     }
 });

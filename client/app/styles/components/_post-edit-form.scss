@@ -4,25 +4,55 @@
     }
 
     form {
-        .CodeMirror {
-            font-family: 'Roboto Mono', monospace;
-            height: 500px;
-
-            .CodeMirror-cursor {
-                background-color: $text-color;
-            }
-        }
-
-        .editor.fullscreen {
-            z-index: 1000;
-            margin-top: 100px;
-            .label {
-                font-weight: 900;
-            }
+        .editor {
             .CodeMirror {
-                height: calc(80vh);
+                font-family: 'Roboto Mono', monospace;
+                height: 500px;
+
+                .CodeMirror-cursor {
+                    background-color: $text-color;
+                }
+            }
+
+            &.fullscreen {
+                position: absolute;
+
+                animation: extend 0.3s cubic-bezier(1, 0.16, 0.55, 0.9);
+                animation-fill-mode: forwards;
+
+                z-index: 1000;
+                // margin-top: 100px;
+                .label {
+                    font-weight: 900;
+                }
+                #editor-body {
+                    width: 100%;
+                    height: 85%;
+                }
+                .CodeMirror {
+                    height: 100%;
+                    // height: 100%;
+                    // width: 100%;
+                }
             }
         }
+    }
+}
 
+@keyframes extend {
+    0% {
+        top: 30%;
+        left: 30%;
+        right: 30%;
+        bottom: 30%;
+        opacity: 0.0;
+    }
+
+    100% {
+        top: 5%;
+        left: 10%;
+        right: 10%;
+        bottom: 5%;
+        opacity: 1;
     }
 }

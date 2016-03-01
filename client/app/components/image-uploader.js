@@ -26,22 +26,11 @@ export default Ember.Component.extend({
                 image.file = url;
             });
 
-
-            //
-                // console.log(url);
-                // if (this.get(image, 'url') == null) {
-                //     this.set(image, 'url', url);
-                // }
-            // const me = this;
-
-            // console.log(file);
             const path = [config.API.host, config.API.namespace, 'posts/upload'].join('/');
-            //
+
             file.upload(path).then((response) => {
-                // console.log(file);
                 image.url = config.API.uploadPath + '/' + response.body[0].data;
-                self.get('links').addObject(image);
-                // this.set(image, 'url', response.headers.Location);
+                self.sendAction('action', image);
             }, () => { });
         }
     }
