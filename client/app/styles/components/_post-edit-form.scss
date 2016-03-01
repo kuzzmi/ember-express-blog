@@ -7,7 +7,7 @@
         .editor {
             .CodeMirror {
                 font-family: 'Roboto Mono', monospace;
-                height: 500px;
+                height: 900px;
 
                 .CodeMirror-cursor {
                     background-color: $text-color;
@@ -16,9 +16,13 @@
 
             &.fullscreen {
                 position: absolute;
+                max-width: 1000px;
+                margin: 0 auto;
 
                 animation: extend 0.3s cubic-bezier(1, 0.16, 0.55, 0.9);
                 animation-fill-mode: forwards;
+                left: 10%;
+                right: 10%;
 
                 z-index: 1000;
                 // margin-top: 100px;
@@ -26,7 +30,6 @@
                     font-weight: 900;
                 }
                 #editor-body {
-                    width: 100%;
                     height: 85%;
                 }
                 .CodeMirror {
@@ -42,16 +45,12 @@
 @keyframes extend {
     0% {
         top: 30%;
-        left: 30%;
-        right: 30%;
         bottom: 30%;
         opacity: 0.0;
     }
 
     100% {
         top: 5%;
-        left: 10%;
-        right: 10%;
         bottom: 5%;
         opacity: 1;
     }
