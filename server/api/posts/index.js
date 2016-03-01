@@ -8,12 +8,14 @@ var multer = require('multer');
 var upload = multer({ dest: config.uploadPath });
 
 router.post('/', auth.hasRole('admin'), posts.add);
-router.post('/upload', upload.single('file'), posts.upload);
 router.get('/', auth.hasRoleNotStrict('admin'), posts.getAll);
 router.put('/:id', auth.hasRole('admin'), posts.update);
 router.get('/:slug', auth.hasRoleNotStrict('admin'), posts.getOne);
 router.delete('/:id', auth.hasRole('admin'), posts.delete);
 
+// uploads
+router.post('/upload', upload.single('file'), auth.hasRole('admin'), posts.upload);
+router.delete('/upload/:id', auth.hasRole('admin'), posts.deleteUploaded);
 /*
  *  MARKDOWN PREVIEW
  */ 

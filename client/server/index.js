@@ -21,4 +21,6 @@ module.exports = function(app) {
   mocks.forEach(function(route) { route(app); });
   proxies.forEach(function(route) { route(app); });
 
+  var express = require('express');
+  app.use('/uploads', express.static(__dirname + "/../../server/tmp"));
 };

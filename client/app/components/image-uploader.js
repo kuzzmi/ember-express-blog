@@ -4,11 +4,10 @@ import config from '../config/environment';
 let self;
 
 export default Ember.Component.extend({
-    links: [],
+    api: Ember.inject.service(),
 
     didInsertElement() {
         self = this;
-        // this.set('self', this);
     },
 
     actions: {
@@ -17,7 +16,6 @@ export default Ember.Component.extend({
         },
 
         uploadImage: (file) => {
-            console.log(self);
             let image = {
                 name: file.file.name
             };
@@ -28,10 +26,13 @@ export default Ember.Component.extend({
 
             const path = [config.API.host, config.API.namespace, 'posts/upload'].join('/');
 
-            file.upload(path).then((response) => {
-                image.url = config.API.uploadPath + '/' + response.body[0].data;
-                self.sendAction('action', image);
-            }, () => { });
+            self.get('api').getHeaders((headers) => {
+                file.upload(path, { headers }).then((response) => {
+                    image.url = config.API.uploadPath + '/' + response.body[0].data;
+                    image.filename = response.body[0].data;
+                    self.sendAction('action', image);
+                }, () => { });
+            });
         }
     }
 });

@@ -1,7 +1,11 @@
+'use strict';
+
 var mongoose = require('mongoose');
 var extend = require('extend');
 var Post = require('../../models/post');
 var Tag = require('../../models/tag');
+var fs = require('fs');
+var config = require('../../config/config');
 
 module.exports.add = function(req, res) {
     var post = new Post(req.body.post);
@@ -110,5 +114,16 @@ module.exports.delete = function(req, res) {
 };
 
 module.exports.upload = function(req, res) {
-    res.send(req.file.path);
+    res.send(req.file.filename);
+};
+
+module.exports.deleteUploaded = function(req, res) {
+    fs.unlink(config.uploadPath + req.params.id, (err) => {
+        if (err) {
+            res.status(500).send(err);
+            return;
+        }
+
+        res.status(200).json({ status: 'OK' });
+    });
 };

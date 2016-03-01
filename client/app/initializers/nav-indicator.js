@@ -23,7 +23,7 @@ export function initialize() {
         actions: {
             didTransition() {
                 if (areFontsLoaded) {
-                    setTimeout(setIndicator, 0);
+                    setTimeout(setIndicator, 1);
                 } else {
                     WebFont.on('active', () => {
                         areFontsLoaded = true;

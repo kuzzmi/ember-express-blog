@@ -8,9 +8,11 @@ const cm = CodeMirror;
 
 export default Ember.Component.extend({
     store: Ember.inject.service(),
+    api: Ember.inject.service(),
     editor: null,
     preview: '',
     isPreview: false,
+    images: [],
 
     /* events */
     didInsertElement() {
@@ -44,6 +46,19 @@ export default Ember.Component.extend({
             if (!post.get('dateCreated')) {
                 post.set('dateCreated', new Date());
             }
+
+            let images = this.get('images');
+
+            for (var i = 0, l = images.length; i < l; i++) {
+                var v = images[i];
+            
+                if (this.get('post.markdown').indexOf(v.url) === -1) {
+                    this.get('api').call(true, 'posts/upload/' + v.filename, {
+                        method: 'DELETE'
+                    });
+                }
+            }
+
             this.sendAction('save', post);
         },
 
@@ -83,13 +98,15 @@ export default Ember.Component.extend({
             let img = '![](' + image.url + ')';
             let scroll = editor.getScrollInfo();
 
-            val.splice(cur.line + 1, 0, '', img);
+            val.splice(cur.line + 1, 0, '', img, '', '');
 
             editor.doc.setValue(val.join('\n'));
 
-            editor.doc.setCursor(cur.line + 3);
+            editor.doc.setCursor(cur.line + 4);
             editor.scrollTo(0, scroll.top);
             editor.focus();
+
+            this.get('images').addObject(image);
         },
 
         fullscreen() {
