@@ -30,6 +30,7 @@ export function initialize() {
                         setIndicator();
                     }, true);
                 }
+                return true;
             }
         }
     });

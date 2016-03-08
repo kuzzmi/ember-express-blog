@@ -24,6 +24,7 @@
     "dinosheets": "0.1.1"
   },
   "resolutions": {
-    "codemirror": "~5.8.0"
+    "codemirror": "~5.8.0",
+    "qunit": "~1.20.0"
   }
 }

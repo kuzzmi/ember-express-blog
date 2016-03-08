@@ -1,27 +1,36 @@
 <nav>
-  <div class="blog-title">
-      <button {{action "toggleNavbar"}} class="nav-toggle" type="button">
-          <span></span>
-          <span></span>
-          <span></span>
-      </button>
-      {{#link-to "blog-posts"}}
-          {{title}}<span class="animated-dot">.</span>
-      {{/link-to}}
-  </div>
-  <div class="navbar">
-    <ul>
-      <li>{{#link-to "blog-posts"}}Blog{{/link-to}}</li>
-      <li>{{#link-to "projects.list"}}Projects{{/link-to}}</li>
-      <li>{{#link-to "about"}}About{{/link-to}}</li>
-      <li>
-          {{#if session.isAuthenticated}}
-              <a {{action 'invalidateSession'}}>Logout</a>
-          {{else}}
-              {{link-to "Login" "auth.login"}}
-          {{/if}}
-      </li>
-    </ul>
-    <div class="active-indicator"></div>
-  </div>
+    <div class="blog-title">
+        <button {{action "toggleNavbar"}} class="nav-toggle" type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        {{#if isLive}}
+        {{#link-to "stream"}}
+        <span class="title">{{title}}</span><span class="rec-sign"></span>
+        {{/link-to}}
+        {{else}}
+        {{#link-to "blog-posts"}}
+        <span class="title">{{title}}</span><span class="animated-dot">.</span>
+        {{/link-to}}
+        {{/if}}
+    </div>
+    <div class="navbar">
+        <ul>
+            <li>{{#link-to "blog-posts"}}Blog{{/link-to}}</li>
+            {{#if isLive}}
+            <li>{{#link-to "stream"}}Live{{/link-to}}</li>
+            {{/if}}
+            <li>{{#link-to "projects.list"}}Projects{{/link-to}}</li>
+            <li>{{#link-to "about"}}About{{/link-to}}</li>
+            <li>
+                {{#if session.isAuthenticated}}
+                <a {{action 'invalidateSession'}}>Logout</a>
+                {{else}}
+                {{link-to "Login" "auth.login"}}
+                {{/if}}
+            </li>
+        </ul>
+        <div class="active-indicator"></div>
+    </div>
 </nav>
