@@ -9,6 +9,7 @@ const Router = Ember.Router.extend(googlePageview, {
 Router.map(function() {
     this.route('blog-posts', { path: '/' }, function() {
       this.route('posts-list', { path: '/' });
+      this.route('posts-list-page', { path: '/page/:page' });
       this.route('post-edit', { path: 'blog/:slug/edit' });
       this.route('post-new', { path: 'blog/new' });
       this.route('post-read', { path: 'blog/:slug' });
