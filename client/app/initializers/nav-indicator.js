@@ -22,6 +22,7 @@ export function initialize() {
     Ember.Route.reopen({
         actions: {
             didTransition() {
+                window.scrollTo(0,0);
                 if (areFontsLoaded) {
                     setTimeout(setIndicator, 1);
                 } else {

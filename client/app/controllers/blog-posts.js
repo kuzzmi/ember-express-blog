@@ -9,15 +9,15 @@ export default Ember.Controller.extend({
     currentPage: null,
     postsCount: null,
 
-    isFirstPage: Ember.computed('currentPage', function() {
-        return ( +this.get('currentPage') === 1 );
+    isNotFirstPage: Ember.computed('currentPage', function() {
+        return ( +this.get('currentPage') !== 1 );
     }),
 
-    isLastPage: Ember.computed('currentPage', 'pageSize', 'postsCount', function() {
+    isNotLastPage: Ember.computed('currentPage', 'pageSize', 'postsCount', function() {
         let size = this.get('pageSize');
         let cur = this.get('currentPage');
         let max = this.get('postsCount') - (size * cur);
-        return max <= 0;
+        return max > 0;
     }),
 
     nextPage: Ember.computed('currentPage', function() {
