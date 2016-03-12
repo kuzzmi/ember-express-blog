@@ -1,15 +1,15 @@
-@keyframes recolor {
-    from {
-        -webkit-filter: hue-rotate(0deg);
-        -moz-filter: hue-rotate(0deg);
-        -o-filter: hue-rotate(0deg);
-        filter: hue-rotate(0deg);
+@keyframes blink {
+    0% {
+        opacity: 1;
     }
-    to {
-        -webkit-filter: hue-rotate(359deg);
-        -moz-filter: hue-rotate(359deg);
-        -o-filter: hue-rotate(359deg);
-        filter: hue-rotate(359deg);
+    49% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
     }
 }
 
@@ -78,8 +78,10 @@ nav {
             }
 
             .animated-dot {
-                animation-name: recolor;
-                animation-duration: 20s;
+                color: black;
+                animation-name: blink;
+                animation-duration: 0.5s;
+                animation-direction: alternate;
                 animation-iteration-count: infinite;
 
                 @include max-screen(768px) {

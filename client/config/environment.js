@@ -27,12 +27,12 @@ module.exports = function(environment) {
         },
 
         contentSecurityPolicy: {
-            'script-src': "'self' 'unsafe-inline' kuzzmi.disqus.com referrer.disqus.com www.google-analytics.com s7.addthis.com",
-            'style-src': "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com a.disquscdn.com",
-            'frame-src': "'self' 'unsafe-inline' disqus.com s7.addthis.com",
+            'script-src': "'self' 'unsafe-inline' kuzzmi.disqus.com referrer.disqus.com www.google-analytics.com static.addtoany.com",
+            'style-src': "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com a.disquscdn.com static.addtoany.com",
+            'frame-src': "'self' 'unsafe-inline' disqus.com static.addtoany.com",
             'child-src': "'self' 'unsafe-inline' disqus.com",
             'font-src': "'self' 'unsafe-inline' fonts.gstatic.com",
-            'img-src': "'self' 'unsafe-inline' www.gravatar.com a.disquscdn.com referrer.disqus.com",
+            'img-src': "'self' 'unsafe-inline' www.gravatar.com a.disquscdn.com referrer.disqus.com data:",
             'connect-src': "'self' http://localhost:3000"
         },
 

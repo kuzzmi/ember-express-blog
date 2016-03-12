@@ -36,7 +36,7 @@ export default Ember.Controller.extend({
     }),
 
     init() {
-        this.get('api').call(true, '/posts/count', (data) => {
+        this.get('api').call(false, '/posts/count', (data) => {
             this.set('postsCount', data.count);
         });
 

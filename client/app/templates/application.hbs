@@ -1,8 +1,11 @@
 {{title model.fullname prepend=true}}
-
 <div class="wrapper">
     {{nav-bar title=model.fullname}}
     <div class="content">
         {{outlet}}
+
+        <div class="footer">
+            Built with <span class="heart">♥</span> by <a href="https://twitter.com/kuzzmi" onClick="ga('send', 'event', 'Social links', 'click', 'twitter')">@kuzzmi</a>
+        </div>
     </div>
 </div>

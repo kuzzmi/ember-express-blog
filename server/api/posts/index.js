@@ -8,7 +8,7 @@ var multer = require('multer');
 var upload = multer({ dest: config.uploadPath });
 
 router.post('/', auth.hasRole('admin'), posts.add);
-router.get('/count', auth.hasRoleNotStrict('admin'), posts.getCount);
+router.get('/count', posts.getCount);
 router.get('/', auth.hasRoleNotStrict('admin'), posts.getAll);
 router.put('/:id', auth.hasRole('admin'), posts.update);
 router.get('/:slug', auth.hasRoleNotStrict('admin'), posts.getOne);
