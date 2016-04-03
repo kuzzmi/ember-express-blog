@@ -83,10 +83,6 @@ nav {
                 animation-duration: 0.5s;
                 animation-direction: alternate;
                 animation-iteration-count: infinite;
-
-                @include max-screen(768px) {
-                    display: none;
-                }
             }
         }
 

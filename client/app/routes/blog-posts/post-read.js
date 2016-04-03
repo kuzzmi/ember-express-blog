@@ -40,6 +40,13 @@ export default Ember.Route.extend({
 
         tags = [{
             type: 'meta',
+            tagId: 'meta-twitter-card-tag',
+            attrs: {
+                property: 'twitter:card',
+                content: 'summary'
+            }
+        }, {
+            type: 'meta',
             tagId: 'meta-twitter-title-tag',
             attrs: {
                 property: 'twitter:title',

@@ -5,15 +5,15 @@
 .a2a_menu .a2a_svg {
     border-radius: 0 !important;
     font-family: 'Roboto Mono', monospace;
+    line-height: 19px !important;
 }
 
 .a2a_kit {
-    width: 324px;
+    width: 288px;
     margin: 0 auto;
-    margin-bottom: 10px;
     float: right;
 
     &.a2a_kit-bottom {
-        margin-top: 20px;
+        margin-top: 25px;
     }
 }

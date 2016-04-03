@@ -22,7 +22,6 @@ export function initialize() {
     Ember.Route.reopen({
         actions: {
             didTransition() {
-                window.scrollTo(0,0);
                 if (areFontsLoaded) {
                     setTimeout(setIndicator, 1);
                 } else {
@@ -31,9 +30,13 @@ export function initialize() {
                         setIndicator();
                     }, true);
                 }
+                this._super();
+                return true;
             }
         }
     });
+
+    // console.log(Ember.Route.prototype);
 
     initialized = true;
 }
