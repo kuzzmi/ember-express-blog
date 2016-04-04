@@ -14,6 +14,8 @@
       <li>{{#link-to "blog-posts"}}Blog{{/link-to}}</li>
       <li>{{#link-to "projects.list"}}Projects{{/link-to}}</li>
       <li>{{#link-to "about"}}About{{/link-to}}</li>
+      <li><a href="http://feeds.feedburner.com/kuzzmi" class="rss-icon" target="_blank">{{fa-icon "rss-square"}}</a></li>
+      {{!--
       <li>
           {{#if session.isAuthenticated}}
               <a {{action 'invalidateSession'}}>Logout</a>
@@ -21,6 +23,7 @@
               {{link-to "Login" "auth.login"}}
           {{/if}}
       </li>
+      --}}
     </ul>
     <div class="active-indicator"></div>
   </div>

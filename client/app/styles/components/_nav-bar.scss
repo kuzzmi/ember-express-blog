@@ -157,6 +157,18 @@ nav {
                             background-color: black;
                         }
                     }
+
+                    &.rss-icon {
+                        color: $accent;
+                        font-size: 33px;
+                        position: absolute;
+                        top: -4px;
+                        margin-left: 210px;
+                        @include max-screen(768px) {
+                            position: initial;
+                            margin-left: 0px;
+                        }
+                    }
                 }
 
             }

@@ -6,7 +6,6 @@ var Tag = require('../../models/tag');
 
 module.exports.rss = function(req, res) {
     Post.find({})
-        .populate('tags')
         .sort('-dateCreated')
         .where('isPublished', true)
         .limit(20)
