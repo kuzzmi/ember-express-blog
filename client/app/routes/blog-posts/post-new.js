@@ -9,12 +9,17 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     },
 
     actions: {
-        willTransition() {
+        willTransition(transition) {
             var model = this.currentModel;
+            console.log(model.get('hasDirtyAttributes'));
             if (model.get('hasDirtyAttributes')) {
-                model.rollbackAttributes();
+                if(confirm('Are you sure?')) {
+                    model.rollbackAttributes();
+                    this.store.unloadRecord(model);
+                } else {
+                    transition.abort();
+                }
             }
-            this.store.unloadRecord(model);
         }
     }
 });

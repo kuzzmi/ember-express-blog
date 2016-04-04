@@ -23,6 +23,37 @@ module.exports.add = function(req, res) {
 };
 
 module.exports.getAll = function(req, res) {
+    var limits = {
+        skip: ( req.query.page - 1 ) * req.query.size,
+        limit: parseInt(req.query.size, 10)
+    }
+
+    delete req.query.page;
+    delete req.query.size;
+
+    if (!req.user) {
+        req.query.isPublished = true;
+    } else if (req.query.isPublished) {
+        delete req.query.isPublished;
+    }
+
+    Post.find(req.query)
+        .populate('tags')
+        .limit(limits.limit)
+        .skip(limits.skip)
+        .sort('-dateCreated')
+        // .populate('project')
+        .exec(function(err, posts) {
+            if (err) {
+                res.send(err);
+            }
+            res.json({
+                posts: posts
+            });
+        });
+};
+
+module.exports.getCount = function(req, res) {
     if (!req.user) {
         req.query.isPublished = true;
     } else if (req.query.isPublished) {
@@ -33,12 +64,12 @@ module.exports.getAll = function(req, res) {
         .populate('tags')
         .sort('-dateCreated')
         // .populate('project')
-        .exec(function(err, posts) {
+        .count(function(err, count) {
             if (err) {
                 res.send(err);
             }
             res.json({
-                posts: posts
+                count: count
             });
         });
 };

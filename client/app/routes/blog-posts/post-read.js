@@ -1,3 +1,5 @@
+/* globals a2a */
+/* globals a2a_config */
 import Ember from 'ember';
 import config from '../../config/environment';
 
@@ -15,8 +17,20 @@ export default Ember.Route.extend({
         });
     },
 
-    afterModel: function(model) {
+    afterModel: function(model, transition) {
         this.setHeadTags(model);
+
+        transition.then(() => {
+            a2a_config.linkname = model.get('title');
+            a2a_config.linkurl = window.location.origin + this.get('router.url');
+
+            setTimeout(function() {
+                a2a.init('page');
+            }, 10);
+            setTimeout(function() {
+                a2a.init('page');
+            }, 10);
+        });
     },
 
     setHeadTags: function(model) {
@@ -25,6 +39,13 @@ export default Ember.Route.extend({
         let tags = {};
 
         tags = [{
+            type: 'meta',
+            tagId: 'meta-twitter-card-tag',
+            attrs: {
+                property: 'twitter:card',
+                content: 'summary'
+            }
+        }, {
             type: 'meta',
             tagId: 'meta-twitter-title-tag',
             attrs: {

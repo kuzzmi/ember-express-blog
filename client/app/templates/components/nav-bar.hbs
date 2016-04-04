@@ -5,15 +5,11 @@
             <span></span>
             <span></span>
         </button>
-        {{#if isLive}}
-        {{#link-to "stream"}}
+        {{#if isLive}} {{#link-to "stream"}}
         <span class="title">{{title}}</span><span class="rec-sign"></span>
-        {{/link-to}}
-        {{else}}
-        {{#link-to "blog-posts"}}
+        {{/link-to}} {{else}} {{#link-to "blog-posts"}}
         <span class="title">{{title}}</span><span class="animated-dot">.</span>
-        {{/link-to}}
-        {{/if}}
+        {{/link-to}} {{/if}}
     </div>
     <div class="navbar">
         <ul>
@@ -23,12 +19,7 @@
             {{/if}}
             <li>{{#link-to "projects.list"}}Projects{{/link-to}}</li>
             <li>{{#link-to "about"}}About{{/link-to}}</li>
-            <li>
-                {{#if session.isAuthenticated}}
-                <a {{action 'invalidateSession'}}>Logout</a>
-                {{else}}
-                {{link-to "Login" "auth.login"}}
-                {{/if}}
+            <li><a href="http://feeds.feedburner.com/kuzzmi" class="rss-icon" target="_blank">{{fa-icon "rss-square"}}</a>
             </li>
         </ul>
         <div class="active-indicator"></div>

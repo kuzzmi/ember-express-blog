@@ -1,6 +1,14 @@
 {{title model.title}}
 
 <div class="post">
+    <div class="a2a_kit a2a_kit_size_21 a2a_default_style" data-a2a-icon-color="#FF8300">
+        <a class="a2a_button_facebook a2a_counter"></a>
+        <a class="a2a_button_twitter a2a_counter"></a>
+        <a class="a2a_button_google_plus a2a_counter"></a>
+        <a class="a2a_button_reddit a2a_counter"></a>
+        <a class="a2a_button_linkedin a2a_counter"></a>
+        <a class="a2a_button_pocket a2a_counter"></a>
+    </div>
     {{#admin-toolbar}}
         <li>
             {{link-to "[F4] Edit" "blog-posts.post-edit" model}}
@@ -20,13 +28,16 @@
         {{{model.body}}}
     {{/blog-post-body}}
     {{tags-list tags=model.tags}}
-    <h3>
-        <span class="hint" 
-              title="I don't know yet how this service works, probably, it will be replaced with plain sharing buttons">
-            Share this post
-        </span>
-    </h3>
-    <div class="addthis_sharing_toolbox"></div>
-    <h3>Comments</h3>
-    {{disqus-comments identifier=model.id title=model.title}}
+    <div class="a2a_kit a2a_kit_size_21 a2a_default_style a2a_kit-bottom" data-a2a-icon-color="#FF8300">
+        <a class="a2a_button_facebook a2a_counter"></a>
+        <a class="a2a_button_twitter a2a_counter"></a>
+        <a class="a2a_button_google_plus a2a_counter"></a>
+        <a class="a2a_button_reddit a2a_counter"></a>
+        <a class="a2a_button_linkedin a2a_counter"></a>
+        <a class="a2a_button_pocket a2a_counter"></a>
+    </div>
+    <div class="comments">
+        <h3>Comments</h3>
+        {{disqus-comments identifier=model.id title=model.title}}
+    </div>
 </div>

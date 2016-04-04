@@ -62,7 +62,7 @@ $space: 0px;
 
     blockquote {
         background: $grey-lightest;
-        padding: 20px 0;
+        padding: 20px 40px;
 
         @include max-screen(768px) {
             padding: 20px;
@@ -72,6 +72,10 @@ $space: 0px;
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        p:last-child {
+            padding-bottom: 0;
         }
     }
 

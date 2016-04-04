@@ -1,0 +1,19 @@
+.a2a_default_style .a2a_count, 
+.a2a_default_style .a2a_svg, 
+.a2a_floating_style .a2a_svg, 
+.a2a_vertical_style .a2a_count, 
+.a2a_menu .a2a_svg {
+    border-radius: 0 !important;
+    font-family: 'Roboto Mono', monospace;
+    line-height: 19px !important;
+}
+
+.a2a_kit {
+    width: 288px;
+    margin: 0 auto;
+    float: right;
+
+    &.a2a_kit-bottom {
+        margin-top: 25px;
+    }
+}

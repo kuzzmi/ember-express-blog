@@ -30,10 +30,13 @@ export function initialize() {
                         setIndicator();
                     }, true);
                 }
+                this._super();
                 return true;
             }
         }
     });
+
+    // console.log(Ember.Route.prototype);
 
     initialized = true;
 }

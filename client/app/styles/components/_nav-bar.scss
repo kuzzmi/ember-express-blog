@@ -1,15 +1,15 @@
-@keyframes recolor {
-    from {
-        -webkit-filter: hue-rotate(0deg);
-        -moz-filter: hue-rotate(0deg);
-        -o-filter: hue-rotate(0deg);
-        filter: hue-rotate(0deg);
+@keyframes blink {
+    0% {
+        opacity: 1;
     }
-    to {
-        -webkit-filter: hue-rotate(359deg);
-        -moz-filter: hue-rotate(359deg);
-        -o-filter: hue-rotate(359deg);
-        filter: hue-rotate(359deg);
+    49% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
     }
 }
 
@@ -91,14 +91,11 @@ nav {
             }
 
             .animated-dot {
-                display: inline-block;
-                animation-name: recolor;
-                animation-duration: 20s;
+                color: black;
+                animation-name: blink;
+                animation-duration: 0.5s;
+                animation-direction: alternate;
                 animation-iteration-count: infinite;
-
-                @include max-screen(768px) {
-                    display: none;
-                }
             }
 
             .rec-sign {
@@ -186,6 +183,18 @@ nav {
                         color: white;
                         @include max-screen(768px) {
                             background-color: black;
+                        }
+                    }
+
+                    &.rss-icon {
+                        color: $accent;
+                        font-size: 33px;
+                        position: absolute;
+                        top: -4px;
+                        margin-left: 210px;
+                        @include max-screen(768px) {
+                            position: initial;
+                            margin-left: 0px;
                         }
                     }
                 }

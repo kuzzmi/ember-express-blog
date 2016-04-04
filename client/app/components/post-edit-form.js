@@ -3,12 +3,14 @@
 
 import Ember from 'ember';
 import config from '../config/environment';
+import { storageFor } from 'ember-local-storage';
 
 const cm = CodeMirror;
 
 export default Ember.Component.extend({
     store: Ember.inject.service(),
     api: Ember.inject.service(),
+    backup: storageFor('postBackup'),
     editor: null,
     preview: '',
     isPreview: false,
@@ -40,8 +42,19 @@ export default Ember.Component.extend({
         this._super(...arguments);
     },
 
+    canRestore: Ember.computed('backup.markdown', function() {
+        return this.get('backup.markdown');
+    }),
+
     /* actions */
     actions: {
+        restore() {
+            let editor = this.get('editor');
+            if (this.get('backup.markdown')) {
+                editor.doc.setValue(this.get('backup.markdown'));
+                this.get('backup').clear();
+            }
+        },
         save(post) {
             if (!post.get('dateCreated')) {
                 post.set('dateCreated', new Date());

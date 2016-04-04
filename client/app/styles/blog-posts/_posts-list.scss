@@ -1,4 +1,16 @@
 .list {
+    .pagination {
+        div {
+            height: 21px;
+        }
+        &.pagination-bottom {
+            margin-top: -20px;
+            margin-bottom: 20px;
+        }
+        .older {
+            float: right;
+        }
+    }
     & > ul {
         padding: 0;
         margin: 0;

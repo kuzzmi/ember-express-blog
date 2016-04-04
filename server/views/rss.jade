@@ -1,0 +1,21 @@
+doctype xml
+rss(version='2.0', xmlns:atom='<a href="http://www.w3.org/2005/Atom" rel="nofollow">http://www.w3.org/2005/Atom</a>')
+    channel
+        title Igor Kuzmenko Blog
+        link <a href="https://kuzzmi.com" rel="nofollow">https://kuzzmi.com</a>
+        atom:link(href='<a href="https://kuzzmi.com/api/feed/rss" rel="nofollow">https://kuzzmi.com/api/feed/rss</a>', rel='self', type='application/rss+xml')
+        description Random frontend developer's thoughts and topics.
+        language en-US
+        if posts.length
+            lastBuildDate= new Date(posts[0].dateCreated).toUTCString()
+        each post in posts
+            item
+                title= post.title
+                link <a href="https://kuzzmi.com/blog/#{post.slug}" rel="nofollow">https://kuzzmi.com/blog/#{post.slug}</a>
+                description
+                    | <![CDATA[
+                    | !{post.description} 
+                    p: a(href='http://kuzzmi.com/blog/#{post.slug}', rel='nofollow') Read more &raquo;
+                    | ]]>
+                pubDate= new Date(post.dateCreated).toUTCString()
+                guid(isPermaLink='true') <a href="https://kuzzmi.com/blog/#{post.slug}" rel="nofollow">https://kuzzmi.com/blog/#{post.slug}</a>

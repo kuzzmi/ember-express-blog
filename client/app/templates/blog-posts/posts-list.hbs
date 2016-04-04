@@ -29,5 +29,14 @@
             </li>
         {{/each}}
     </ul>
+    <div class="pagination pagination-bottom">
+        <div>
+            {{#if isNotFirstPage}}
+            {{link-to "< newer" "blog-posts.posts-list-page" prevPage class="newer"}}
+            {{/if}}
+            {{#if isNotLastPage}}
+            {{link-to "older >" "blog-posts.posts-list-page" nextPage class="older"}}
+            {{/if}}
+        </div>
+    </div>
 </div>
-

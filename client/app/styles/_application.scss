@@ -48,5 +48,13 @@ body {
             padding: 20px;
             padding-top: 0px;
         }
+
+        .footer {
+            margin: 40px 0;
+            text-align: center;
+            .heart {
+                color: red;
+            }
+        }
     }
 }
