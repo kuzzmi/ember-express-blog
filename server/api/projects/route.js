@@ -23,7 +23,10 @@ module.exports.getAll = function(req, res) {
     }
 
     Project.find(req.query)
-        .sort('-dateUpdated')
+        .sort({
+            dateUpdated: 'desc',
+            githubID: 'asc'
+        })
         .exec(function(err, projects) {
         if (err) {
             res.status(500).send(err);
@@ -32,7 +35,6 @@ module.exports.getAll = function(req, res) {
             projects: projects
         });
     });
-    
 };
 
 module.exports.update = function(req, res) {
@@ -43,9 +45,7 @@ module.exports.update = function(req, res) {
             res.status(500).send(err);
         }
 
-        extend(true, project, req.body.project);
-
-        project.save(function(err, project) {
+        project.update(req.body.project, function(err, project) {
             if (err) {
                 res.status(500).send(err);
             }
@@ -74,7 +74,7 @@ module.exports.sync = function(req, res) {
         version: '3.0.0'
     });
 
-    github.repos.getFromUser({ 
+    github.repos.getFromUser({
         user: 'kuzzmi'
     }, function(err, data) {
         if (err && res) {
@@ -109,7 +109,7 @@ module.exports.sync = function(req, res) {
                         }
                     });
                 } else {
-                    project.name = _project.name; 
+                    project.name = _project.name;
                     project.description = _project.description;
                     project.url = _project.html_url;
                     project.dateUpdated = _project.pushed_at;
@@ -122,7 +122,7 @@ module.exports.sync = function(req, res) {
                 }
             });
         });
-        
+
         if (res) {
             res.json(data);
         }

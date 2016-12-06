@@ -15,11 +15,19 @@
                     <p class="date date-created">
                         Created {{moment-from-now project.dateCreated}}
                     </p>
-                    <p class="date date-updated">
-                        Updated {{moment-from-now project.dateUpdated}}
-                    </p>
+                    {{#if project.dateUpdated}}
+                        <p class="date date-updated">
+                            Updated {{moment-from-now project.dateUpdated}}
+                        </p>
+                    {{/if}}
                     <h1>
-                        <a href="{{project.url}}">{{project.name}}</a>
+                        <a href="{{project.url}}" target="_blank">
+                        {{#if project.githubID}}
+                            kuzzmi/{{project.name}}
+                        {{else}}
+                            {{project.name}}
+                        {{/if}}
+                        </a>
                     </h1>
                     <p class="description">
                         {{project.description}}

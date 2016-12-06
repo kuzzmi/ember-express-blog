@@ -50,7 +50,6 @@ export default Ember.Controller.extend({
 
     actions: {
         incrPage() {
-            console.log('asdasdasd');
             let cur = this.get('currentPage');
             if (!this.get('isLastPage')) {
                 this.transitionTo('blog-posts.posts-list-page', cur++);

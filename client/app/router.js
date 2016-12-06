@@ -3,7 +3,8 @@ import config from './config/environment';
 import googlePageview from './mixins/google-pageview';
 
 const Router = Ember.Router.extend(googlePageview, {
-    location: config.locationType
+    location: config.locationType,
+    rootURL: config.rootURL
 });
 
 Router.map(function() {
@@ -24,6 +25,7 @@ Router.map(function() {
         this.route('login');
     });
     this.route('404');
+    this.route('stream');
 });
 
 export default Router;

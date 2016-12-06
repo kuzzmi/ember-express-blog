@@ -4,7 +4,7 @@ module.exports = function(environment) {
     var ENV = {
         modulePrefix: 'kuzzmi-blog',
         environment: environment,
-        baseURL: '/',
+        rootURL: '/',
         locationType: 'auto',
         disqus: {
             shortname: 'kuzzmi'
@@ -29,7 +29,7 @@ module.exports = function(environment) {
         contentSecurityPolicy: {
             'script-src': "'self' 'unsafe-inline' kuzzmi.disqus.com referrer.disqus.com www.google-analytics.com static.addtoany.com",
             'style-src': "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com a.disquscdn.com static.addtoany.com",
-            'frame-src': "'self' 'unsafe-inline' disqus.com static.addtoany.com",
+            'frame-src': "'self' 'unsafe-inline' disqus.com static.addtoany.com www.livecoding.tv",
             'child-src': "'self' 'unsafe-inline' disqus.com",
             'font-src': "'self' 'unsafe-inline' fonts.gstatic.com",
             'img-src': "'self' 'unsafe-inline' www.gravatar.com a.disquscdn.com referrer.disqus.com data:",
@@ -74,7 +74,7 @@ module.exports = function(environment) {
 
     if (environment === 'test') {
         // Testem prefers this...
-        ENV.baseURL = '/';
+        ENV.rootURL = '/';
         ENV.locationType = 'none';
 
         // keep test console output quieter

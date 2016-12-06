@@ -1,0 +1,7 @@
+{
+    "secret": "ineedporschecayman",
+    "database": "mongodb://localhost/blog",
+    "uploadPath": "tmp/",
+
+    "userRoles": ["guest", "user", "admin"]
+}
